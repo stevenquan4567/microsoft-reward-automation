@@ -8,6 +8,7 @@
 
 const ALARM_NEXT_SEARCH = 'next_search';
 const ALARM_DAILY_SCHEDULE = 'daily_msr_schedule';
+const ALARM_AUTO_UPDATE = 'auto_update_check';
 
 // ─────────────────────────────────────────────────────────────
 // STATE HELPERS
@@ -56,6 +57,7 @@ chrome.runtime.onInstalled.addListener(async () => {
     autoCloseTab: true,
     enableHumanizer: true,
     enableNotifications: true,
+    enableAutoUpdate: true,
     runOnStartup: true,
     scheduledTime: '09:00',
     enableSchedule: false,
@@ -73,6 +75,8 @@ chrome.runtime.onInstalled.addListener(async () => {
       await chrome.storage.local.set({ [key]: value });
     }
   }
+
+  await setupAutoUpdateAlarm();
 });
 
 chrome.runtime.onStartup.addListener(async () => {
@@ -86,8 +90,16 @@ chrome.runtime.onStartup.addListener(async () => {
     await chrome.alarms.clear(ALARM_NEXT_SEARCH);
   }
 
+  await setupAutoUpdateAlarm();
+  performAutoUpdateAndReload().catch(() => {});
   await checkAndRunOnStartup();
 });
+
+async function setupAutoUpdateAlarm() {
+  await chrome.alarms.clear(ALARM_AUTO_UPDATE);
+  chrome.alarms.create(ALARM_AUTO_UPDATE, { periodInMinutes: 60 });
+  console.log('[MSR Pro] Auto-update hourly background alarm initialized.');
+}
 
 async function checkAndRunOnStartup() {
   const data = await chrome.storage.local.get([
@@ -137,6 +149,12 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     if (settings.enableSchedule && !settings.isRunning) {
       startAutomation('desktop');
     }
+  } else if (alarm.name === ALARM_AUTO_UPDATE) {
+    console.log('[MSR Pro] Auto-update alarm triggered.');
+    const settings = await chrome.storage.local.get(['enableAutoUpdate']);
+    if (settings.enableAutoUpdate !== false) {
+      await performAutoUpdateAndReload();
+    }
   }
 });
 
@@ -163,194 +181,211 @@ async function loadQuotesBank() {
   return quotesBankData;
 }
 
-async function generateProceduralQuoteQuery() {
-  const bank = await loadQuotesBank();
-  const templates = bank.templates || ['famous quotes about {topics_and_concepts} by {authors_and_thinkers}'];
-  let query = templates[Math.floor(Math.random() * templates.length)];
-
-  const getRandom = (arr) => (arr && arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : '');
-
-  const authors = bank.authors_and_thinkers || ["Albert Einstein"];
-  const topics = bank.topics_and_concepts || ["wisdom and knowledge"];
-  const snippets = bank.snippets || ["be the change that you wish to see in the world"];
-
-  query = query
-    .replace('{authors_and_thinkers}', () => getRandom(authors))
-    .replace('{author}', () => getRandom(authors))
-    .replace('{topics_and_concepts}', () => getRandom(topics))
-    .replace('{topic}', () => getRandom(topics))
-    .replace('{snippets}', () => getRandom(snippets))
-    .replace('{snippet}', () => getRandom(snippets))
-    .replace('{tech_and_programming}', () => getRandom(bank.tech_and_programming))
-    .replace('{science_and_cosmos}', () => getRandom(bank.science_and_cosmos))
-    .replace('{history_and_civilizations}', () => getRandom(bank.history_and_civilizations))
-    .replace('{geography_and_cities}', () => getRandom(bank.geography_and_cities))
-    .replace('{nature_and_wildlife}', () => getRandom(bank.nature_and_wildlife))
-    .replace('{cuisine_and_cooking}', () => getRandom(bank.cuisine_and_cooking));
-
-  const modifiers = bank.modifiers || ['', 'full analysis', 'meaning explained', 'historical context', 'deep dive'];
-  const mod = getRandom(modifiers);
-  if (mod) query += ` ${mod}`;
-
-  return query;
+async function loadDefaultKeywords() {
+  const stored = await chrome.storage.local.get(['defaultKeywords']);
+  if (stored.defaultKeywords && typeof stored.defaultKeywords === 'object') {
+    return stored.defaultKeywords;
+  }
+  try {
+    const res = await fetch(chrome.runtime.getURL('data/default_keywords.json'));
+    return await res.json();
+  } catch (e) {
+    console.error('[MSR Pro] Error loading default keywords:', e);
+    return {};
+  }
 }
 
-async function getNextKeyword() {
-  const store = await chrome.storage.local.get(['customKeywords', 'usedQueriesHistory']);
-  const custom = store.customKeywords || [];
-  const usedHistory = new Set(store.usedQueriesHistory || []);
+async function generateNextQuery() {
+  const data = await chrome.storage.local.get(['customKeywords', 'usedQueriesHistory']);
+  const customList = data.customKeywords || [];
+  let history = data.usedQueriesHistory || [];
 
-  let candidateQuery = '';
-  let attempts = 0;
-
-  while (attempts < 20) {
-    attempts++;
-    if (custom.length > 0 && Math.random() < 0.35) {
-      candidateQuery = custom[Math.floor(Math.random() * custom.length)];
-    } else {
-      candidateQuery = await generateProceduralQuoteQuery();
-    }
-    if (!usedHistory.has(candidateQuery.toLowerCase())) break;
+  if (history.length > 2000) {
+    history = history.slice(-1000);
   }
 
-  usedHistory.add(candidateQuery.toLowerCase());
-  const updatedHistoryList = Array.from(usedHistory).slice(-2000);
-  await chrome.storage.local.set({ usedQueriesHistory: updatedHistoryList });
+  // 30% chance custom keywords
+  if (customList.length > 0 && Math.random() < 0.3) {
+    const unusedCustom = customList.filter(k => !history.includes(k));
+    if (unusedCustom.length > 0) {
+      const selected = unusedCustom[Math.floor(Math.random() * unusedCustom.length)];
+      history.push(selected);
+      await chrome.storage.local.set({ usedQueriesHistory: history });
+      return selected;
+    }
+  }
 
-  console.log(`[MSR Pro] Unique Search Query #${usedHistory.size}: "${candidateQuery}"`);
-  return candidateQuery;
+  // 70% chance procedural generator
+  const bank = await loadQuotesBank();
+  const defaultKw = await loadDefaultKeywords();
+
+  for (let attempt = 0; attempt < 10; attempt++) {
+    let candidate = '';
+    const roll = Math.random();
+
+    if (roll < 0.45) {
+      const template = bank.templates[Math.floor(Math.random() * bank.templates.length)];
+      candidate = template.replace(/\{(\w+)\}/g, (_, key) => {
+        const list = bank[key] || [];
+        return list.length > 0 ? list[Math.floor(Math.random() * list.length)] : key;
+      });
+    } else if (roll < 0.8) {
+      const categories = Object.keys(defaultKw);
+      if (categories.length > 0) {
+        const catName = categories[Math.floor(Math.random() * categories.length)];
+        const kwArray = defaultKw[catName];
+        if (Array.isArray(kwArray) && kwArray.length > 0) {
+          candidate = kwArray[Math.floor(Math.random() * kwArray.length)];
+        }
+      }
+    } else {
+      const snippet = bank.snippets[Math.floor(Math.random() * bank.snippets.length)];
+      candidate = `what is the meaning of quote "${snippet}"`;
+    }
+
+    if (candidate && !history.includes(candidate)) {
+      history.push(candidate);
+      await chrome.storage.local.set({ usedQueriesHistory: history });
+      return candidate;
+    }
+  }
+
+  const fallback = `latest science news ${Date.now().toString().slice(-4)}`;
+  history.push(fallback);
+  await chrome.storage.local.set({ usedQueriesHistory: history });
+  return fallback;
 }
 
 // ─────────────────────────────────────────────────────────────
-// SEARCH AUTOMATION ENGINE
+// SEARCH QUEUE CONTROLLER
 // ─────────────────────────────────────────────────────────────
 
 async function startAutomation(mode = 'desktop') {
-  await chrome.alarms.clear(ALARM_NEXT_SEARCH);
+  console.log(`[MSR Pro] Starting automation mode: ${mode}`);
+  const st = await getState();
 
-  const settings = await chrome.storage.local.get(['desktopTarget']);
-  const targetCount = settings.desktopTarget || 30;
+  const todayStr = new Date().toLocaleDateString();
+  const data = await chrome.storage.local.get(['lastRunDate', 'desktopCompletedToday']);
 
-  await chrome.storage.local.set({
-    isRunning: true,
-    currentMode: 'desktop',
-    currentCount: 0,
-    targetCount: targetCount,
-    activeTabId: null
-  });
-
-  console.log(`[MSR Pro] Starting Desktop Auto Search: target=${targetCount}`);
-
-  try {
-    const tab = await chrome.tabs.create({ url: 'https://www.bing.com', active: false });
-    await chrome.storage.local.set({ activeTabId: tab.id });
-  } catch (err) {
-    console.error('[MSR Pro] Error creating search tab:', err);
+  let completedToday = 0;
+  if (data.lastRunDate === todayStr) {
+    completedToday = data.desktopCompletedToday || 0;
+  } else {
+    await chrome.storage.local.set({
+      lastRunDate: todayStr,
+      desktopCompletedToday: 0
+    });
   }
 
-  const st = await getState();
-  await executeNextSearch(st);
+  const targetQuota = st.desktopTarget || 30;
+
+  if (completedToday >= targetQuota) {
+    console.log('[MSR Pro] Target quota already reached today!');
+    await sendDailyCompletionNotification();
+    await saveState({ isRunning: false });
+    return;
+  }
+
+  await saveState({
+    isRunning: true,
+    mode: 'desktop',
+    currentCount: completedToday,
+    targetCount: targetQuota
+  });
+
+  await executeNextSearch({ ...st, isRunning: true, currentCount: completedToday, targetCount: targetQuota });
 }
 
 async function executeNextSearch(st) {
-  if (!st) st = await getState();
   if (!st.isRunning) return;
 
-  const minDelay = st.minDelay;
-  const maxDelay = Math.max(minDelay, st.maxDelay);
-
-  // Completion Check
   if (st.currentCount >= st.targetCount) {
-    console.log('[MSR Pro] Desktop search target reached. Stopping...');
+    console.log('[MSR Pro] Search target reached! Stopping.');
     await stopAutomation(true);
     return;
   }
 
-  // Generate keyword and navigate
-  const keyword = await getNextKeyword();
-  const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(keyword)}&FORM=QBLH`;
+  const query = await generateNextQuery();
+  const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}&FORM=QBLH`;
 
-  const newCount = st.currentCount + 1;
-  await saveState({ currentCount: newCount });
+  console.log(`[MSR Pro] [${st.currentCount + 1}/${st.targetCount}] Searching: "${query}"`);
 
-  // Update daily stats and logs
-  const dateKey = new Date().toLocaleDateString();
-  const stats = await chrome.storage.local.get(['lastRunDate', 'desktopCompletedToday', 'logs']);
-
-  let desktopDone = stats.desktopCompletedToday || 0;
-  if (stats.lastRunDate !== dateKey) {
-    desktopDone = 0;
+  let tab = null;
+  try {
+    tab = await chrome.tabs.create({ url: searchUrl, active: false });
+    await saveState({ activeTabId: tab.id });
+  } catch (err) {
+    console.error('[MSR Pro] Error creating tab:', err);
   }
-  desktopDone++;
 
-  const newLog = { time: new Date().toLocaleTimeString(), query: keyword, mode: 'desktop', count: newCount };
-  const logs = [newLog, ...(stats.logs || [])].slice(0, 50);
+  const nextCount = st.currentCount + 1;
+  const todayStr = new Date().toLocaleDateString();
 
   await chrome.storage.local.set({
-    lastRunDate: dateKey,
-    desktopCompletedToday: desktopDone,
-    logs: logs
+    desktopCompletedToday: nextCount,
+    lastRunDate: todayStr
   });
 
-  // Navigate or recreate tab
-  let tabId = st.activeTabId;
-  if (tabId) {
-    try {
-      await chrome.tabs.update(tabId, { url: searchUrl });
-    } catch (e) {
-      try {
-        const newTab = await chrome.tabs.create({ url: searchUrl, active: false });
-        tabId = newTab.id;
-        await saveState({ activeTabId: tabId });
-      } catch (e2) {
-        console.error('[MSR Pro] Could not recreate search tab:', e2);
-      }
-    }
-  }
+  await saveState({ currentCount: nextCount });
+  await addLogEntry('desktop', query);
 
-  // Schedule next search tick via alarm
-  const randomDelayMs = (minDelay + Math.random() * (maxDelay - minDelay)) * 1000;
-  const delayMinutes = randomDelayMs / (1000 * 60);
+  const delaySec = Math.floor(Math.random() * (st.maxDelay - st.minDelay + 1)) + st.minDelay;
+  console.log(`[MSR Pro] Waiting ${delaySec}s before next search...`);
 
-  console.log(`[MSR Pro] (Desktop) Search ${newCount}/${st.targetCount}: "${keyword}" | Next search in ${(randomDelayMs / 1000).toFixed(1)}s`);
+  chrome.alarms.create(ALARM_NEXT_SEARCH, { delayInMinutes: delaySec / 60 });
+}
 
-  chrome.alarms.create(ALARM_NEXT_SEARCH, { delayInMinutes: Math.max(0.017, delayMinutes) });
+async function addLogEntry(mode, query) {
+  const data = await chrome.storage.local.get(['logs']);
+  const logs = data.logs || [];
+  logs.unshift({
+    time: new Date().toLocaleTimeString(),
+    mode: mode,
+    query: query
+  });
+
+  if (logs.length > 50) logs.pop();
+  await chrome.storage.local.set({ logs: logs });
 }
 
 async function stopAutomation(completed = false) {
   await chrome.alarms.clear(ALARM_NEXT_SEARCH);
+  const st = await getState();
 
-  const settings = await chrome.storage.local.get(['autoCloseTab', 'enableNotifications', 'activeTabId', 'appLanguage']);
-
-  if (settings.autoCloseTab && settings.activeTabId) {
-    try {
-      await chrome.tabs.remove(settings.activeTabId);
-    } catch (e) {}
-  }
-
-  await chrome.storage.local.set({
-    isRunning: false,
-    currentCount: 0,
-    activeTabId: null
-  });
-
-  if (completed && settings.enableNotifications) {
-    try {
-      const isVi = settings.appLanguage === 'vi';
-      chrome.notifications.create({
-        type: 'basic',
-        iconUrl: 'assets/icon48.png',
-        title: 'Microsoft Reward Automation',
-        message: isVi 
-          ? '🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!'
-          : '🎉 Completed all Bing Desktop searches for today!'
-      });
-    } catch (e) {
-      console.log('[MSR Pro] Notification skipped or unsupported.');
+  if (st.activeTabId) {
+    const data = await chrome.storage.local.get(['autoCloseTab']);
+    if (data.autoCloseTab !== false) {
+      try {
+        await chrome.tabs.remove(st.activeTabId);
+      } catch (e) {}
     }
   }
 
+  await saveState({ isRunning: false, activeTabId: null });
+
+  if (completed) {
+    await sendDailyCompletionNotification();
+  }
+
   console.log('[MSR Pro] Search automation stopped. Completed:', completed);
+}
+
+async function sendDailyCompletionNotification() {
+  const data = await chrome.storage.local.get(['enableNotifications', 'appLanguage']);
+  if (data.enableNotifications === false) return;
+
+  const lang = data.appLanguage || 'en';
+  const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+
+  try {
+    chrome.notifications.create({
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('assets/icon128.png'),
+      title: dict.notif_completed_title || 'Microsoft Reward Automation',
+      message: dict.notif_completed_msg || '🎉 Completed all Bing Desktop searches for today!',
+      priority: 2
+    });
+  } catch (e) {}
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -413,26 +448,36 @@ async function performAutoUpdateAndReload() {
     const kwRes = await fetch(GITHUB_KEYWORDS_URL, { cache: 'no-cache' });
     if (kwRes.ok) {
       const remoteKeywords = await kwRes.json();
-      if (Array.isArray(remoteKeywords) && remoteKeywords.length > 0) {
+      if (remoteKeywords && typeof remoteKeywords === 'object') {
         await chrome.storage.local.set({ defaultKeywords: remoteKeywords });
         updated = true;
       }
     }
 
-    // 2. Request native Chrome/Edge extension update check if applicable
+    // 2. Fetch remote manifest version
+    const manifestRes = await fetch(GITHUB_MANIFEST_URL, { cache: 'no-cache' });
+    if (manifestRes.ok) {
+      const remoteManifest = await manifestRes.json();
+      const remoteVer = remoteManifest.version || CURRENT_VERSION;
+      if (isNewerVersion(CURRENT_VERSION, remoteVer)) {
+        updated = true;
+      }
+    }
+
+    // 3. Request native Chrome/Edge extension update check if applicable
     if (chrome.runtime.requestUpdateCheck) {
       chrome.runtime.requestUpdateCheck((status) => {
         console.log('[MSR Pro] Native update status:', status);
       });
     }
 
-    // 3. Save update timestamp
+    // 4. Save update timestamp
     await chrome.storage.local.set({
       lastAutoUpdate: new Date().toLocaleString(),
       appVersion: CURRENT_VERSION
     });
 
-    // 4. Trigger auto-reload after a brief delay so response finishes
+    // 5. Trigger auto-reload after a brief delay so response finishes
     setTimeout(() => {
       console.log('[MSR Pro] Reloading extension now!');
       chrome.runtime.reload();
@@ -442,7 +487,6 @@ async function performAutoUpdateAndReload() {
 
   } catch (err) {
     console.error('[MSR Pro] Auto update failed:', err);
-    // Reload anyway to refresh worker memory
     setTimeout(() => {
       chrome.runtime.reload();
     }, 600);
