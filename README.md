@@ -60,7 +60,7 @@ Bạn muốn đóng góp bản dịch ngôn ngữ mới hoặc cải thiện b�
 
 4. **Tải tiện ích đã giải nén (Load Unpacked)**:
    * Nhấn nút **Load unpacked** (Tải tiện ích đã giải nén).
-   * Chọn thư mục dự án `msr_automation`.
+   * Chọn thư mục dự án `microsoft-reward-automation`.
 
 5. **Hoàn tất!** Biểu tượng **MS Rewards Auto Search Pro ⚡** sẽ xuất hiện trên thanh công cụ trình duyệt.
 
@@ -87,7 +87,7 @@ Bạn muốn đóng góp bản dịch ngôn ngữ mới hoặc cải thiện b�
 ## 📜 Cấu Trúc Dự Án
 
 ```text
-msr_automation/
+microsoft-reward-automation/
 ├── manifest.json            # Cấu hình Extension Manifest V3
 ├── background/
 │   └── service_worker.js    # Core background engine & MV3 alarms

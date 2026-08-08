@@ -10,8 +10,8 @@ Adding a new language takes less than 5 minutes!
 
 ### Step 1: Fork & Clone the Repository
 ```bash
-git clone https://github.com/stevenquan4567/msr_automation.git
-cd msr_automation
+git clone https://github.com/stevenquan4567/microsoft-reward-automation.git
+cd microsoft-reward-automation
 ```
 
 ### Step 2: Add your language dictionary in `data/i18n.js`

@@ -41,7 +41,7 @@
 ## 📦 설치 방법 (Microsoft Edge / Google Chrome)
 
 1. **소스 코드 다운로드**:
-   * ZIP 다운로드 또는 `git clone https://github.com/stevenquan4567/msr_automation.git` 실행
+   * ZIP 다운로드 또는 `git clone https://github.com/stevenquan4567/microsoft-reward-automation.git` 실행
 
 2. **확장 프로그램 페이지 열기**:
    * **Microsoft Edge**: `edge://extensions/` 접속
@@ -52,7 +52,7 @@
 
 4. **압축 해제된 확장 프로그램 로드**:
    * **압축 해제된 확장 프로그램을 로드합니다 (Load unpacked)** 버튼 클릭.
-   * `msr_automation` 프로젝트 폴더 선택.
+   * `microsoft-reward-automation` 프로젝트 폴더 선택.
 
 5. **완료!** 브라우저 툴바에 **MS Rewards Auto Search Pro ⚡** 아이콘을 고정합니다.
 

@@ -41,7 +41,7 @@
 ## 📦 安装指南 (Microsoft Edge / Google Chrome)
 
 1. **下载源码**：
-   * 下载 ZIP 包或运行 `git clone https://github.com/stevenquan4567/msr_automation.git`
+   * 下载 ZIP 包或运行 `git clone https://github.com/stevenquan4567/microsoft-reward-automation.git`
 
 2. **打开扩展管理页面**：
    * **Microsoft Edge**：访问 `edge://extensions/`
@@ -52,7 +52,7 @@
 
 4. **加载已解压的扩展**：
    * 点击 **加载已解压的扩展程序 (Load unpacked)**。
-   * 选择 `msr_automation` 项目目录。
+   * 选择 `microsoft-reward-automation` 项目目录。
 
 5. **完成！** 将 **MS Rewards Auto Search Pro ⚡** 固定到浏览器工具栏即可使用。
 

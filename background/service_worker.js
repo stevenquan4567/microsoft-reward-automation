@@ -436,8 +436,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // ─────────────────────────────────────────────────────────────
 
 const CURRENT_VERSION = '2.1.0';
-const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/msr_automation/main/manifest.json';
-const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/msr_automation/main/data/default_keywords.json';
+const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
+const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 
 async function performAutoUpdateAndReload() {
   console.log('[MSR Pro] Starting full auto-update and dynamic reload...');

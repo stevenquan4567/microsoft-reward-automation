@@ -19,11 +19,11 @@ First off, thank you for considering contributing to **Microsoft Reward Automati
 
 ## ⚡ Development Workflow
 
-1. **Fork the Repository**: Click "Fork" at the top right of [github.com/stevenquan4567/msr_automation](https://github.com/stevenquan4567/msr_automation).
+1. **Fork the Repository**: Click "Fork" at the top right of [github.com/stevenquan4567/microsoft-reward-automation](https://github.com/stevenquan4567/microsoft-reward-automation).
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/your-username/msr_automation.git
-   cd msr_automation
+   git clone https://github.com/your-username/microsoft-reward-automation.git
+   cd microsoft-reward-automation
    ```
 3. **Load Extension in Edge / Chrome**:
    - Go to `edge://extensions` or `chrome://extensions`

@@ -42,7 +42,7 @@
 ## 📦 Installation Guide (Microsoft Edge / Google Chrome)
 
 1. **Download Code**:
-   * Download ZIP or run `git clone https://github.com/stevenquan4567/msr_automation.git`
+   * Download ZIP or run `git clone https://github.com/stevenquan4567/microsoft-reward-automation.git`
 
 2. **Open Extensions Page**:
    * **Microsoft Edge**: Navigate to `edge://extensions/`
@@ -53,7 +53,7 @@
 
 4. **Load Unpacked Extension**:
    * Click **Load unpacked**.
-   * Select the `msr_automation` project directory.
+   * Select the `microsoft-reward-automation` project directory.
 
 5. **Done!** Pin **MS Rewards Auto Search Pro ⚡** to your browser toolbar.
 
@@ -80,7 +80,7 @@
 ## 📜 Project Structure
 
 ```text
-msr_automation/
+microsoft-reward-automation/
 ├── manifest.json            # Extension Manifest V3 configuration
 ├── background/
 │   └── service_worker.js    # Core background engine & MV3 alarms
