@@ -1,7 +1,7 @@
 # ⚡ Microsoft Reward Automation (`v2.1.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
-[🇻🇳 Tiếng Việt](README.md) | [🇬🇧 English](docs/README_EN.md) | [🇨🇳 简体中文](docs/README_ZH.md) | [🇰🇷 한국어](docs/README_KO.md) | [🇯🇵 日本語](docs/README_JA.md) | [🇪🇸 Español](docs/README_ES.md) | [🇫🇷 Français](docs/README_FR.md) | [🇩🇪 Deutsch](docs/README_DE.md) | [🇮🇹 Italiano](docs/README_IT.md) | [🇧🇷 Português](docs/README_PT.md) | [🇷🇺 Русский](docs/README_RU.md)
+[🇻🇳 Tiếng Việt](README.md) | [🇬🇧 English](docs/README_EN.md) | [🇨🇳 简体中文](docs/README_ZH.md) | [🇰🇷 한국어](docs/README_KO.md) | [🇯🇵 日本語](docs/README_JA.md) | [🇪🇸 Español](docs/README_ES.md) | [🇫🇷 Français](docs/README_FR.md) | [🇩🇪 Deutsch](docs/README_DE.md) | [🇮🇹 Italiano](docs/README_IT.md) | [🇧🇷 Português](docs/README_PT.md) | [🇷🇺 Русский](docs/README_RU.md) | [🇮🇳 हिंदी](docs/README_HI.md)
 
 ---
 
