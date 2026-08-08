@@ -11,6 +11,9 @@
 </head>
 <body>
   <div class="app-container">
+    <!-- Alert Toast -->
+    <div id="toast" class="toast hidden"></div>
+
     <!-- Header -->
     <header class="header">
       <div class="brand">
@@ -19,7 +22,7 @@
         </div>
         <div class="brand-text">
           <h1 id="i18n_app_title">Microsoft Reward Auto</h1>
-          <span class="badge" id="i18n_app_badge">v2.0 Desktop</span>
+          <span class="badge" id="i18n_app_badge">v2.1.0 Desktop</span>
         </div>
       </div>
       <div class="header-actions">
@@ -103,15 +106,29 @@
         <span>⛔</span>
         <span id="i18n_btn_stop_search">STOP SEARCH</span>
       </button>
+
+      <div class="btn-row">
+        <a href="https://ko-fi.com/stevenquan45" target="_blank" class="btn btn-kofi glow-kofi" id="kofiLink">
+          <span>☕</span>
+          <span id="i18n_btn_donate_kofi">Support on Ko-fi</span>
+        </a>
+        <button id="btnCheckUpdate" class="btn btn-secondary">
+          <span>🔄</span>
+          <span id="i18n_btn_check_update">Check Updates</span>
+        </button>
+      </div>
     </div>
 
     <!-- Quick Links & Ticker -->
     <div class="footer-tools">
       <a href="https://rewards.bing.com/" target="_blank" class="tool-link" id="i18n_link_rewards_dashboard">
-        🎁 MS Rewards Dashboard
+        🎁 MS Rewards
       </a>
       <a href="https://www.bing.com/" target="_blank" class="tool-link" id="i18n_link_bing_home">
         🔍 Bing Home
+      </a>
+      <a href="https://github.com/stevenquan4567/msr_automation" target="_blank" class="tool-link" id="i18n_link_github_project">
+        ⭐ GitHub Project
       </a>
     </div>
 

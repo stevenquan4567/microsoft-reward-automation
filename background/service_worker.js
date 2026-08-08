@@ -383,10 +383,66 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     setupScheduleAlarm(request.enable, request.time);
     sendResponse({ status: 'schedule_updated' });
     return false;
+
+  } else if (request.action === 'checkForUpdates') {
+    checkForUpdates().then(res => {
+      sendResponse(res);
+    }).catch(() => {
+      sendResponse({ hasUpdate: false, currentVersion: '2.1.0', latestVersion: '2.1.0' });
+    });
+    return true; // async promise channel
   }
 
   return false;
 });
+
+// ─────────────────────────────────────────────────────────────
+// AUTO UPDATE CHECK ENGINE
+// ─────────────────────────────────────────────────────────────
+
+const CURRENT_VERSION = '2.1.0';
+const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/msr_automation/main/manifest.json';
+
+async function checkForUpdates() {
+  console.log('[MSR Pro] Checking GitHub for extension updates...');
+  try {
+    const res = await fetch(GITHUB_MANIFEST_URL, { cache: 'no-cache' });
+    if (res.ok) {
+      const data = await res.json();
+      const remoteVersion = data.version || CURRENT_VERSION;
+      const hasUpdate = isNewerVersion(CURRENT_VERSION, remoteVersion);
+
+      const updateResult = {
+        hasUpdate: hasUpdate,
+        currentVersion: CURRENT_VERSION,
+        latestVersion: remoteVersion,
+        checkedAt: new Date().toLocaleTimeString()
+      };
+
+      await chrome.storage.local.set({ lastUpdateCheck: updateResult });
+      console.log('[MSR Pro] Update check completed:', updateResult);
+      return updateResult;
+    }
+  } catch (err) {
+    console.log('[MSR Pro] Auto-update check skipped/offline:', err.message);
+  }
+
+  const fallback = { hasUpdate: false, currentVersion: CURRENT_VERSION, latestVersion: CURRENT_VERSION, checkedAt: new Date().toLocaleTimeString() };
+  await chrome.storage.local.set({ lastUpdateCheck: fallback });
+  return fallback;
+}
+
+function isNewerVersion(current, remote) {
+  const cParts = current.split('.').map(Number);
+  const rParts = remote.split('.').map(Number);
+  for (let i = 0; i < Math.max(cParts.length, rParts.length); i++) {
+    const c = cParts[i] || 0;
+    const r = rParts[i] || 0;
+    if (r > c) return true;
+    if (r < c) return false;
+  }
+  return false;
+}
 
 // ─────────────────────────────────────────────────────────────
 // DAILY SCHEDULE ALARM

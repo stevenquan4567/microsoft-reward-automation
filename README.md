@@ -1,15 +1,16 @@
-# ⚡ Microsoft Reward Automation (`v1.0.0`)
+# ⚡ Microsoft Reward Automation (`v2.1.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
-[🇻🇳 Tiếng Việt](README.md) | [🇬🇧 English](docs/README_EN.md) | [🇨🇳 简体中文](docs/README_ZH.md) | [🇰🇷 한국어](docs/README_KO.md) | [🇯🇵 日本語](docs/README_JA.md) | [🇪🇸 Español](docs/README_ES.md) | [🇫🇷 Français](docs/README_FR.md) | [🇩🇪 Deutsch](docs/README_DE.md)
+[🇻🇳 Tiếng Việt](README.md) | [🇬🇧 English](docs/README_EN.md) | [🇨🇳 简体中文](docs/README_ZH.md) | [🇰🇷 한국어](docs/README_KO.md) | [🇯🇵 日本語](docs/README_JA.md) | [🇪🇸 Español](docs/README_ES.md) | [🇫🇷 Français](docs/README_FR.md) | [🇩🇪 Deutsch](docs/README_DE.md) | [🇮🇹 Italiano](docs/README_IT.md) | [🇧🇷 Português](docs/README_PT.md) | [🇷🇺 Русский](docs/README_RU.md)
 
 ---
 
-> Extension tự động cày điểm Microsoft Rewards thông minh trên Bing Desktop, né thuật toán phát hiện bot, hỗ trợ ngân hàng từ khóa phong phú và lên lịch chạy ngầm hàng ngày.
+> Extension tự động cày điểm Microsoft Rewards thông minh trên Bing Desktop, né thuật toán phát hiện bot, hỗ trợ ngân hàng từ khóa phong phú, lên lịch ngầm hàng ngày và tự động kiểm tra cập nhật.
 
-![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge)
-![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+[![Version](https://img.shields.io/badge/Version-v2.1.0-blue?style=for-the-badge)](#)
+[![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)](#)
+[![Ko-fi](https://img.shields.io/badge/Donate-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/stevenquan45)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)
 
 ---
 

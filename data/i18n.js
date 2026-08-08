@@ -1,24 +1,13 @@
 /**
  * Microsoft Reward Automation - Internationalization (i18n) Dictionary
  * Default language: English ('en')
- * Supported languages (11 total):
- *  - en: English
- *  - vi: Tiếng Việt (Vietnamese)
- *  - zh: 简体中文 (Chinese)
- *  - ko: 한국어 (Korean)
- *  - ja: 日本語 (Japanese)
- *  - es: Español (Spanish)
- *  - fr: Français (French)
- *  - de: Deutsch (German)
- *  - it: Italiano (Italian)
- *  - pt: Português (Portuguese)
- *  - ru: Русский (Russian)
+ * Supported languages (11 total): en, vi, zh, ko, ja, es, fr, de, it, pt, ru
  */
 
 const I18N = {
   en: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Advanced Settings",
     dashboard_subtitle: "Dashboard & Settings",
 
@@ -35,9 +24,12 @@ const I18N = {
 
     btn_start_search: "START DESKTOP SEARCH",
     btn_stop_search: "STOP SEARCH",
+    btn_donate_kofi: "☕ Support on Ko-fi",
+    btn_check_update: "🔄 Check Updates",
 
-    link_rewards_dashboard: "🎁 MS Rewards Dashboard",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing Home",
+    link_github_project: "⭐ GitHub Project",
 
     tab_general: "General Settings",
     tab_schedule: "Background Schedule",
@@ -62,6 +54,7 @@ const I18N = {
     opt_auto_close: "Auto-close Bing search tab upon completion",
     opt_enable_humanizer: "Human Anti-Bot Simulation Pro (Multi-stage scrolling, hover & text highlight)",
     opt_enable_notifications: "Send system notification when daily searches complete",
+    opt_enable_auto_update: "🔄 Auto-check GitHub for extension updates & keyword bank sync",
     
     btn_save_settings: "💾 Save Settings",
 
@@ -90,13 +83,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Background schedule saved!",
     toast_keywords_saved: "📚 Saved custom keywords!",
     toast_keywords_cleared: "🗑️ Cleared custom keywords list.",
+    toast_checking_update: "🔄 Checking for latest version on GitHub...",
+    toast_up_to_date: "✨ App is up to date! (v2.1.0)",
+    toast_update_available: "🎉 New version available on GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Completed all Bing Desktop searches for today!"
   },
 
   vi: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Cài đặt nâng cao",
     dashboard_subtitle: "Dashboard & Cài đặt",
 
@@ -113,9 +109,12 @@ const I18N = {
 
     btn_start_search: "BẮT ĐẦU TÌM KIẾM DESKTOP",
     btn_stop_search: "TẠM DỪNG TÌM KIẾM",
+    btn_donate_kofi: "☕ Ủng hộ qua Ko-fi",
+    btn_check_update: "🔄 Kiểm tra Cập nhật",
 
-    link_rewards_dashboard: "🎁 MS Rewards Dashboard",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing Home",
+    link_github_project: "⭐ GitHub Project",
 
     tab_general: "Cài đặt chung",
     tab_schedule: "Lên lịch ngầm",
@@ -140,6 +139,7 @@ const I18N = {
     opt_auto_close: "Tự động đóng tab Bing sau khi hoàn thành lượt tìm kiếm",
     opt_enable_humanizer: "Giả lập hành vi người thật Pro (Tự động cuộn trang, hover kết quả & bôi đen text Bing)",
     opt_enable_notifications: "Gửi thông báo hệ thống khi cày điểm hoàn tất",
+    opt_enable_auto_update: "🔄 Tự động kiểm tra cập nhật & đồng bộ từ khóa mới từ GitHub",
     
     btn_save_settings: "💾 Lưu Cài Đặt",
 
@@ -168,13 +168,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Lưu lịch chạy ngầm thành công!",
     toast_keywords_saved: "📚 Đã lưu từ khóa tùy chỉnh!",
     toast_keywords_cleared: "🗑️ Đã xóa bộ từ khóa tùy chỉnh.",
+    toast_checking_update: "🔄 Đang kiểm tra phiên bản mới nhất trên GitHub...",
+    toast_up_to_date: "✨ Bạn đang dùng phiên bản mới nhất! (v2.1.0)",
+    toast_update_available: "🎉 Đã có phiên bản mới trên GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!"
   },
 
   zh: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 桌面版",
+    app_badge: "v2.1.0 桌面版",
     settings_tooltip: "高级设置",
     dashboard_subtitle: "控制台与设置",
 
@@ -191,9 +194,12 @@ const I18N = {
 
     btn_start_search: "开始桌面自动搜索",
     btn_stop_search: "停止搜索",
+    btn_donate_kofi: "☕ 支持/赞助 (Ko-fi)",
+    btn_check_update: "🔄 检查更新",
 
-    link_rewards_dashboard: "🎁 MS Rewards 控制台",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 必应首页",
+    link_github_project: "⭐ GitHub 项目",
 
     tab_general: "通用设置",
     tab_schedule: "后台定时",
@@ -218,6 +224,7 @@ const I18N = {
     opt_auto_close: "搜索完成后自动关闭 Bing 搜索标签页",
     opt_enable_humanizer: "高级真人行为模拟 (多阶段平滑滚动、悬停及选中文本)",
     opt_enable_notifications: "搜索完成时发送系统通知",
+    opt_enable_auto_update: "🔄 自动检查 GitHub 扩展更新与词库同步",
     
     btn_save_settings: "💾 保存设置",
 
@@ -246,13 +253,16 @@ const I18N = {
     toast_schedule_saved: "⏰ 后台定时任务保存成功！",
     toast_keywords_saved: "📚 自定义关键词保存成功！",
     toast_keywords_cleared: "🗑️ 已清空自定义关键词列表。",
+    toast_checking_update: "🔄 正在检查 GitHub 最新版本...",
+    toast_up_to_date: "✨ 已是最新版本！(v2.1.0)",
+    toast_update_available: "🎉 GitHub 上有新版本可用！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 今日所有 Bing 桌面搜索任务已完成！"
   },
 
   ko: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 데스크톱",
+    app_badge: "v2.1.0 데스크톱",
     settings_tooltip: "고급 설정",
     dashboard_subtitle: "대시보드 및 설정",
 
@@ -269,9 +279,12 @@ const I18N = {
 
     btn_start_search: "데스크톱 검색 시작",
     btn_stop_search: "검색 중지",
+    btn_donate_kofi: "☕ Ko-fi 후원하기",
+    btn_check_update: "🔄 업데이트 확인",
 
-    link_rewards_dashboard: "🎁 MS Rewards 대시보드",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing 홈",
+    link_github_project: "⭐ GitHub 프로젝트",
 
     tab_general: "일반 설정",
     tab_schedule: "백그라운드 스케줄",
@@ -296,6 +309,7 @@ const I18N = {
     opt_auto_close: "검색 완료 후 Bing 검색 탭 자동 닫기",
     opt_enable_humanizer: "고급 인간 행동 시뮬레이션 (다단계 스크롤, 호버 및 텍스트 선택)",
     opt_enable_notifications: "검색 완료 시 시스템 알림 발송",
+    opt_enable_auto_update: "🔄 GitHub 확장 프로그램 업데이트 및 단어장 자동 동기화",
     
     btn_save_settings: "💾 설정 저장",
 
@@ -324,13 +338,16 @@ const I18N = {
     toast_schedule_saved: "⏰ 백그라운드 스케줄이 저장되었습니다!",
     toast_keywords_saved: "📚 맞춤 키워드가 저장되었습니다!",
     toast_keywords_cleared: "🗑️ 맞춤 키워드 목록이 삭제되었습니다.",
+    toast_checking_update: "🔄 GitHub에서 최신 버전을 확인하는 중...",
+    toast_up_to_date: "✨ 최신 버전을 사용 중입니다! (v2.1.0)",
+    toast_update_available: "🎉 GitHub에 새 버전이 있습니다!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 오늘 예정된 모든 Bing 데스크톱 검색을 완료했습니다!"
   },
 
   ja: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 デスクトップ",
+    app_badge: "v2.1.0 デスクトップ",
     settings_tooltip: "詳細設定",
     dashboard_subtitle: "ダッシュボード & 設定",
 
@@ -347,9 +364,12 @@ const I18N = {
 
     btn_start_search: "デスクトップ自動検索を開始",
     btn_stop_search: "検索を停止",
+    btn_donate_kofi: "☕ Ko-fiで支援・寄付",
+    btn_check_update: "🔄 更新を確認",
 
-    link_rewards_dashboard: "🎁 MS Rewards ダッシュボード",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing ホーム",
+    link_github_project: "⭐ GitHub プロジェクト",
 
     tab_general: "一般設定",
     tab_schedule: "バックグラウンドスケジュール",
@@ -374,6 +394,7 @@ const I18N = {
     opt_auto_close: "検索完了後にBing検索タブを自動的に閉じる",
     opt_enable_humanizer: "高度な人間行動シミュレーション (多段階スムーズスクロール、ホバー、テキスト選択)",
     opt_enable_notifications: "検索完了時にシステム通知を送信",
+    opt_enable_auto_update: "🔄 GitHubからのアップデートおよびワードバンクの自動同期",
     
     btn_save_settings: "💾 設定を保存",
 
@@ -402,13 +423,16 @@ const I18N = {
     toast_schedule_saved: "⏰ スケジュールを保存しました！",
     toast_keywords_saved: "📚 カスタムキーワードを保存しました！",
     toast_keywords_cleared: "🗑️ カスタムキーワードをクリアしました。",
+    toast_checking_update: "🔄 GitHubで最新バージョンを確認中...",
+    toast_up_to_date: "✨ 最新バージョンを使用中です！(v2.1.0)",
+    toast_update_available: "🎉 GitHubに新しいバージョンがあります！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 本日のすべてのBingデスクトップ検索が完了しました！"
   },
 
   es: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Escritorio",
+    app_badge: "v2.1.0 Escritorio",
     settings_tooltip: "Configuración Avanzada",
     dashboard_subtitle: "Panel y Configuración",
 
@@ -425,9 +449,12 @@ const I18N = {
 
     btn_start_search: "INICIAR BÚSQUEDA ESCRITORIO",
     btn_stop_search: "DETENER BÚSQUEDA",
+    btn_donate_kofi: "☕ Apoyar en Ko-fi",
+    btn_check_update: "🔄 Buscar Actualizaciones",
 
-    link_rewards_dashboard: "🎁 Panel de MS Rewards",
-    link_bing_home: "🔍 Inicio de Bing",
+    link_rewards_dashboard: "🎁 MS Rewards",
+    link_bing_home: "🔍 Inicio Bing",
+    link_github_project: "⭐ Proyecto GitHub",
 
     tab_general: "Configuración General",
     tab_schedule: "Programación en 2º Plano",
@@ -452,6 +479,7 @@ const I18N = {
     opt_auto_close: "Cerrar automáticamente la pestaña de Bing al finalizar",
     opt_enable_humanizer: "Simulador de Comportamiento Humano Pro (Desplazamiento suave, cursor y resaltado de texto)",
     opt_enable_notifications: "Enviar notificación del sistema al completar las búsquedas diarias",
+    opt_enable_auto_update: "🔄 Buscar automáticamente actualizaciones y sincronización en GitHub",
     
     btn_save_settings: "💾 Guardar Configuración",
 
@@ -480,13 +508,16 @@ const I18N = {
     toast_schedule_saved: "⏰ ¡Programación en segundo plano guardada!",
     toast_keywords_saved: "📚 ¡Palabras clave personalizadas guardadas!",
     toast_keywords_cleared: "🗑️ Lista de palabras clave limpiada.",
+    toast_checking_update: "🔄 Buscando la última versión en GitHub...",
+    toast_up_to_date: "✨ ¡La extensión está actualizada! (v2.1.0)",
+    toast_update_available: "🎉 ¡Nueva versión disponible en GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 ¡Todas las búsquedas diarias de Bing Desktop completadas!"
   },
 
   fr: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Bureau",
+    app_badge: "v2.1.0 Bureau",
     settings_tooltip: "Paramètres Avancés",
     dashboard_subtitle: "Tableau de Bord & Paramètres",
 
@@ -503,9 +534,12 @@ const I18N = {
 
     btn_start_search: "LANCER LA RECHERCHE BUREAU",
     btn_stop_search: "ARRÊTER LA RECHERCHE",
+    btn_donate_kofi: "☕ Soutenir sur Ko-fi",
+    btn_check_update: "🔄 Mises à jour",
 
-    link_rewards_dashboard: "🎁 Tableau MS Rewards",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Accueil Bing",
+    link_github_project: "⭐ Projet GitHub",
 
     tab_general: "Paramètres Généraux",
     tab_schedule: "Planning Arrière-Plan",
@@ -530,6 +564,7 @@ const I18N = {
     opt_auto_close: "Fermer automatiquement l'onglet Bing une fois la recherche terminée",
     opt_enable_humanizer: "Simulateur Humain Pro (Défilement fluide, survol de la souris et surbrillance de texte)",
     opt_enable_notifications: "Envoyer une notification lorsque les recherches quotidiennes sont terminées",
+    opt_enable_auto_update: "🔄 Vérifier automatiquement les mises à jour et mots-clés sur GitHub",
     
     btn_save_settings: "💾 Enregistrer Paramètres",
 
@@ -558,13 +593,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Planning en arrière-plan enregistré !",
     toast_keywords_saved: "📚 Mots-clés personnalisés enregistrés !",
     toast_keywords_cleared: "🗑️ Liste de mots-clés effacée.",
+    toast_checking_update: "🔄 Vérification de la dernière version sur GitHub...",
+    toast_up_to_date: "✨ L'application est à jour ! (v2.1.0)",
+    toast_update_available: "🎉 Nouvelle version disponible sur GitHub !",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Toutes les recherches Bing Desktop du jour sont terminées !"
   },
 
   de: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Erweiterte Einstellungen",
     dashboard_subtitle: "Dashboard & Einstellungen",
 
@@ -581,9 +619,12 @@ const I18N = {
 
     btn_start_search: "DESKTOP-SUCHE STARTEN",
     btn_stop_search: "SUCHE STOPPEN",
+    btn_donate_kofi: "☕ Auf Ko-fi unterstützen",
+    btn_check_update: "🔄 Updates prüfen",
 
-    link_rewards_dashboard: "🎁 MS Rewards Dashboard",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing Startseite",
+    link_github_project: "⭐ GitHub-Projekt",
 
     tab_general: "Allgemein",
     tab_schedule: "Hintergrund-Planer",
@@ -608,6 +649,7 @@ const I18N = {
     opt_auto_close: "Bing-Suchtab nach Abschluss automatisch schließen",
     opt_enable_humanizer: "Menschliche Simulation Pro (Sanftes Scrollen, Hover & Text-Hervorhebung)",
     opt_enable_notifications: "Systembenachrichtigung bei Abschluss der täglichen Suche senden",
+    opt_enable_auto_update: "🔄 Automatische Prüfung auf Updates und Keyword-Synchronisation via GitHub",
     
     btn_save_settings: "💾 Einstellungen Speichern",
 
@@ -636,13 +678,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Hintergrund-Planer gespeichert!",
     toast_keywords_saved: "📚 Schlüsselwörter gespeichert!",
     toast_keywords_cleared: "🗑️ Schlüsselwörter-Liste gelöscht.",
+    toast_checking_update: "🔄 Prüfe auf neueste Version auf GitHub...",
+    toast_up_to_date: "✨ App ist auf dem neuesten Stand! (v2.1.0)",
+    toast_update_available: "🎉 Neue Version auf GitHub verfügbar!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Alle täglichen Bing Desktop-Suchen wurden abgeschlossen!"
   },
 
   it: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Impostazioni Avanzate",
     dashboard_subtitle: "Dashboard & Impostazioni",
 
@@ -659,9 +704,12 @@ const I18N = {
 
     btn_start_search: "AVVIA RICERCA DESKTOP",
     btn_stop_search: "INTERROMPI RICERCA",
+    btn_donate_kofi: "☕ Sostieni su Ko-fi",
+    btn_check_update: "🔄 Controlla Aggiornamenti",
 
-    link_rewards_dashboard: "🎁 Dashboard MS Rewards",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Bing Home",
+    link_github_project: "⭐ Progetto GitHub",
 
     tab_general: "Impostazioni Generali",
     tab_schedule: "Programmazione Background",
@@ -686,6 +734,7 @@ const I18N = {
     opt_auto_close: "Chiudi automaticamente la scheda Bing al termine",
     opt_enable_humanizer: "Simulatore Comportamento Umano Pro (Scorrimento fluido, cursori e testo evidenziato)",
     opt_enable_notifications: "Invia notifica di sistema al completamento delle ricerche",
+    opt_enable_auto_update: "🔄 Controlla automaticamente aggiornamenti e parole chiave su GitHub",
     
     btn_save_settings: "💾 Salva Impostazioni",
 
@@ -714,13 +763,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Programmazione background salvata!",
     toast_keywords_saved: "📚 Parole chiave personalizzate salvate!",
     toast_keywords_cleared: "🗑️ Elenco parole chiave cancellato.",
+    toast_checking_update: "🔄 Verifica dell'ultima versione su GitHub in corso...",
+    toast_up_to_date: "✨ L'applicazione è aggiornata! (v2.1.0)",
+    toast_update_available: "🎉 Nuova versione disponibile su GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Tutte le ricerche Bing Desktop del giorno sono state completate!"
   },
 
   pt: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Configurações Avançadas",
     dashboard_subtitle: "Painel & Configurações",
 
@@ -737,9 +789,12 @@ const I18N = {
 
     btn_start_search: "INICIAR PESQUISA DESKTOP",
     btn_stop_search: "PARAR PESQUISA",
+    btn_donate_kofi: "☕ Apoiar no Ko-fi",
+    btn_check_update: "🔄 Buscar Atualizações",
 
-    link_rewards_dashboard: "🎁 Painel MS Rewards",
-    link_bing_home: "🔍 Início do Bing",
+    link_rewards_dashboard: "🎁 MS Rewards",
+    link_bing_home: "🔍 Início Bing",
+    link_github_project: "⭐ Projeto GitHub",
 
     tab_general: "Configurações Gerais",
     tab_schedule: "Agendamento em 2º Plano",
@@ -764,6 +819,7 @@ const I18N = {
     opt_auto_close: "Fechar automaticamente a guia do Bing ao concluir",
     opt_enable_humanizer: "Simulador de Comportamento Humano Pro (Rolagem suave, passar mouse e destacar texto)",
     opt_enable_notifications: "Enviar notificação do sistema ao concluir as pesquisas diárias",
+    opt_enable_auto_update: "🔄 Verificar automaticamente atualizações e palavras-chave no GitHub",
     
     btn_save_settings: "💾 Salvar Configurações",
 
@@ -792,13 +848,16 @@ const I18N = {
     toast_schedule_saved: "⏰ Agendamento em segundo plano salvo!",
     toast_keywords_saved: "📚 Palavras-chave salvas!",
     toast_keywords_cleared: "🗑️ Lista de palavras-chave limpa.",
+    toast_checking_update: "🔄 Verificando a versão mais recente no GitHub...",
+    toast_up_to_date: "✨ O aplicativo está atualizado! (v2.1.0)",
+    toast_update_available: "🎉 Nova versão disponível no GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Todas as pesquisas diárias do Bing Desktop foram concluídas!"
   },
 
   ru: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.0 Desktop",
+    app_badge: "v2.1.0 Desktop",
     settings_tooltip: "Расширенные настройки",
     dashboard_subtitle: "Панель и настройки",
 
@@ -815,9 +874,12 @@ const I18N = {
 
     btn_start_search: "НАЧАТЬ ПОИСК НА ПК",
     btn_stop_search: "ОСТАНОВИТЬ ПОИСК",
+    btn_donate_kofi: "☕ Поддержать на Ko-fi",
+    btn_check_update: "🔄 Проверить обновления",
 
-    link_rewards_dashboard: "🎁 Панель MS Rewards",
+    link_rewards_dashboard: "🎁 MS Rewards",
     link_bing_home: "🔍 Главная Bing",
+    link_github_project: "⭐ Проект GitHub",
 
     tab_general: "Общие настройки",
     tab_schedule: "Фоновое расписание",
@@ -842,6 +904,7 @@ const I18N = {
     opt_auto_close: "Автоматически закрывать вкладку Bing после завершения",
     opt_enable_humanizer: "Симулятор поведения человека Pro (Плавная прокрутка, наведение и выделение текста)",
     opt_enable_notifications: "Отправлять системное уведомление по завершении поисков",
+    opt_enable_auto_update: "🔄 Автопроверка обновлений и синхронизация словаря через GitHub",
     
     btn_save_settings: "💾 Сохранить настройки",
 
@@ -870,6 +933,9 @@ const I18N = {
     toast_schedule_saved: "⏰ Фоновое расписание сохранено!",
     toast_keywords_saved: "📚 Ключевые слова сохранены!",
     toast_keywords_cleared: "🗑️ Список ключевых слов очищен.",
+    toast_checking_update: "🔄 Проверка последней версии на GitHub...",
+    toast_up_to_date: "✨ Приложение обновлено до последней версии! (v2.1.0)",
+    toast_update_available: "🎉 Доступна новая версия на GitHub!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Все дневные поиски Bing на ПК выполнены!"
   }

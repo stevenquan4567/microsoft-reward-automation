@@ -1,15 +1,16 @@
-# ⚡ Microsoft Reward Automation (`v1.0.0`)
+# ⚡ Microsoft Reward Automation (`v2.1.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
-[🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md)
+[🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md) | [🇮🇹 Italiano](README_IT.md) | [🇧🇷 Português](README_PT.md) | [🇷🇺 Русский](README_RU.md)
 
 ---
 
-> Smart Microsoft Rewards automation browser extension for Bing Desktop search. Features anti-bot human behavior simulation, procedural unique keyword generation, and MV3 background daily scheduling.
+> Smart Microsoft Rewards automation browser extension for Bing Desktop search. Features anti-bot human behavior simulation, procedural unique keyword generation, MV3 background daily scheduling, and auto update check.
 
-![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge)
-![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+[![Version](https://img.shields.io/badge/Version-v2.1.0-blue?style=for-the-badge)](#)
+[![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)](#)
+[![Ko-fi](https://img.shields.io/badge/Donate-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/stevenquan45)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)
 
 ---
 

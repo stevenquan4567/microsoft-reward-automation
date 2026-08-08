@@ -1,6 +1,6 @@
 /**
- * Microsoft Reward Automation - Popup Controller Script (v2.0 Desktop)
- * Supports i18n (Default: English 'en', Supported: 'en', 'vi')
+ * Microsoft Reward Automation - Popup Controller Script (v2.1.0 Desktop)
+ * Supports i18n (11 global languages, default: 'en')
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const btnOptions = document.getElementById('btnOptions');
   const btnStart = document.getElementById('btnStart');
   const btnStop = document.getElementById('btnStop');
+  const btnCheckUpdate = document.getElementById('btnCheckUpdate');
+  const toast = document.getElementById('toast');
 
   const statusPill = document.getElementById('statusPill');
   const statusText = document.getElementById('statusText');
@@ -49,6 +51,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   btnStart.addEventListener('click', () => triggerStart());
   btnStop.addEventListener('click', triggerStop);
+  if (btnCheckUpdate) {
+    btnCheckUpdate.addEventListener('click', checkUpdates);
+  }
 
   // Storage listener for real-time UI updates
   chrome.storage.onChanged.addListener(() => {
@@ -68,6 +73,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   function triggerStop() {
     safeSendMessage({ action: 'stop' }, () => {
       updateUI();
+    });
+  }
+
+  async function checkUpdates() {
+    const data = await chrome.storage.local.get(['appLanguage']);
+    const lang = data.appLanguage || 'en';
+    const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+
+    showToast(dict.toast_checking_update);
+
+    safeSendMessage({ action: 'checkForUpdates' }, (res) => {
+      if (res && res.hasUpdate) {
+        showToast(dict.toast_update_available);
+      } else {
+        setTimeout(() => {
+          showToast(dict.toast_up_to_date);
+        }, 1000);
+      }
     });
   }
 
@@ -140,10 +163,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     setElem('i18n_points_earned', dict.points_earned);
     setElem('i18n_btn_start_search', dict.btn_start_search);
     setElem('i18n_btn_stop_search', dict.btn_stop_search);
+    setElem('i18n_btn_donate_kofi', dict.btn_donate_kofi);
+    setElem('i18n_btn_check_update', dict.btn_check_update);
     setElem('i18n_link_rewards_dashboard', dict.link_rewards_dashboard);
     setElem('i18n_link_bing_home', dict.link_bing_home);
+    setElem('i18n_link_github_project', dict.link_github_project);
     setElem('i18n_last_search', dict.last_search);
     
     if (btnOptions) btnOptions.title = dict.settings_tooltip;
+  }
+
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2800);
   }
 });
