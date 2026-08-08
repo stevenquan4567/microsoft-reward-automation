@@ -1,5 +1,6 @@
 /**
- * MS Rewards Auto Search Pro - Options Dashboard Controller
+ * Microsoft Reward Automation - Options Dashboard Controller
+ * Supports i18n (Default: English 'en', Supported: 'en', 'vi')
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Inputs
+  const appLanguageSelect = document.getElementById('appLanguage');
   const desktopTarget = document.getElementById('desktopTarget');
   const minDelay = document.getElementById('minDelay');
   const maxDelay = document.getElementById('maxDelay');
@@ -34,8 +36,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const logsTableBody = document.getElementById('logsTableBody');
   const toast = document.getElementById('toast');
 
+  let currentLang = 'en';
+
   // Load existing settings
   await loadSettings();
+
+  // Language Change Event
+  appLanguageSelect.addEventListener('change', async () => {
+    currentLang = appLanguageSelect.value;
+    await chrome.storage.local.set({ appLanguage: currentLang });
+    applyI18n(currentLang);
+  });
 
   // Button Listeners
   document.getElementById('btnSaveSettings').addEventListener('click', saveGeneralSettings);
@@ -45,10 +56,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function loadSettings() {
     const data = await chrome.storage.local.get([
-      'desktopTarget', 'minDelay', 'maxDelay',
+      'appLanguage', 'desktopTarget', 'minDelay', 'maxDelay',
       'runOnStartup', 'autoCloseTab', 'enableHumanizer', 'enableNotifications',
       'enableSchedule', 'scheduledTime', 'customKeywords', 'logs'
     ]);
+
+    currentLang = data.appLanguage || 'en';
+    appLanguageSelect.value = currentLang;
+    applyI18n(currentLang);
 
     if (data.desktopTarget !== undefined) desktopTarget.value = data.desktopTarget;
     if (data.minDelay !== undefined) minDelay.value = data.minDelay;
@@ -70,11 +85,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function saveGeneralSettings() {
+    const lang = appLanguageSelect.value || 'en';
     const dTarget = Math.max(1, parseInt(desktopTarget.value) || 30);
     const minD = Math.max(1, parseInt(minDelay.value) || 3);
     const maxD = Math.max(minD, parseInt(maxDelay.value) || 6);
 
     await chrome.storage.local.set({
+      appLanguage: lang,
       desktopTarget: dTarget,
       minDelay: minD,
       maxDelay: maxD,
@@ -84,7 +101,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       enableNotifications: enableNotifications.checked
     });
 
-    showToast('💾 Lưu cài đặt tự động thành công!');
+    const dict = getDict(lang);
+    showToast(dict.toast_settings_saved);
   }
 
   async function saveScheduleSettings() {
@@ -96,18 +114,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       scheduledTime: timeVal
     });
 
-    // Notify service worker to create or clear alarm
     try {
       chrome.runtime.sendMessage({
         action: 'updateSchedule',
         enable: isEnabled,
         time: timeVal
       }, () => {
-        if (chrome.runtime.lastError) { /* ignore */ }
+        if (chrome.runtime.lastError) {}
       });
     } catch (e) {}
 
-    showToast('⏰ Lưu lịch chạy ngầm thành công!');
+    const dict = getDict(currentLang);
+    showToast(dict.toast_schedule_saved);
   }
 
   async function saveKeywords() {
@@ -118,18 +136,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       .filter(k => k.length > 0);
 
     await chrome.storage.local.set({ customKeywords: keywordsList });
-    showToast(`📚 Đã lưu ${keywordsList.length} từ khóa tùy chỉnh!`);
+    const dict = getDict(currentLang);
+    showToast(dict.toast_keywords_saved);
   }
 
   async function clearKeywords() {
     customKeywordsText.value = '';
     await chrome.storage.local.set({ customKeywords: [] });
-    showToast('🗑️ Đã xóa bộ từ khóa tùy chỉnh. Extension sẽ dùng từ khóa mặc định.');
+    const dict = getDict(currentLang);
+    showToast(dict.toast_keywords_cleared);
   }
 
   function renderLogs(logs) {
+    const dict = getDict(currentLang);
     if (!logs || logs.length === 0) {
-      logsTableBody.innerHTML = '<tr><td colspan="3" class="text-center">Chưa có nhật ký nào.</td></tr>';
+      logsTableBody.innerHTML = `<tr><td colspan="3" class="text-center">${dict.no_logs}</td></tr>`;
       return;
     }
 
@@ -144,6 +165,70 @@ document.addEventListener('DOMContentLoaded', async () => {
         <td style="font-weight: 600;">${log.query}</td>
       </tr>
     `).join('');
+  }
+
+  function getDict(lang) {
+    return (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+  }
+
+  function applyI18n(lang) {
+    const dict = getDict(lang);
+    const setElem = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    const setHTML = (id, html) => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = html;
+    };
+
+    document.title = `${dict.general_title.replace('⚙️ ', '')} - Microsoft Reward Automation`;
+
+    setElem('i18n_app_title', dict.app_title);
+    setElem('i18n_dashboard_subtitle', dict.dashboard_subtitle);
+    setHTML('i18n_tab_general', `<span>⚙️</span> ${dict.tab_general}`);
+    setHTML('i18n_tab_schedule', `<span>⏰</span> ${dict.tab_schedule}`);
+    setHTML('i18n_tab_keywords', `<span>📚</span> ${dict.tab_keywords}`);
+    setHTML('i18n_tab_logs', `<span>📊</span> ${dict.tab_logs}`);
+    setElem('i18n_link_rewards_dashboard', dict.link_rewards_dashboard);
+
+    setElem('i18n_general_title', dict.general_title);
+    setElem('i18n_general_subtitle', dict.general_subtitle);
+    setElem('i18n_target_card_title', dict.target_card_title);
+    setElem('i18n_target_label', dict.target_label);
+    setElem('i18n_target_help', dict.target_help);
+
+    setElem('i18n_delay_card_title', dict.delay_card_title);
+    setElem('i18n_min_delay_label', dict.min_delay_label);
+    setElem('i18n_max_delay_label', dict.max_delay_label);
+    setElem('i18n_delay_help', dict.delay_help);
+
+    setElem('i18n_advanced_card_title', dict.advanced_card_title);
+    setElem('i18n_lang_label', dict.lang_label);
+    setElem('i18n_opt_run_on_startup', dict.opt_run_on_startup);
+    setElem('i18n_opt_auto_close', dict.opt_auto_close);
+    setElem('i18n_opt_enable_humanizer', dict.opt_enable_humanizer);
+    setElem('i18n_opt_enable_notifications', dict.opt_enable_notifications);
+    setElem('btnSaveSettings', dict.btn_save_settings);
+
+    setElem('i18n_schedule_title', dict.schedule_title);
+    setElem('i18n_schedule_subtitle', dict.schedule_subtitle);
+    setElem('i18n_schedule_toggle', dict.schedule_toggle);
+    setElem('i18n_schedule_time_label', dict.schedule_time_label);
+    setElem('btnSaveSchedule', dict.btn_save_schedule);
+
+    setElem('i18n_keywords_title', dict.keywords_title);
+    setElem('i18n_keywords_subtitle', dict.keywords_subtitle);
+    setElem('i18n_keywords_card_title', dict.keywords_card_title);
+    if (customKeywordsText) customKeywordsText.placeholder = dict.keywords_placeholder;
+    setElem('btnSaveKeywords', dict.btn_save_keywords);
+    setElem('btnClearKeywords', dict.btn_clear_keywords);
+
+    setElem('i18n_logs_title', dict.logs_title);
+    setElem('i18n_logs_subtitle', dict.logs_subtitle);
+    setElem('i18n_table_time', dict.table_time);
+    setElem('i18n_table_mode', dict.table_mode);
+    setElem('i18n_table_query', dict.table_query);
   }
 
   function showToast(message) {

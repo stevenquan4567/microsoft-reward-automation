@@ -207,15 +207,24 @@ label {
   color: var(--text-muted);
 }
 
-input[type="number"], input[type="time"], textarea {
+.form-group input[type="number"],
+.form-group input[type="time"],
+.form-select {
+  width: 100%;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-md);
-  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
   color: var(--text-main);
   font-size: 14px;
+  font-weight: 600;
   outline: none;
   transition: border-color 0.2s;
+}
+
+.form-select option {
+  background: #0b1329;
+  color: #f8fafc;
 }
 
 input[type="number"]:focus, input[type="time"]:focus, textarea:focus {

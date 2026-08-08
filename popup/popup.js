@@ -1,9 +1,11 @@
 /**
- * MS Rewards Auto Search Pro - Popup Controller Script (v2.0 Desktop)
+ * Microsoft Reward Automation - Popup Controller Script (v2.0 Desktop)
+ * Supports i18n (Default: English 'en', Supported: 'en', 'vi')
  */
 
 document.addEventListener('DOMContentLoaded', async () => {
   // DOM Elements
+  const popupLangSelect = document.getElementById('popupLangSelect');
   const btnOptions = document.getElementById('btnOptions');
   const btnStart = document.getElementById('btnStart');
   const btnStop = document.getElementById('btnStop');
@@ -28,6 +30,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     } catch (e) {}
   }
+
+  // Language Change Event
+  popupLangSelect.addEventListener('change', async () => {
+    const newLang = popupLangSelect.value;
+    await chrome.storage.local.set({ appLanguage: newLang });
+    updateUI();
+  });
 
   // Event Listeners
   btnOptions.addEventListener('click', () => {
@@ -64,9 +73,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function updateUI() {
     const data = await chrome.storage.local.get([
-      'isRunning', 'currentCount', 'targetCount',
+      'appLanguage', 'isRunning', 'currentCount', 'targetCount',
       'desktopCompletedToday', 'desktopTarget', 'logs'
     ]);
+
+    const lang = data.appLanguage || 'en';
+    const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+
+    popupLangSelect.value = lang;
+
+    // Update static i18n text labels
+    applyTranslationDict(dict);
 
     const isRunning = !!data.isRunning;
     const currentCount = data.currentCount || 0;
@@ -75,12 +92,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update Status Pill & Controls
     if (isRunning) {
       statusPill.className = 'status-pill running';
-      statusText.textContent = 'Đang tự động tìm kiếm...';
+      statusText.textContent = dict.status_running;
       btnStart.classList.add('hidden');
       btnStop.classList.remove('hidden');
     } else {
       statusPill.className = 'status-pill idle';
-      statusText.textContent = 'Sẵn sàng';
+      statusText.textContent = dict.status_ready;
       btnStart.classList.remove('hidden');
       btnStop.classList.add('hidden');
     }
@@ -99,14 +116,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     const estPoints = deskDone * 3;
 
     desktopStats.textContent = `${deskDone}/${deskGoal}`;
-    pointsEarned.textContent = `+${estPoints} điểm`;
+    pointsEarned.textContent = `+${estPoints} ${dict.points_unit}`;
 
     // Update Ticker
     const logs = data.logs || [];
     if (logs.length > 0) {
       tickerText.textContent = `"${logs[0].query}"`;
     } else {
-      tickerText.textContent = 'Chưa chạy lần nào hôm nay';
+      tickerText.textContent = dict.no_search_yet;
     }
+  }
+
+  function applyTranslationDict(dict) {
+    const setElem = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+
+    setElem('i18n_app_title', dict.app_title);
+    setElem('i18n_app_badge', dict.app_badge);
+    setElem('i18n_status_label', dict.status_label);
+    setElem('i18n_desktop_searches_today', dict.desktop_searches_today);
+    setElem('i18n_points_earned', dict.points_earned);
+    setElem('i18n_btn_start_search', dict.btn_start_search);
+    setElem('i18n_btn_stop_search', dict.btn_stop_search);
+    setElem('i18n_link_rewards_dashboard', dict.link_rewards_dashboard);
+    setElem('i18n_link_bing_home', dict.link_bing_home);
+    setElem('i18n_last_search', dict.last_search);
+    
+    if (btnOptions) btnOptions.title = dict.settings_tooltip;
   }
 });

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cài đặt Microsoft Reward Automation</title>
+  <title>Microsoft Reward Automation - Settings</title>
   <link rel="stylesheet" href="options.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,29 +16,29 @@
       <div class="brand">
         <div class="logo">⚡</div>
         <div class="brand-info">
-          <h2>Microsoft Reward Auto</h2>
-          <span>Dashboard & Settings</span>
+          <h2 id="i18n_app_title">Microsoft Reward Auto</h2>
+          <span id="i18n_dashboard_subtitle">Dashboard & Settings</span>
         </div>
       </div>
 
       <nav class="nav">
-        <button class="nav-item active" data-tab="settings">
-          <span>⚙️</span> Cài đặt chung
+        <button class="nav-item active" data-tab="settings" id="i18n_tab_general">
+          <span>⚙️</span> General Settings
         </button>
-        <button class="nav-item" data-tab="schedule">
-          <span>⏰</span> Lên lịch ngầm
+        <button class="nav-item" data-tab="schedule" id="i18n_tab_schedule">
+          <span>⏰</span> Background Schedule
         </button>
-        <button class="nav-item" data-tab="keywords">
-          <span>📚</span> Ngân hàng từ khóa
+        <button class="nav-item" data-tab="keywords" id="i18n_tab_keywords">
+          <span>📚</span> Keyword Bank
         </button>
-        <button class="nav-item" data-tab="logs">
-          <span>📊</span> Lịch sử tìm kiếm
+        <button class="nav-item" data-tab="logs" id="i18n_tab_logs">
+          <span>📊</span> Search History
         </button>
       </nav>
 
       <div class="sidebar-footer">
-        <a href="https://rewards.bing.com/" target="_blank" class="btn-rewards">
-          🎁 Mở MS Rewards
+        <a href="https://rewards.bing.com/" target="_blank" class="btn-rewards" id="i18n_link_rewards_dashboard">
+          🎁 MS Rewards Dashboard
         </a>
       </div>
     </aside>
@@ -46,112 +46,124 @@
     <!-- Main Content -->
     <main class="main-content">
       <!-- Alert Toast -->
-      <div id="toast" class="toast hidden">Lưu cài đặt thành công!</div>
+      <div id="toast" class="toast hidden">Settings saved!</div>
 
       <!-- Tab 1: General Settings -->
       <section id="tab-settings" class="tab-page active">
         <div class="page-header">
-          <h1>⚙️ Cài đặt tự động hóa</h1>
-          <p>Tùy chỉnh số lượng lượt tìm kiếm, khoảng thời gian delay và cơ chế né bot.</p>
+          <h1 id="i18n_general_title">⚙️ Automation Settings</h1>
+          <p id="i18n_general_subtitle">Customize daily search targets, random delay intervals, and anti-bot features.</p>
         </div>
 
         <div class="card-grid">
-          <div class="card">
-            <h3>🖥️ Target Tìm Kiếm Desktop</h3>
+          <!-- Language Selector Card -->
+          <div class="card span-2">
+            <h3 id="i18n_lang_card_title">🌐 Application Language</h3>
             <div class="form-group">
-              <label>Số lượt tìm kiếm Desktop hàng ngày:</label>
-              <input type="number" id="desktopTarget" min="1" max="100" value="30">
-              <span class="help">Mặc định: 30 lượt (~90 điểm Rewards)</span>
+              <label id="i18n_lang_label">Select interface display language:</label>
+              <select id="appLanguage" class="form-select">
+                <option value="en">🇬🇧 English (Default)</option>
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+              </select>
             </div>
           </div>
 
           <div class="card">
-            <h3>⏳ Khoảng Thời Gian Delay (Giây)</h3>
+            <h3 id="i18n_target_card_title">🖥️ Desktop Search Target</h3>
+            <div class="form-group">
+              <label id="i18n_target_label">Daily Desktop search quota:</label>
+              <input type="number" id="desktopTarget" min="1" max="100" value="30">
+              <span class="help" id="i18n_target_help">Default: 30 searches (~90 Rewards points)</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 id="i18n_delay_card_title">⏳ Delay Interval (Seconds)</h3>
             <div class="form-row">
               <div class="form-group">
-                <label>Tối thiểu (Min Delay):</label>
+                <label id="i18n_min_delay_label">Min Delay:</label>
                 <input type="number" id="minDelay" min="1" max="60" value="3">
               </div>
               <div class="form-group">
-                <label>Tối đa (Max Delay):</label>
+                <label id="i18n_max_delay_label">Max Delay:</label>
                 <input type="number" id="maxDelay" min="2" max="60" value="6">
               </div>
             </div>
-            <span class="help">Thời gian nghỉ ngẫu nhiên giữa các lần search để né thuật toán bot detection.</span>
+            <span class="help" id="i18n_delay_help">Random delay between searches to bypass bot detection algorithms.</span>
           </div>
 
           <div class="card span-2">
-            <h3>🛡️ Tính Năng Nâng Cao</h3>
+            <h3 id="i18n_advanced_card_title">🛡️ Advanced & Anti-Bot Features</h3>
             <div class="checkbox-group">
               <label class="switch-label">
                 <input type="checkbox" id="runOnStartup">
                 <span class="slider"></span>
-                <span class="switch-text">🚀 Tự động cày điểm ngay mỗi khi mở trình duyệt Edge (nếu hôm nay chưa xong)</span>
+                <span class="switch-text" id="i18n_opt_run_on_startup">🚀 Auto-start searches when opening Edge browser (if today's target is not complete)</span>
               </label>
               <label class="switch-label">
                 <input type="checkbox" id="autoCloseTab">
                 <span class="slider"></span>
-                <span class="switch-text">Tự động đóng tab Bing sau khi hoàn thành lượt tìm kiếm</span>
+                <span class="switch-text" id="i18n_opt_auto_close">Auto-close Bing search tab upon completion</span>
               </label>
               <label class="switch-label">
                 <input type="checkbox" id="enableHumanizer">
                 <span class="slider"></span>
-                <span class="switch-text">Giả lập hành vi người thật Pro (Tự động cuộn trang, hover kết quả & bôi đen text Bing)</span>
+                <span class="switch-text" id="i18n_opt_enable_humanizer">Human Anti-Bot Simulation Pro (Multi-stage scrolling, hover & text highlight)</span>
               </label>
               <label class="switch-label">
                 <input type="checkbox" id="enableNotifications">
                 <span class="slider"></span>
-                <span class="switch-text">Gửi thông báo hệ thống khi cày điểm hoàn tất</span>
+                <span class="switch-text" id="i18n_opt_enable_notifications">Send system notification when daily searches complete</span>
               </label>
             </div>
           </div>
         </div>
 
         <div class="action-bar">
-          <button id="btnSaveSettings" class="btn btn-primary">💾 Lưu Cài Đặt</button>
+          <button id="btnSaveSettings" class="btn btn-primary">💾 Save Settings</button>
         </div>
       </section>
 
       <!-- Tab 2: Schedule -->
       <section id="tab-schedule" class="tab-page">
         <div class="page-header">
-          <h1>⏰ Lên lịch cày ngầm tự động</h1>
-          <p>Tự động khởi chạy tìm kiếm Bing hàng ngày vào khung giờ bạn mong muốn mà không cần bấm thủ công.</p>
+          <h1 id="i18n_schedule_title">⏰ Background Daily Scheduler</h1>
+          <p id="i18n_schedule_subtitle">Automatically run Bing searches in the background daily at your preferred time.</p>
         </div>
 
         <div class="card">
-          <h3>Lịch chạy hàng ngày</h3>
+          <h3 id="i18n_schedule_card_title">Daily Background Schedule</h3>
           <div class="checkbox-group">
             <label class="switch-label">
               <input type="checkbox" id="enableSchedule">
               <span class="slider"></span>
-              <span class="switch-text">Bật tự động cày điểm theo lịch hàng ngày</span>
+              <span class="switch-text" id="i18n_schedule_toggle">Enable background daily schedule</span>
             </label>
           </div>
           <div class="form-group margin-top">
-            <label>Chọn khung giờ chạy ngầm hàng ngày (Giờ:Phút):</label>
+            <label id="i18n_schedule_time_label">Select daily background run time (HH:MM):</label>
             <input type="time" id="scheduledTime" value="09:00">
           </div>
         </div>
 
         <div class="action-bar">
-          <button id="btnSaveSchedule" class="btn btn-primary">💾 Lưu Lịch Chạy</button>
+          <button id="btnSaveSchedule" class="btn btn-primary">💾 Save Schedule</button>
         </div>
       </section>
 
       <!-- Tab 3: Keywords -->
       <section id="tab-keywords" class="tab-page">
         <div class="page-header">
-          <h1>📚 Ngân hàng từ khóa tìm kiếm</h1>
-          <p>Mặc định Extension sử dụng hơn 100+ từ khóa phong phú đa chủ đề. Bạn có thể thêm từ khóa cá nhân của riêng mình bên dưới.</p>
+          <h1 id="i18n_keywords_title">📚 Search Keyword Bank</h1>
+          <p id="i18n_keywords_subtitle">By default, the extension generates thousands of unique queries across philosophy, science, history, and tech. Add custom keywords below.</p>
         </div>
 
         <div class="card">
-          <h3>Từ khóa tùy chỉnh (Mỗi từ 1 dòng)</h3>
-          <textarea id="customKeywordsText" placeholder="Ví dụ:&#10;tin tức công nghệ mới nhất&#10;cách làm bánh pizza hải sản&#10;lịch thi đấu bóng đá hôm nay"></textarea>
+          <h3 id="i18n_keywords_card_title">Custom Keywords (One per line)</h3>
+          <textarea id="customKeywordsText" placeholder="Example:&#10;latest AI breakthroughs 2026&#10;how quantum computing works&#10;best open source dev tools"></textarea>
           <div class="keyword-tools">
-            <button id="btnSaveKeywords" class="btn btn-primary">💾 Lưu Danh Sách Từ Khóa</button>
-            <button id="btnClearKeywords" class="btn btn-secondary">🗑️ Xóa Từ Khóa Cá Nhân</button>
+            <button id="btnSaveKeywords" class="btn btn-primary">💾 Save Custom Keywords</button>
+            <button id="btnClearKeywords" class="btn btn-secondary">🗑️ Clear Custom Keywords</button>
           </div>
         </div>
       </section>
@@ -159,8 +171,8 @@
       <!-- Tab 4: Logs -->
       <section id="tab-logs" class="tab-page">
         <div class="page-header">
-          <h1>📊 Nhật ký tìm kiếm gần đây</h1>
-          <p>Danh sách các từ khóa đã được tìm kiếm thành công gần đây.</p>
+          <h1 id="i18n_logs_title">📊 Recent Search Logs</h1>
+          <p id="i18n_logs_subtitle">List of recent successfully executed Bing search queries.</p>
         </div>
 
         <div class="card">
@@ -168,13 +180,13 @@
             <table class="log-table">
               <thead>
                 <tr>
-                  <th>Thời gian</th>
-                  <th>Chế độ</th>
-                  <th>Từ khóa đã tìm kiếm</th>
+                  <th id="i18n_table_time">Time</th>
+                  <th id="i18n_table_mode">Mode</th>
+                  <th id="i18n_table_query">Executed Search Query</th>
                 </tr>
               </thead>
               <tbody id="logsTableBody">
-                <tr><td colspan="3" class="text-center">Chưa có lịch sử tìm kiếm.</td></tr>
+                <tr><td colspan="3" class="text-center">No search logs available yet.</td></tr>
               </tbody>
             </table>
           </div>
@@ -183,6 +195,7 @@
     </main>
   </div>
 
+  <script src="../data/i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

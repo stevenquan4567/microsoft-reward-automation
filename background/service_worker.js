@@ -49,6 +49,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   const existing = await chrome.storage.local.get(null);
 
   const defaults = {
+    appLanguage: 'en',
     desktopTarget: 30,
     minDelay: 3,
     maxDelay: 6,
@@ -319,7 +320,7 @@ async function executeNextSearch(st) {
 async function stopAutomation(completed = false) {
   await chrome.alarms.clear(ALARM_NEXT_SEARCH);
 
-  const settings = await chrome.storage.local.get(['autoCloseTab', 'enableNotifications', 'activeTabId']);
+  const settings = await chrome.storage.local.get(['autoCloseTab', 'enableNotifications', 'activeTabId', 'appLanguage']);
 
   if (settings.autoCloseTab && settings.activeTabId) {
     try {
@@ -335,11 +336,14 @@ async function stopAutomation(completed = false) {
 
   if (completed && settings.enableNotifications) {
     try {
+      const isVi = settings.appLanguage === 'vi';
       chrome.notifications.create({
         type: 'basic',
         iconUrl: 'assets/icon48.png',
         title: 'Microsoft Reward Automation',
-        message: '🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!'
+        message: isVi 
+          ? '🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!'
+          : '🎉 Completed all Bing Desktop searches for today!'
       });
     } catch (e) {
       console.log('[MSR Pro] Notification skipped or unsupported.');

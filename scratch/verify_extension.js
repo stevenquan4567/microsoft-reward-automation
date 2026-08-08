@@ -10,6 +10,7 @@ const jsonFiles = [
 ];
 
 const jsFiles = [
+  'data/i18n.js',
   'background/service_worker.js',
   'content/bing_humanizer.js',
   'content/rewards_autocard.js',
