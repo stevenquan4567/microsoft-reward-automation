@@ -938,6 +938,91 @@ const I18N = {
     toast_update_available: "🎉 Расширение автоматически обновлено и перезагружено!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Все дневные поиски Bing на ПК выполнены!"
+  },
+
+  hi: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.1.0 Desktop",
+    settings_tooltip: "उन्नत सेटिंग्स",
+    dashboard_subtitle: "डैशबोर्ड और सेटिंग्स",
+
+    status_label: "स्थिति",
+    status_ready: "तैयार",
+    status_running: "ऑटो खोज जारी है...",
+    status_completed: "आज पूरा हो गया!",
+
+    desktop_searches_today: "आज की डेस्कटॉप खोजें",
+    points_earned: "आज अर्जित अंक",
+    points_unit: "अंक",
+    last_search: "अंतिम खोज:",
+    no_search_yet: "आज कोई खोज नहीं की गई",
+
+    btn_start_search: "डेस्कटॉप खोज शुरू करें",
+    btn_stop_search: "खोज रोकें",
+    btn_donate_kofi: "☕ Ko-fi पर समर्थन करें",
+    btn_check_update: "🚀 अपडेट और रीलोड",
+
+    link_rewards_dashboard: "🎁 MS Rewards",
+    link_bing_home: "🔍 Bing होम",
+    link_github_project: "⭐ GitHub प्रोजेक्ट",
+
+    tab_general: "सामान्य सेटिंग्स",
+    tab_schedule: "बैकग्राउंड शेड्यूल",
+    tab_keywords: "कीवर्ड बैंक",
+    tab_logs: "खोज इतिहास",
+
+    general_title: "⚙️ स्वचालन सेटिंग्स",
+    general_subtitle: "दैनिक खोज लक्ष्य, यादृच्छिक विलंब अंतराल और एंटी-बॉट सुविधाओं को अनुकूलित करें।",
+    target_card_title: "🖥️ डेस्कटॉप खोज लक्ष्य",
+    target_label: "दैनिक डेस्कटॉप खोज कोटा:",
+    target_help: "डिफ़ॉल्ट: 30 खोजें (~90 रिवॉर्ड अंक)",
+    
+    delay_card_title: "⏳ विलंब अंतराल (सेकंड)",
+    min_delay_label: "न्यूनतम विलंब:",
+    max_delay_label: "अधिकतम विलंब:",
+    delay_help: "बॉट पहचान एल्गोरिदम को बायपास करने के लिए खोजों के बीच यादृच्छिक रोक।",
+
+    advanced_card_title: "🛡️ उन्नत और एंटी-बॉट सुविधाएं",
+    lang_card_title: "🌐 एप्लिकेशन भाषा",
+    lang_label: "इंटरफ़ेस प्रदर्शन भाषा चुनें:",
+    opt_run_on_startup: "🚀 Edge ब्राउज़र खोलते ही ऑटो-स्टार्ट खोजें (यदि आज का लक्ष्य पूरा नहीं हुआ है)",
+    opt_auto_close: "खोज पूरी होने पर Bing खोज टैब स्वचालित रूप से बंद करें",
+    opt_enable_humanizer: "मानव व्यवहार सिमुलेशन प्रो (मल्टी-स्टेज स्क्रॉल, होवर और टेक्स्ट हाइलाइट)",
+    opt_enable_notifications: "दैनिक खोजें पूरी होने पर सिस्टम सूचना भेजें",
+    opt_enable_auto_update: "⚡ GitHub से कोड/कीवर्ड ऑटो-अपडेट और एक्सटेंशन रीलोड करें",
+    
+    btn_save_settings: "💾 सेटिंग्स सहेजें",
+
+    schedule_title: "⏰ बैकग्राउंड दैनिक शेड्यूलर",
+    schedule_subtitle: "अपने पसंदीदा समय पर प्रतिदिन बैकग्राउंड में Bing खोजें स्वचालित रूप से चलाएं।",
+    schedule_card_title: "दैनिक बैकग्राउंड शेड्यूल",
+    schedule_toggle: "दैनिक बैकग्राउंड शेड्यूल सक्षम करें",
+    schedule_time_label: "दैनिक बैकग्राउंड रन समय चुनें (HH:MM):",
+    btn_save_schedule: "💾 शेड्यूल सहेजें",
+
+    keywords_title: "📚 खोज कीवर्ड बैंक",
+    keywords_subtitle: "डिफ़ॉल्ट रूप से एक्सटेंशन दर्शन, विज्ञान, इतिहास और तकनीक में हजारों अद्वितीय प्रश्न बनाता है। नीचे कस्टम कीवर्ड जोड़ें।",
+    keywords_card_title: "कस्टम कीवर्ड (प्रति पंक्ति एक)",
+    keywords_placeholder: "उदाहरण:\nनवीनतम AI खोजें 2026\nक्वांटम कंप्यूटिंग कैसे काम करती है\nसर्वश्रेष्ठ ओपन सोर्स देव उपकरण",
+    btn_save_keywords: "💾 कस्टम कीवर्ड सहेजें",
+    btn_clear_keywords: "🗑️ कस्टम कीवर्ड साफ़ करें",
+
+    logs_title: "📊 हाल की खोज लॉग",
+    logs_subtitle: "हाल ही में सफलतापूर्वक निष्पादित Bing खोज प्रश्नों की सूची।",
+    table_time: "समय",
+    table_mode: "मोड",
+    table_query: "निष्पादित खोज प्रश्न",
+    no_logs: "अभी तक कोई खोज लॉग उपलब्ध नहीं है।",
+
+    toast_settings_saved: "💾 सेटिंग्स सफलतापूर्वक सहेजी गईं!",
+    toast_schedule_saved: "⏰ बैकग्राउंड शेड्यूल सहेजा गया!",
+    toast_keywords_saved: "📚 कस्टम कीवर्ड सहेजे गए!",
+    toast_keywords_cleared: "🗑️ कस्टम कीवर्ड सूची साफ़ की गई।",
+    toast_checking_update: "🚀 GitHub से डेटा सिंक और एक्सटेंशन रीलोड हो रहा है...",
+    toast_up_to_date: "✨ सफलतापूर्वक अपडेट और रीलोड किया गया! (v2.1.0)",
+    toast_update_available: "🎉 स्वचालित रूप से अपडेट और रीलोड हो गया!",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 आज की सभी Bing डेस्कटॉप खोजें पूरी हो गईं!"
   }
 };
 

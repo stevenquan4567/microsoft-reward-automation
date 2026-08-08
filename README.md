@@ -14,6 +14,13 @@
 
 ---
 
+## 🌐 Community Translations / Đóng góp Ngôn ngữ
+
+Bạn muốn đóng góp bản dịch ngôn ngữ mới hoặc cải thiện bản dịch có sẵn?  
+👉 Xem hướng dẫn chi tiết tại **[TRANSLATIONS.md](TRANSLATIONS.md)** và **[CONTRIBUTING.md](CONTRIBUTING.md)**. Quá trình thêm ngôn ngữ mới chỉ mất 5 phút!
+
+---
+
 ## 🌟 Tính Năng Nổi Bật (Version 1.0.0)
 
 ### 🖥️ Desktop Auto Search Engine
