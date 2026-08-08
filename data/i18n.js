@@ -1,45 +1,49 @@
 /**
  * Microsoft Reward Automation - Internationalization (i18n) Dictionary
  * Default language: English ('en')
- * Supported languages: English ('en'), Vietnamese ('vi')
+ * Supported languages (11 total):
+ *  - en: English
+ *  - vi: Tiếng Việt (Vietnamese)
+ *  - zh: 简体中文 (Chinese)
+ *  - ko: 한국어 (Korean)
+ *  - ja: 日本語 (Japanese)
+ *  - es: Español (Spanish)
+ *  - fr: Français (French)
+ *  - de: Deutsch (German)
+ *  - it: Italiano (Italian)
+ *  - pt: Português (Portuguese)
+ *  - ru: Русский (Russian)
  */
 
 const I18N = {
   en: {
-    // Header & Brand
     app_title: "Microsoft Reward Automation",
     app_badge: "v2.0 Desktop",
     settings_tooltip: "Advanced Settings",
     dashboard_subtitle: "Dashboard & Settings",
 
-    // Status
     status_label: "Status",
     status_ready: "Ready",
     status_running: "Auto Searching...",
     status_completed: "Completed Today!",
 
-    // Quick Stats
     desktop_searches_today: "Desktop Searches Today",
     points_earned: "Points Earned Today",
     points_unit: "pts",
     last_search: "Last search:",
     no_search_yet: "No searches run today",
 
-    // Controls
     btn_start_search: "START DESKTOP SEARCH",
     btn_stop_search: "STOP SEARCH",
 
-    // Links
     link_rewards_dashboard: "🎁 MS Rewards Dashboard",
     link_bing_home: "🔍 Bing Home",
 
-    // Options Navigation Tabs
     tab_general: "General Settings",
     tab_schedule: "Background Schedule",
     tab_keywords: "Keyword Bank",
     tab_logs: "Search History",
 
-    // Options - General Tab
     general_title: "⚙️ Automation Settings",
     general_subtitle: "Customize daily search targets, random delay intervals, and anti-bot features.",
     target_card_title: "🖥️ Desktop Search Target",
@@ -52,7 +56,8 @@ const I18N = {
     delay_help: "Random delay between searches to bypass bot detection algorithms.",
 
     advanced_card_title: "🛡️ Advanced & Anti-Bot Features",
-    lang_label: "🌐 Application Interface Language:",
+    lang_card_title: "🌐 Application Language",
+    lang_label: "Select interface display language:",
     opt_run_on_startup: "🚀 Auto-start searches when opening Edge browser (if today's target is not complete)",
     opt_auto_close: "Auto-close Bing search tab upon completion",
     opt_enable_humanizer: "Human Anti-Bot Simulation Pro (Multi-stage scrolling, hover & text highlight)",
@@ -60,14 +65,13 @@ const I18N = {
     
     btn_save_settings: "💾 Save Settings",
 
-    // Options - Schedule Tab
     schedule_title: "⏰ Background Daily Scheduler",
     schedule_subtitle: "Automatically run Bing searches in the background daily at your preferred time.",
+    schedule_card_title: "Daily Background Schedule",
     schedule_toggle: "Enable background daily schedule",
     schedule_time_label: "Select daily background run time (HH:MM):",
     btn_save_schedule: "💾 Save Schedule",
 
-    // Options - Keywords Tab
     keywords_title: "📚 Search Keyword Bank",
     keywords_subtitle: "By default, the extension generates thousands of unique queries across philosophy, science, history, and tech. Add custom keywords below.",
     keywords_card_title: "Custom Keywords (One per line)",
@@ -75,7 +79,6 @@ const I18N = {
     btn_save_keywords: "💾 Save Custom Keywords",
     btn_clear_keywords: "🗑️ Clear Custom Keywords",
 
-    // Options - Logs Tab
     logs_title: "📊 Recent Search Logs",
     logs_subtitle: "List of recent successfully executed Bing search queries.",
     table_time: "Time",
@@ -83,7 +86,6 @@ const I18N = {
     table_query: "Executed Search Query",
     no_logs: "No search logs available yet.",
 
-    // Notifications & Toasts
     toast_settings_saved: "💾 Settings saved successfully!",
     toast_schedule_saved: "⏰ Background schedule saved!",
     toast_keywords_saved: "📚 Saved custom keywords!",
@@ -93,40 +95,33 @@ const I18N = {
   },
 
   vi: {
-    // Header & Brand
     app_title: "Microsoft Reward Automation",
     app_badge: "v2.0 Desktop",
     settings_tooltip: "Cài đặt nâng cao",
     dashboard_subtitle: "Dashboard & Cài đặt",
 
-    // Status
     status_label: "Trạng thái",
     status_ready: "Sẵn sàng",
     status_running: "Đang tự động tìm kiếm...",
     status_completed: "Đã hoàn thành hôm nay!",
 
-    // Quick Stats
     desktop_searches_today: "Desktop Tìm Kiếm Hôm Nay",
     points_earned: "Điểm Nhận Được Hôm Nay",
     points_unit: "điểm",
     last_search: "Lần tìm gần nhất:",
     no_search_yet: "Chưa chạy lần nào hôm nay",
 
-    // Controls
     btn_start_search: "BẮT ĐẦU TÌM KIẾM DESKTOP",
     btn_stop_search: "TẠM DỪNG TÌM KIẾM",
 
-    // Links
     link_rewards_dashboard: "🎁 MS Rewards Dashboard",
     link_bing_home: "🔍 Bing Home",
 
-    // Options Navigation Tabs
     tab_general: "Cài đặt chung",
     tab_schedule: "Lên lịch ngầm",
     tab_keywords: "Ngân hàng từ khóa",
     tab_logs: "Lịch sử tìm kiếm",
 
-    // Options - General Tab
     general_title: "⚙️ Cài đặt tự động hóa",
     general_subtitle: "Tùy chỉnh số lượng lượt tìm kiếm, khoảng thời gian delay và cơ chế né bot.",
     target_card_title: "🖥️ Target Tìm Kiếm Desktop",
@@ -139,7 +134,8 @@ const I18N = {
     delay_help: "Thời gian nghỉ ngẫu nhiên giữa các lần search để né thuật toán bot detection.",
 
     advanced_card_title: "🛡️ Tính Năng Nâng Cao & Anti-Bot",
-    lang_label: "🌐 Ngôn ngữ giao diện ứng dụng:",
+    lang_card_title: "🌐 Ngôn Ngữ Ứng Dụng",
+    lang_label: "Chọn ngôn ngữ hiển thị giao diện:",
     opt_run_on_startup: "🚀 Tự động cày điểm ngay mỗi khi mở trình duyệt Edge (nếu hôm nay chưa xong)",
     opt_auto_close: "Tự động đóng tab Bing sau khi hoàn thành lượt tìm kiếm",
     opt_enable_humanizer: "Giả lập hành vi người thật Pro (Tự động cuộn trang, hover kết quả & bôi đen text Bing)",
@@ -147,14 +143,13 @@ const I18N = {
     
     btn_save_settings: "💾 Lưu Cài Đặt",
 
-    // Options - Schedule Tab
     schedule_title: "⏰ Lên lịch cày ngầm tự động",
     schedule_subtitle: "Tự động khởi chạy tìm kiếm Bing hàng ngày vào khung giờ bạn mong muốn mà không cần bấm thủ công.",
+    schedule_card_title: "Lịch chạy hàng ngày",
     schedule_toggle: "Bật tự động cày điểm theo lịch hàng ngày",
     schedule_time_label: "Chọn khung giờ chạy ngầm hàng daily (Giờ:Phút):",
     btn_save_schedule: "💾 Lưu Lịch Chạy",
 
-    // Options - Keywords Tab
     keywords_title: "📚 Ngân hàng từ khóa tìm kiếm",
     keywords_subtitle: "Mặc định Extension sử dụng hơn 100+ từ khóa phong phú đa chủ đề. Bạn có thể thêm từ khóa cá nhân của riêng mình bên dưới.",
     keywords_card_title: "Từ khóa tùy chỉnh (Mỗi từ 1 dòng)",
@@ -162,7 +157,6 @@ const I18N = {
     btn_save_keywords: "💾 Lưu Danh Sách Từ Khóa",
     btn_clear_keywords: "🗑️ Xóa Từ Khóa Cá Nhân",
 
-    // Options - Logs Tab
     logs_title: "📊 Nhật ký tìm kiếm gần đây",
     logs_subtitle: "Danh sách các từ khóa đã được tìm kiếm thành công gần đây.",
     table_time: "Thời gian",
@@ -170,13 +164,714 @@ const I18N = {
     table_query: "Từ khóa đã tìm kiếm",
     no_logs: "Chưa có lịch sử tìm kiếm nào.",
 
-    // Notifications & Toasts
     toast_settings_saved: "💾 Lưu cài đặt tự động thành công!",
     toast_schedule_saved: "⏰ Lưu lịch chạy ngầm thành công!",
     toast_keywords_saved: "📚 Đã lưu từ khóa tùy chỉnh!",
     toast_keywords_cleared: "🗑️ Đã xóa bộ từ khóa tùy chỉnh.",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!"
+  },
+
+  zh: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 桌面版",
+    settings_tooltip: "高级设置",
+    dashboard_subtitle: "控制台与设置",
+
+    status_label: "当前状态",
+    status_ready: "就绪",
+    status_running: "正在自动搜索...",
+    status_completed: "今日搜索已完成！",
+
+    desktop_searches_today: "今日桌面搜索次数",
+    points_earned: "今日已获积分",
+    points_unit: "分",
+    last_search: "最近搜索:",
+    no_search_yet: "今日尚未运行搜索",
+
+    btn_start_search: "开始桌面自动搜索",
+    btn_stop_search: "停止搜索",
+
+    link_rewards_dashboard: "🎁 MS Rewards 控制台",
+    link_bing_home: "🔍 必应首页",
+
+    tab_general: "通用设置",
+    tab_schedule: "后台定时",
+    tab_keywords: "关键词库",
+    tab_logs: "搜索日志",
+
+    general_title: "⚙️ 自动化设置",
+    general_subtitle: "自定义每日搜索目标次数、随机延迟间隔及防封机制。",
+    target_card_title: "🖥️ 桌面搜索目标",
+    target_label: "每日桌面搜索目标次数:",
+    target_help: "默认：30 次（约 90 Rewards 积分）",
+    
+    delay_card_title: "⏳ 延迟间隔时间（秒）",
+    min_delay_label: "最小延迟:",
+    max_delay_label: "最大延迟:",
+    delay_help: "搜索之间的随机停顿时间，用于规避机器人检测算法。",
+
+    advanced_card_title: "🛡️ 高级与防封功能",
+    lang_card_title: "🌐 应用程序界面语言",
+    lang_label: "选择界面显示语言:",
+    opt_run_on_startup: "🚀 打开 Edge 浏览器时自动运行（若今日目标未完成）",
+    opt_auto_close: "搜索完成后自动关闭 Bing 搜索标签页",
+    opt_enable_humanizer: "高级真人行为模拟 (多阶段平滑滚动、悬停及选中文本)",
+    opt_enable_notifications: "搜索完成时发送系统通知",
+    
+    btn_save_settings: "💾 保存设置",
+
+    schedule_title: "⏰ 后台每日定时器",
+    schedule_subtitle: "每日在您指定的设定期限自动在后台启动 Bing 搜索。",
+    schedule_card_title: "每日后台计划",
+    schedule_toggle: "启用每日后台定时任务",
+    schedule_time_label: "选择每日后台运行时间 (时:分):",
+    btn_save_schedule: "💾 保存定时计划",
+
+    keywords_title: "📚 搜索关键词库",
+    keywords_subtitle: "默认情况下，扩展会自动生成涵盖哲学、科学、历史和技术的数千条独特查询。您可以在下方添加自定义关键词。",
+    keywords_card_title: "自定义关键词（每行一条）",
+    keywords_placeholder: "示例：\n最新人工智能突破 2026\n量子计算的工作原理\n最佳开源开发工具",
+    btn_save_keywords: "💾 保存自定义关键词",
+    btn_clear_keywords: "🗑️ 清空自定义关键词",
+
+    logs_title: "📊 最近搜索日志",
+    logs_subtitle: "最近成功执行的 Bing 搜索词列表。",
+    table_time: "时间",
+    table_mode: "模式",
+    table_query: "已执行的搜索词",
+    no_logs: "暂无搜索日志。",
+
+    toast_settings_saved: "💾 设置保存成功！",
+    toast_schedule_saved: "⏰ 后台定时任务保存成功！",
+    toast_keywords_saved: "📚 自定义关键词保存成功！",
+    toast_keywords_cleared: "🗑️ 已清空自定义关键词列表。",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 今日所有 Bing 桌面搜索任务已完成！"
+  },
+
+  ko: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 데스크톱",
+    settings_tooltip: "고급 설정",
+    dashboard_subtitle: "대시보드 및 설정",
+
+    status_label: "상태",
+    status_ready: "준비됨",
+    status_running: "자동 검색 중...",
+    status_completed: "오늘 검색 완료!",
+
+    desktop_searches_today: "오늘 데스크톱 검색 횟수",
+    points_earned: "오늘 획득한 포인트",
+    points_unit: "점",
+    last_search: "최근 검색어:",
+    no_search_yet: "오늘 실행된 검색 없음",
+
+    btn_start_search: "데스크톱 검색 시작",
+    btn_stop_search: "검색 중지",
+
+    link_rewards_dashboard: "🎁 MS Rewards 대시보드",
+    link_bing_home: "🔍 Bing 홈",
+
+    tab_general: "일반 설정",
+    tab_schedule: "백그라운드 스케줄",
+    tab_keywords: "키워드 데이터베이스",
+    tab_logs: "검색 기록",
+
+    general_title: "⚙️ 자동화 설정",
+    general_subtitle: "일일 검색 목표, 임의 지연 시간 및 봇 방지 기능을 맞춤 설정합니다.",
+    target_card_title: "🖥️ 데스크톱 검색 목표",
+    target_label: "일일 데스크톱 검색 목표 횟수:",
+    target_help: "기본값: 30회 (~90 리워드 포인트)",
+    
+    delay_card_title: "⏳ 지연 시간 간격 (초)",
+    min_delay_label: "최소 지연:",
+    max_delay_label: "최대 지연:",
+    delay_help: "봇 탐지 알고리즘을 우회하기 위한 검색 간 임의 대기 시간입니다.",
+
+    advanced_card_title: "🛡️ 고급 및 봇 방지 기능",
+    lang_card_title: "🌐 애플리케이션 표시 언어",
+    lang_label: "인터페이스 표시 언어 선택:",
+    opt_run_on_startup: "🚀 Edge 브라우저를 열 때 자동 실행 (오늘 목표 미달성 시)",
+    opt_auto_close: "검색 완료 후 Bing 검색 탭 자동 닫기",
+    opt_enable_humanizer: "고급 인간 행동 시뮬레이션 (다단계 스크롤, 호버 및 텍스트 선택)",
+    opt_enable_notifications: "검색 완료 시 시스템 알림 발송",
+    
+    btn_save_settings: "💾 설정 저장",
+
+    schedule_title: "⏰ 백그라운드 일일 스케줄러",
+    schedule_subtitle: "매일 지정한 시간에 백그라운드에서 Bing 검색을 자동으로 실행합니다.",
+    schedule_card_title: "일일 백그라운드 스케줄",
+    schedule_toggle: "백그라운드 일일 자동 실행 활성화",
+    schedule_time_label: "일일 백그라운드 실행 시간 선택 (시:분):",
+    btn_save_schedule: "💾 스케줄 저장",
+
+    keywords_title: "📚 검색 키워드 데이터베이스",
+    keywords_subtitle: "확장 프로그램은 철학, 과학, 역사 및 기술에 관한 수천 개의 고유 검색어를 자동으로 생성합니다. 아래에 맞춤 키워드를 추가할 수 있습니다.",
+    keywords_card_title: "사용자 지정 키워드 (줄당 1개)",
+    keywords_placeholder: "예시:\n2026년 최신 인공지능 기술\n양자 컴퓨터 작동 원리\n최고의 오픈소스 개발 도구",
+    btn_save_keywords: "💾 키워드 저장",
+    btn_clear_keywords: "🗑️ 키워드 초기화",
+
+    logs_title: "📊 최근 검색 기록",
+    logs_subtitle: "최근 성공적으로 실행된 Bing 검색어 목록입니다.",
+    table_time: "시간",
+    table_mode: "모드",
+    table_query: "실행된 검색어",
+    no_logs: "아직 검색 기록이 없습니다.",
+
+    toast_settings_saved: "💾 설정이 성공적으로 저장되었습니다!",
+    toast_schedule_saved: "⏰ 백그라운드 스케줄이 저장되었습니다!",
+    toast_keywords_saved: "📚 맞춤 키워드가 저장되었습니다!",
+    toast_keywords_cleared: "🗑️ 맞춤 키워드 목록이 삭제되었습니다.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 오늘 예정된 모든 Bing 데스크톱 검색을 완료했습니다!"
+  },
+
+  ja: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 デスクトップ",
+    settings_tooltip: "詳細設定",
+    dashboard_subtitle: "ダッシュボード & 設定",
+
+    status_label: "ステータス",
+    status_ready: "準備完了",
+    status_running: "自動検索中...",
+    status_completed: "本日の検索が完了しました！",
+
+    desktop_searches_today: "本日のデスクトップ検索回数",
+    points_earned: "本日獲得したポイント",
+    points_unit: "pt",
+    last_search: "最近の検索:",
+    no_search_yet: "本日実行された検索はありません",
+
+    btn_start_search: "デスクトップ自動検索を開始",
+    btn_stop_search: "検索を停止",
+
+    link_rewards_dashboard: "🎁 MS Rewards ダッシュボード",
+    link_bing_home: "🔍 Bing ホーム",
+
+    tab_general: "一般設定",
+    tab_schedule: "バックグラウンドスケジュール",
+    tab_keywords: "キーワードバンク",
+    tab_logs: "検索履歴",
+
+    general_title: "⚙️ 自動化設定",
+    general_subtitle: "毎日の検索目標回数、ランダムな遅延間隔、Bot対策機能をカスタマイズします。",
+    target_card_title: "🖥️ デスクトップ検索目標",
+    target_label: "毎日のデスクトップ検索目標回数:",
+    target_help: "デフォルト: 30 回（約 90 リワードポイント）",
+    
+    delay_card_title: "⏳ 遅延間隔（秒）",
+    min_delay_label: "最小遅延:",
+    max_delay_label: "最大遅延:",
+    delay_help: "Bot検知アルゴリズムを回避するための検索間のランダムな待機時間です。",
+
+    advanced_card_title: "🛡️ 高機能 & Bot対策機能",
+    lang_card_title: "🌐 アプリケーション表示言語",
+    lang_label: "UIの表示言語を選択:",
+    opt_run_on_startup: "🚀 Edgeブラウザ起動時に自動実行（本日の目標未達成時）",
+    opt_auto_close: "検索完了後にBing検索タブを自動的に閉じる",
+    opt_enable_humanizer: "高度な人間行動シミュレーション (多段階スムーズスクロール、ホバー、テキスト選択)",
+    opt_enable_notifications: "検索完了時にシステム通知を送信",
+    
+    btn_save_settings: "💾 設定を保存",
+
+    schedule_title: "⏰ バックグラウンド日次スケジューラー",
+    schedule_subtitle: "毎日指定した時間にバックグラウンドでBing検索を自動実行します。",
+    schedule_card_title: "毎日のバックグラウンドスケジュール",
+    schedule_toggle: "バックグラウンド自動実行を有効化",
+    schedule_time_label: "毎日の実行時刻を選択 (時:分):",
+    btn_save_schedule: "💾 スケジュールを保存",
+
+    keywords_title: "📚 検索キーワードバンク",
+    keywords_subtitle: "拡張機能は哲学、科学、歴史、ITに関する数千種類のユニークなクエリを自動生成します。以下にカスタムキーワードを追加できます。",
+    keywords_card_title: "カスタムキーワード（1行に1つ）",
+    keywords_placeholder: "例：\n最新AI技術 2026\n量子コンピュータの仕組み\nおすすめのオープンソース開発ツール",
+    btn_save_keywords: "💾 キーワードを保存",
+    btn_clear_keywords: "🗑️ キーワードをクリア",
+
+    logs_title: "📊 最近の検索ログ",
+    logs_subtitle: "最近正常に実行されたBing検索クエリのリスト。",
+    table_time: "時間",
+    table_mode: "モード",
+    table_query: "実行された検索クエリ",
+    no_logs: "検索ログはまだありません。",
+
+    toast_settings_saved: "💾 設定を正常に保存しました！",
+    toast_schedule_saved: "⏰ スケジュールを保存しました！",
+    toast_keywords_saved: "📚 カスタムキーワードを保存しました！",
+    toast_keywords_cleared: "🗑️ カスタムキーワードをクリアしました。",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 本日のすべてのBingデスクトップ検索が完了しました！"
+  },
+
+  es: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Escritorio",
+    settings_tooltip: "Configuración Avanzada",
+    dashboard_subtitle: "Panel y Configuración",
+
+    status_label: "Estado",
+    status_ready: "Listo",
+    status_running: "Buscando automáticamente...",
+    status_completed: "¡Completado Hoy!",
+
+    desktop_searches_today: "Búsquedas de Escritorio Hoy",
+    points_earned: "Puntos Ganados Hoy",
+    points_unit: "pts",
+    last_search: "Última búsqueda:",
+    no_search_yet: "No hay búsquedas realizadas hoy",
+
+    btn_start_search: "INICIAR BÚSQUEDA ESCRITORIO",
+    btn_stop_search: "DETENER BÚSQUEDA",
+
+    link_rewards_dashboard: "🎁 Panel de MS Rewards",
+    link_bing_home: "🔍 Inicio de Bing",
+
+    tab_general: "Configuración General",
+    tab_schedule: "Programación en 2º Plano",
+    tab_keywords: "Banco de Palabras Clave",
+    tab_logs: "Historial de Búsquedas",
+
+    general_title: "⚙️ Configuración de Automatización",
+    general_subtitle: "Personaliza tus objetivos de búsqueda, intervalos de retraso y funciones anti-bot.",
+    target_card_title: "🖥️ Objetivo de Búsqueda Escritorio",
+    target_label: "Cuota diaria de búsqueda en escritorio:",
+    target_help: "Predeterminado: 30 búsquedas (~90 puntos Rewards)",
+    
+    delay_card_title: "⏳ Intervalo de Retraso (Segundos)",
+    min_delay_label: "Retraso Mínimo:",
+    max_delay_label: "Retraso Máximo:",
+    delay_help: "Pausa aleatoria entre búsquedas para eludir los algoritmos de detección de bots.",
+
+    advanced_card_title: "🛡️ Funciones Avanzadas y Anti-Bot",
+    lang_card_title: "🌐 Idioma de la Aplicación",
+    lang_label: "Seleccionar idioma de la interfaz:",
+    opt_run_on_startup: "🚀 Iniciar búsquedas al abrir el navegador Edge (si la meta de hoy no está completa)",
+    opt_auto_close: "Cerrar automáticamente la pestaña de Bing al finalizar",
+    opt_enable_humanizer: "Simulador de Comportamiento Humano Pro (Desplazamiento suave, cursor y resaltado de texto)",
+    opt_enable_notifications: "Enviar notificación del sistema al completar las búsquedas diarias",
+    
+    btn_save_settings: "💾 Guardar Configuración",
+
+    schedule_title: "⏰ Programador Diario en Segundo Plano",
+    schedule_subtitle: "Ejecuta automáticamente las búsquedas en segundo plano diariamente a la hora elegida.",
+    schedule_card_title: "Programación Diaria en 2º Plano",
+    schedule_toggle: "Activar programación diaria en segundo plano",
+    schedule_time_label: "Seleccionar hora de ejecución diaria (HH:MM):",
+    btn_save_schedule: "💾 Guardar Programación",
+
+    keywords_title: "📚 Banco de Palabras Clave",
+    keywords_subtitle: "La extensión genera miles de consultas sobre ciencia, historia y tecnología. Añade tus propias palabras clave abajo.",
+    keywords_card_title: "Palabras clave personalizadas (Una por línea)",
+    keywords_placeholder: "Ejemplo:\núltimos avances en IA 2026\ncómo funciona la computación cuántica\nmejores herramientas dev open source",
+    btn_save_keywords: "💾 Guardar Palabras Clave",
+    btn_clear_keywords: "🗑️ Limpiar Palabras Clave",
+
+    logs_title: "📊 Registro de Búsquedas Recientes",
+    logs_subtitle: "Lista de consultas de búsqueda ejecutadas con éxito recientemente.",
+    table_time: "Hora",
+    table_mode: "Modo",
+    table_query: "Consulta Ejecutada",
+    no_logs: "No hay registros disponibles aún.",
+
+    toast_settings_saved: "💾 ¡Configuración guardada con éxito!",
+    toast_schedule_saved: "⏰ ¡Programación en segundo plano guardada!",
+    toast_keywords_saved: "📚 ¡Palabras clave personalizadas guardadas!",
+    toast_keywords_cleared: "🗑️ Lista de palabras clave limpiada.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 ¡Todas las búsquedas diarias de Bing Desktop completadas!"
+  },
+
+  fr: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Bureau",
+    settings_tooltip: "Paramètres Avancés",
+    dashboard_subtitle: "Tableau de Bord & Paramètres",
+
+    status_label: "Statut",
+    status_ready: "Prêt",
+    status_running: "Recherche automatique...",
+    status_completed: "Terminé Aujourd'hui !",
+
+    desktop_searches_today: "Recherches Bureau Aujourd'hui",
+    points_earned: "Points Gagnés Aujourd'hui",
+    points_unit: "pts",
+    last_search: "Dernière recherche :",
+    no_search_yet: "Aucune recherche aujourd'hui",
+
+    btn_start_search: "LANCER LA RECHERCHE BUREAU",
+    btn_stop_search: "ARRÊTER LA RECHERCHE",
+
+    link_rewards_dashboard: "🎁 Tableau MS Rewards",
+    link_bing_home: "🔍 Accueil Bing",
+
+    tab_general: "Paramètres Généraux",
+    tab_schedule: "Planning Arrière-Plan",
+    tab_keywords: "Banque de Mots-Clés",
+    tab_logs: "Historique de Recherche",
+
+    general_title: "⚙️ Paramètres d'Automatisation",
+    general_subtitle: "Personnalisez vos objectifs de recherche, les délais aléatoires et le système anti-bot.",
+    target_card_title: "🖥️ Objectif de Recherche Bureau",
+    target_label: "Quota quotidien de recherche bureau :",
+    target_help: "Par défaut : 30 recherches (~90 points Rewards)",
+    
+    delay_card_title: "⏳ Intervalle de Délai (Secondes)",
+    min_delay_label: "Délai Min :",
+    max_delay_label: "Délai Max :",
+    delay_help: "Pause aléatoire entre les recherches pour déjouer la détection de bots.",
+
+    advanced_card_title: "🛡️ Fonctionnalités Avancées Anti-Bot",
+    lang_card_title: "🌐 Langue de l'Application",
+    lang_label: "Sélectionner la langue d'affichage :",
+    opt_run_on_startup: "🚀 Lancer automatiquement au démarrage d'Edge (si l'objectif du jour n'est pas atteint)",
+    opt_auto_close: "Fermer automatiquement l'onglet Bing une fois la recherche terminée",
+    opt_enable_humanizer: "Simulateur Humain Pro (Défilement fluide, survol de la souris et surbrillance de texte)",
+    opt_enable_notifications: "Envoyer une notification lorsque les recherches quotidiennes sont terminées",
+    
+    btn_save_settings: "💾 Enregistrer Paramètres",
+
+    schedule_title: "⏰ Planificateur Quotidien en Arrière-Plan",
+    schedule_subtitle: "Lancez automatiquement les recherches chaque jour en arrière-plan à l'heure souhaitée.",
+    schedule_card_title: "Planning Quotidien",
+    schedule_toggle: "Activer la planification quotidienne",
+    schedule_time_label: "Sélectionner l'heure de lancement (HH:MM) :",
+    btn_save_schedule: "💾 Enregistrer Planning",
+
+    keywords_title: "📚 Banque de Mots-Clés",
+    keywords_subtitle: "L'extension génère des milliers de requêtes uniques. Ajoutez vos propres mots-clés ci-dessous.",
+    keywords_card_title: "Mots-clés personnalisés (Un par ligne)",
+    keywords_placeholder: "Exemple :\ndernières avancées en IA 2026\ncomment fonctionne l'informatique quantique\nmeilleurs outils dev open source",
+    btn_save_keywords: "💾 Enregistrer Mots-Clés",
+    btn_clear_keywords: "🗑️ Effacer Mots-Clés",
+
+    logs_title: "📊 Journal de Recherche Récent",
+    logs_subtitle: "Liste des requêtes Bing récemment exécutées avec succès.",
+    table_time: "Heure",
+    table_mode: "Mode",
+    table_query: "Requête de recherche",
+    no_logs: "Aucun historique disponible.",
+
+    toast_settings_saved: "💾 Paramètres enregistrés avec succès !",
+    toast_schedule_saved: "⏰ Planning en arrière-plan enregistré !",
+    toast_keywords_saved: "📚 Mots-clés personnalisés enregistrés !",
+    toast_keywords_cleared: "🗑️ Liste de mots-clés effacée.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 Toutes les recherches Bing Desktop du jour sont terminées !"
+  },
+
+  de: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Desktop",
+    settings_tooltip: "Erweiterte Einstellungen",
+    dashboard_subtitle: "Dashboard & Einstellungen",
+
+    status_label: "Status",
+    status_ready: "Bereit",
+    status_running: "Automatische Suche läuft...",
+    status_completed: "Heute abgeschlossen!",
+
+    desktop_searches_today: "Desktop-Suchen Heute",
+    points_earned: "Heute Gesammelte Punkte",
+    points_unit: "Pkt",
+    last_search: "Letzte Suche:",
+    no_search_yet: "Heute noch keine Suchen durchgeführt",
+
+    btn_start_search: "DESKTOP-SUCHE STARTEN",
+    btn_stop_search: "SUCHE STOPPEN",
+
+    link_rewards_dashboard: "🎁 MS Rewards Dashboard",
+    link_bing_home: "🔍 Bing Startseite",
+
+    tab_general: "Allgemein",
+    tab_schedule: "Hintergrund-Planer",
+    tab_keywords: "Schlüsselwort-Bank",
+    tab_logs: "Suchverlauf",
+
+    general_title: "⚙️ Automatisierungs-Einstellungen",
+    general_subtitle: "Passen Sie tägliche Suchziele, zufällige Verzögerungsintervalle und Anti-Bot-Funktionen an.",
+    target_card_title: "🖥️ Desktop-Suchziel",
+    target_label: "Tägliches Desktop-Suchkontingent:",
+    target_help: "Standard: 30 Suchen (~90 Rewards-Punkte)",
+    
+    delay_card_title: "⏳ Verzögerungsintervall (Sekunden)",
+    min_delay_label: "Min. Verzögerung:",
+    max_delay_label: "Max. Verzögerung:",
+    delay_help: "Zufällige Pause zwischen Suchen zur Umgehung von Bot-Erkennungsalgorithmen.",
+
+    advanced_card_title: "🛡️ Erweiterte Anti-Bot-Funktionen",
+    lang_card_title: "🌐 Anwendungs-Sprache",
+    lang_label: "Sprache der Benutzeroberfläche wählen:",
+    opt_run_on_startup: "🚀 Automatisch starten beim Öffnen von Edge (falls Tagesziel noch nicht erreicht)",
+    opt_auto_close: "Bing-Suchtab nach Abschluss automatisch schließen",
+    opt_enable_humanizer: "Menschliche Simulation Pro (Sanftes Scrollen, Hover & Text-Hervorhebung)",
+    opt_enable_notifications: "Systembenachrichtigung bei Abschluss der täglichen Suche senden",
+    
+    btn_save_settings: "💾 Einstellungen Speichern",
+
+    schedule_title: "⏰ Hintergrund-Tagesplaner",
+    schedule_subtitle: "Führen Sie Bing-Suchen täglich zur Wunschzeit automatisch im Hintergrund aus.",
+    schedule_card_title: "Täglicher Hintergrund-Planer",
+    schedule_toggle: "Tägliche Hintergrund-Ausführung aktivieren",
+    schedule_time_label: "Tägliche Startzeit wählen (HH:MM):",
+    btn_save_schedule: "💾 Planer Speichern",
+
+    keywords_title: "📚 Schlüsselwort-Datenbank",
+    keywords_subtitle: "Die Erweiterung generiert tausende einzigartige Anfragen. Füge unten eigene Keywords hinzu.",
+    keywords_card_title: "Benutzerdefinierte Schlüsselwörter (Eins pro Zeile)",
+    keywords_placeholder: "Beispiel:\nneueste KI-Durchbrüche 2026\nwie Quantencomputing funktioniert\nbeste Open-Source Dev-Tools",
+    btn_save_keywords: "💾 Keywords Speichern",
+    btn_clear_keywords: "🗑️ Keywords Löschen",
+
+    logs_title: "📊 Aktueller Suchverlauf",
+    logs_subtitle: "Liste der kürzlich erfolgreich ausgeführten Bing-Suchanfragen.",
+    table_time: "Zeit",
+    table_mode: "Modus",
+    table_query: "Ausgeführte Suchanfrage",
+    no_logs: "Noch kein Suchverlauf vorhanden.",
+
+    toast_settings_saved: "💾 Einstellungen erfolgreich gespeichert!",
+    toast_schedule_saved: "⏰ Hintergrund-Planer gespeichert!",
+    toast_keywords_saved: "📚 Schlüsselwörter gespeichert!",
+    toast_keywords_cleared: "🗑️ Schlüsselwörter-Liste gelöscht.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 Alle täglichen Bing Desktop-Suchen wurden abgeschlossen!"
+  },
+
+  it: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Desktop",
+    settings_tooltip: "Impostazioni Avanzate",
+    dashboard_subtitle: "Dashboard & Impostazioni",
+
+    status_label: "Stato",
+    status_ready: "Pronto",
+    status_running: "Ricerca automatica in corso...",
+    status_completed: "Completato Oggi!",
+
+    desktop_searches_today: "Ricerche Desktop Oggi",
+    points_earned: "Punti Guadagnati Oggi",
+    points_unit: "pt",
+    last_search: "Ultima ricerca:",
+    no_search_yet: "Nessuna ricerca eseguita oggi",
+
+    btn_start_search: "AVVIA RICERCA DESKTOP",
+    btn_stop_search: "INTERROMPI RICERCA",
+
+    link_rewards_dashboard: "🎁 Dashboard MS Rewards",
+    link_bing_home: "🔍 Bing Home",
+
+    tab_general: "Impostazioni Generali",
+    tab_schedule: "Programmazione Background",
+    tab_keywords: "Banca Parole Chiave",
+    tab_logs: "Cronologia Ricerche",
+
+    general_title: "⚙️ Impostazioni Automazione",
+    general_subtitle: "Personalizza obiettivi di ricerca giornalieri, intervalli di ritardo e funzioni anti-bot.",
+    target_card_title: "🖥️ Obiettivo Ricerca Desktop",
+    target_label: "Quota giornaliera ricerche desktop:",
+    target_help: "Predefinito: 30 ricerche (~90 punti Rewards)",
+    
+    delay_card_title: "⏳ Intervallo di Ritardo (Secondi)",
+    min_delay_label: "Ritardo Min:",
+    max_delay_label: "Ritardo Max:",
+    delay_help: "Pausa casuale tra le ricerche per aggirare gli algoritmi anti-bot.",
+
+    advanced_card_title: "🛡️ Funzioni Avanzate & Anti-Bot",
+    lang_card_title: "🌐 Lingua dell'Applicazione",
+    lang_label: "Seleziona la lingua dell'interfaccia:",
+    opt_run_on_startup: "🚀 Avvia ricerche all'apertura del browser Edge (se l'obiettivo di oggi non è completo)",
+    opt_auto_close: "Chiudi automaticamente la scheda Bing al termine",
+    opt_enable_humanizer: "Simulatore Comportamento Umano Pro (Scorrimento fluido, cursori e testo evidenziato)",
+    opt_enable_notifications: "Invia notifica di sistema al completamento delle ricerche",
+    
+    btn_save_settings: "💾 Salva Impostazioni",
+
+    schedule_title: "⏰ Programmatore Giornaliero Background",
+    schedule_subtitle: "Esegui automaticamente le ricerche in background ogni giorno all'ora desiderata.",
+    schedule_card_title: "Programmazione Giornaliera",
+    schedule_toggle: "Attiva programmazione giornaliera background",
+    schedule_time_label: "Seleziona ora di avvio giornaliero (HH:MM):",
+    btn_save_schedule: "💾 Salva Programmazione",
+
+    keywords_title: "📚 Banca Parole Chiave",
+    keywords_subtitle: "L'estensione genera migliaia di query uniche. Aggiungi le tue parole chiave qui sotto.",
+    keywords_card_title: "Parole chiave personalizzate (Una per riga)",
+    keywords_placeholder: "Esempio:\nultime scoperte IA 2026\ncome funziona il calcolo quantistico\nmigliori strumenti dev open source",
+    btn_save_keywords: "💾 Salva Parole Chiave",
+    btn_clear_keywords: "🗑️ Cancella Parole Chiave",
+
+    logs_title: "📊 Registro Ricerche Recenti",
+    logs_subtitle: "Elenco delle query Bing eseguite di recente con successo.",
+    table_time: "Ora",
+    table_mode: "Modalità",
+    table_query: "Query di Ricerca Eseguita",
+    no_logs: "Nessun registro disponibile.",
+
+    toast_settings_saved: "💾 Impostazioni salvate con successo!",
+    toast_schedule_saved: "⏰ Programmazione background salvata!",
+    toast_keywords_saved: "📚 Parole chiave personalizzate salvate!",
+    toast_keywords_cleared: "🗑️ Elenco parole chiave cancellato.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 Tutte le ricerche Bing Desktop del giorno sono state completate!"
+  },
+
+  pt: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Desktop",
+    settings_tooltip: "Configurações Avançadas",
+    dashboard_subtitle: "Painel & Configurações",
+
+    status_label: "Status",
+    status_ready: "Pronto",
+    status_running: "Pesquisando automaticamente...",
+    status_completed: "Concluído Hoje!",
+
+    desktop_searches_today: "Pesquisas Desktop Hoje",
+    points_earned: "Pontos Ganhos Hoje",
+    points_unit: "pts",
+    last_search: "Última pesquisa:",
+    no_search_yet: "Nenhuma pesquisa executada hoje",
+
+    btn_start_search: "INICIAR PESQUISA DESKTOP",
+    btn_stop_search: "PARAR PESQUISA",
+
+    link_rewards_dashboard: "🎁 Painel MS Rewards",
+    link_bing_home: "🔍 Início do Bing",
+
+    tab_general: "Configurações Gerais",
+    tab_schedule: "Agendamento em 2º Plano",
+    tab_keywords: "Banco de Palavras-Chave",
+    tab_logs: "Histórico de Pesquisa",
+
+    general_title: "⚙️ Configurações de Automação",
+    general_subtitle: "Personalize metas diárias de pesquisa, intervalos de atraso e recursos anti-bot.",
+    target_card_title: "🖥️ Meta de Pesquisa Desktop",
+    target_label: "Cota diária de pesquisa desktop:",
+    target_help: "Padrão: 30 pesquisas (~90 pontos Rewards)",
+    
+    delay_card_title: "⏳ Intervalo de Atraso (Segundos)",
+    min_delay_label: "Atraso Mín:",
+    max_delay_label: "Atraso Máx:",
+    delay_help: "Pausa aleatória entre pesquisas para evitar algoritmos de detecção de bots.",
+
+    advanced_card_title: "🛡️ Recursos Avançados & Anti-Bot",
+    lang_card_title: "🌐 Idioma do Aplicativo",
+    lang_label: "Selecione o idioma da interface:",
+    opt_run_on_startup: "🚀 Iniciar pesquisas ao abrir o navegador Edge (se a meta de hoje não estiver completa)",
+    opt_auto_close: "Fechar automaticamente a guia do Bing ao concluir",
+    opt_enable_humanizer: "Simulador de Comportamento Humano Pro (Rolagem suave, passar mouse e destacar texto)",
+    opt_enable_notifications: "Enviar notificação do sistema ao concluir as pesquisas diárias",
+    
+    btn_save_settings: "💾 Salvar Configurações",
+
+    schedule_title: "⏰ Agendador Diário em Segundo Plano",
+    schedule_subtitle: "Execute pesquisas no Bing automaticamente em segundo plano diariamente no horário desejado.",
+    schedule_card_title: "Agendamento Diário",
+    schedule_toggle: "Ativar agendamento diário em segundo plano",
+    schedule_time_label: "Selecione o horário de execução (HH:MM):",
+    btn_save_schedule: "💾 Salvar Agendamento",
+
+    keywords_title: "📚 Banco de Palavras-Chave",
+    keywords_subtitle: "A extensão gera milhares de pesquisas exclusivas. Adicione suas próprias palavras-chave abaixo.",
+    keywords_card_title: "Palavras-chave personalizadas (Uma por linha)",
+    keywords_placeholder: "Exemplo:\núltimos avanços em IA 2026\ncomo funciona a computação quântica\nmelhores ferramentas dev open source",
+    btn_save_keywords: "💾 Salvar Palavras-Chave",
+    btn_clear_keywords: "🗑️ Limpar Palavras-Chave",
+
+    logs_title: "📊 Registro de Pesquisas Recentes",
+    logs_subtitle: "Lista de pesquisas no Bing executadas com sucesso recentemente.",
+    table_time: "Hora",
+    table_mode: "Modo",
+    table_query: "Pesquisa Executada",
+    no_logs: "Nenhum registro disponível ainda.",
+
+    toast_settings_saved: "💾 Configurações salvas com sucesso!",
+    toast_schedule_saved: "⏰ Agendamento em segundo plano salvo!",
+    toast_keywords_saved: "📚 Palavras-chave salvas!",
+    toast_keywords_cleared: "🗑️ Lista de palavras-chave limpa.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 Todas as pesquisas diárias do Bing Desktop foram concluídas!"
+  },
+
+  ru: {
+    app_title: "Microsoft Reward Automation",
+    app_badge: "v2.0 Desktop",
+    settings_tooltip: "Расширенные настройки",
+    dashboard_subtitle: "Панель и настройки",
+
+    status_label: "Статус",
+    status_ready: "Готов",
+    status_running: "Автопоиск выполняется...",
+    status_completed: "Выполнено сегодня!",
+
+    desktop_searches_today: "Поисков на ПК сегодня",
+    points_earned: "Заработано баллов сегодня",
+    points_unit: "баллов",
+    last_search: "Последний поиск:",
+    no_search_yet: "Сегодня поиски не запускались",
+
+    btn_start_search: "НАЧАТЬ ПОИСК НА ПК",
+    btn_stop_search: "ОСТАНОВИТЬ ПОИСК",
+
+    link_rewards_dashboard: "🎁 Панель MS Rewards",
+    link_bing_home: "🔍 Главная Bing",
+
+    tab_general: "Общие настройки",
+    tab_schedule: "Фоновое расписание",
+    tab_keywords: "База ключевых слов",
+    tab_logs: "История поисков",
+
+    general_title: "⚙️ Настройки автоматизации",
+    general_subtitle: "Настройте дневную цель поисков, случайные задержки и антибот функции.",
+    target_card_title: "🖥️ Цель поиска на ПК",
+    target_label: "Дневная норма поисков на ПК:",
+    target_help: "По умолчанию: 30 поисков (~90 баллов Rewards)",
+    
+    delay_card_title: "⏳ Интервал задержки (в секундах)",
+    min_delay_label: "Мин. задержка:",
+    max_delay_label: "Макс. задержка:",
+    delay_help: "Случайная пауза между поисками для обхода алгоритмов обнаружения ботов.",
+
+    advanced_card_title: "🛡️ Расширенные и антибот функции",
+    lang_card_title: "🌐 Язык интерфейса приложения",
+    lang_label: "Выберите язык интерфейса:",
+    opt_run_on_startup: "🚀 Автозапуск поисков при открытии браузера Edge (если норма на сегодня не выполнена)",
+    opt_auto_close: "Автоматически закрывать вкладку Bing после завершения",
+    opt_enable_humanizer: "Симулятор поведения человека Pro (Плавная прокрутка, наведение и выделение текста)",
+    opt_enable_notifications: "Отправлять системное уведомление по завершении поисков",
+    
+    btn_save_settings: "💾 Сохранить настройки",
+
+    schedule_title: "⏰ Дневное фоновое расписание",
+    schedule_subtitle: "Автоматически запускайте поиск в Bing каждый день в фоновом режиме в выбранное время.",
+    schedule_card_title: "Дневное расписание",
+    schedule_toggle: "Включить фоновое дневное расписание",
+    schedule_time_label: "Выберите время запуска (ЧЧ:ММ):",
+    btn_save_schedule: "💾 Сохранить расписание",
+
+    keywords_title: "📚 База ключевых слов",
+    keywords_subtitle: "Расширение автоматически генерирует тысячи уникальных запросов. Добавьте свои ключевые слова ниже.",
+    keywords_card_title: "Пользовательские ключевые слова (По одному на строку)",
+    keywords_placeholder: "Пример:\nпоследние прорывы в ИИ 2026\nкак работает квантовый компьютер\nлучшие dev инструменты open source",
+    btn_save_keywords: "💾 Сохранить слова",
+    btn_clear_keywords: "🗑️ Очистить слова",
+
+    logs_title: "📊 Последние поисковые логи",
+    logs_subtitle: "Список недавно успешно выполненных поисковых запросов Bing.",
+    table_time: "Время",
+    table_mode: "Режим",
+    table_query: "Выполненный поисковый запрос",
+    no_logs: "Логи поисков пока отсутствуют.",
+
+    toast_settings_saved: "💾 Настройки успешно сохранены!",
+    toast_schedule_saved: "⏰ Фоновое расписание сохранено!",
+    toast_keywords_saved: "📚 Ключевые слова сохранены!",
+    toast_keywords_cleared: "🗑️ Список ключевых слов очищен.",
+    notif_completed_title: "Microsoft Reward Automation",
+    notif_completed_msg: "🎉 Все дневные поиски Bing на ПК выполнены!"
   }
 };
 
