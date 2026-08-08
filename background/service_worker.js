@@ -384,52 +384,70 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({ status: 'schedule_updated' });
     return false;
 
-  } else if (request.action === 'checkForUpdates') {
-    checkForUpdates().then(res => {
+  } else if (request.action === 'autoUpdateAndReload') {
+    performAutoUpdateAndReload().then(res => {
       sendResponse(res);
     }).catch(() => {
-      sendResponse({ hasUpdate: false, currentVersion: '2.1.0', latestVersion: '2.1.0' });
+      sendResponse({ success: false });
     });
-    return true; // async promise channel
+    return true;
   }
 
   return false;
 });
 
 // ─────────────────────────────────────────────────────────────
-// AUTO UPDATE CHECK ENGINE
+// TRUE AUTO UPDATE & RELOAD ENGINE
 // ─────────────────────────────────────────────────────────────
 
 const CURRENT_VERSION = '2.1.0';
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/msr_automation/main/manifest.json';
+const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/msr_automation/main/data/default_keywords.json';
 
-async function checkForUpdates() {
-  console.log('[MSR Pro] Checking GitHub for extension updates...');
+async function performAutoUpdateAndReload() {
+  console.log('[MSR Pro] Starting full auto-update and dynamic reload...');
+  let updated = false;
+
   try {
-    const res = await fetch(GITHUB_MANIFEST_URL, { cache: 'no-cache' });
-    if (res.ok) {
-      const data = await res.json();
-      const remoteVersion = data.version || CURRENT_VERSION;
-      const hasUpdate = isNewerVersion(CURRENT_VERSION, remoteVersion);
-
-      const updateResult = {
-        hasUpdate: hasUpdate,
-        currentVersion: CURRENT_VERSION,
-        latestVersion: remoteVersion,
-        checkedAt: new Date().toLocaleTimeString()
-      };
-
-      await chrome.storage.local.set({ lastUpdateCheck: updateResult });
-      console.log('[MSR Pro] Update check completed:', updateResult);
-      return updateResult;
+    // 1. Fetch remote keywords & update local keyword bank
+    const kwRes = await fetch(GITHUB_KEYWORDS_URL, { cache: 'no-cache' });
+    if (kwRes.ok) {
+      const remoteKeywords = await kwRes.json();
+      if (Array.isArray(remoteKeywords) && remoteKeywords.length > 0) {
+        await chrome.storage.local.set({ defaultKeywords: remoteKeywords });
+        updated = true;
+      }
     }
-  } catch (err) {
-    console.log('[MSR Pro] Auto-update check skipped/offline:', err.message);
-  }
 
-  const fallback = { hasUpdate: false, currentVersion: CURRENT_VERSION, latestVersion: CURRENT_VERSION, checkedAt: new Date().toLocaleTimeString() };
-  await chrome.storage.local.set({ lastUpdateCheck: fallback });
-  return fallback;
+    // 2. Request native Chrome/Edge extension update check if applicable
+    if (chrome.runtime.requestUpdateCheck) {
+      chrome.runtime.requestUpdateCheck((status) => {
+        console.log('[MSR Pro] Native update status:', status);
+      });
+    }
+
+    // 3. Save update timestamp
+    await chrome.storage.local.set({
+      lastAutoUpdate: new Date().toLocaleString(),
+      appVersion: CURRENT_VERSION
+    });
+
+    // 4. Trigger auto-reload after a brief delay so response finishes
+    setTimeout(() => {
+      console.log('[MSR Pro] Reloading extension now!');
+      chrome.runtime.reload();
+    }, 600);
+
+    return { success: true, updated: updated };
+
+  } catch (err) {
+    console.error('[MSR Pro] Auto update failed:', err);
+    // Reload anyway to refresh worker memory
+    setTimeout(() => {
+      chrome.runtime.reload();
+    }, 600);
+    return { success: false, error: err.message };
+  }
 }
 
 function isNewerVersion(current, remote) {

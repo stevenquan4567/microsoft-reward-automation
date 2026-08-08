@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnStart.addEventListener('click', () => triggerStart());
   btnStop.addEventListener('click', triggerStop);
   if (btnCheckUpdate) {
-    btnCheckUpdate.addEventListener('click', checkUpdates);
+    btnCheckUpdate.addEventListener('click', autoUpdateAndReload);
   }
 
   // Storage listener for real-time UI updates
@@ -76,21 +76,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  async function checkUpdates() {
+  async function autoUpdateAndReload() {
     const data = await chrome.storage.local.get(['appLanguage']);
     const lang = data.appLanguage || 'en';
     const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
 
     showToast(dict.toast_checking_update);
 
-    safeSendMessage({ action: 'checkForUpdates' }, (res) => {
-      if (res && res.hasUpdate) {
-        showToast(dict.toast_update_available);
-      } else {
-        setTimeout(() => {
-          showToast(dict.toast_up_to_date);
-        }, 1000);
-      }
+    safeSendMessage({ action: 'autoUpdateAndReload' }, (res) => {
+      showToast(dict.toast_up_to_date);
     });
   }
 
