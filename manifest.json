@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "MS Rewards Auto Search Pro",
+  "version": "1.0.0",
+  "description": "Tự động cày điểm Microsoft Rewards thông minh với tìm kiếm Bing Desktop, né bot, tùy chỉnh từ khóa và lên lịch ngầm.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*.bing.com/*",
+    "*://www.bing.com/*"
+  ],
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.bing.com/search*"
+      ],
+      "js": [
+        "content/bing_humanizer.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  }
+}
