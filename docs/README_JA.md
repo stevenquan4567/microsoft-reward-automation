@@ -1,4 +1,4 @@
-# ⚡ MS Rewards 自動検索 Pro (`v1.0.0`)
+# ⚡ Microsoft Reward Automation (`v1.0.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
 [🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md)

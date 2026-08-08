@@ -1,5 +1,5 @@
 /**
- * MS Rewards Auto Search Pro - Service Worker (Background)
+ * Microsoft Reward Automation - Service Worker (Background)
  * Core automation engine handling desktop search queues, MV3 alarms, state management & anti-bot scheduling.
  *
  * ARCHITECTURE: Uses chrome.alarms (NOT setTimeout) so the service worker can sleep safely.
@@ -338,7 +338,7 @@ async function stopAutomation(completed = false) {
       chrome.notifications.create({
         type: 'basic',
         iconUrl: 'assets/icon48.png',
-        title: 'MS Rewards Auto Search Pro',
+        title: 'Microsoft Reward Automation',
         message: '🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!'
       });
     } catch (e) {
