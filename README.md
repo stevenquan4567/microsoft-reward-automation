@@ -1,5 +1,10 @@
 # ⚡ MS Rewards Auto Search Pro (`v1.0.0`)
 
+🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
+[🇻🇳 Tiếng Việt](README.md) | [🇬🇧 English](docs/README_EN.md) | [🇨🇳 简体中文](docs/README_ZH.md) | [🇰🇷 한국어](docs/README_KO.md) | [🇯🇵 日本語](docs/README_JA.md) | [🇪🇸 Español](docs/README_ES.md) | [🇫🇷 Français](docs/README_FR.md) | [🇩🇪 Deutsch](docs/README_DE.md)
+
+---
+
 > Extension tự động cày điểm Microsoft Rewards thông minh trên Bing Desktop, né thuật toán phát hiện bot, hỗ trợ ngân hàng từ khóa phong phú và lên lịch chạy ngầm hàng ngày.
 
 ![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge)
