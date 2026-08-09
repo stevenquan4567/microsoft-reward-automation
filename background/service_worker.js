@@ -560,57 +560,69 @@ const CURRENT_VERSION = '2.2.1';
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
 const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 
-async function performAutoUpdateAndReload() {
-  console.log('[MSR Pro] Starting full auto-update and dynamic reload...');
-  let updated = false;
+async function performAutoUpdateAndReload(forceReload = false) {
+  console.log('[MSR Pro] Checking GitHub for extension updates...');
+  let hasNewUpdate = false;
+  let newVersionFound = '';
 
   try {
-    // 1. Fetch remote keywords & update local keyword bank
+    const localData = await chrome.storage.local.get(['defaultKeywords', 'isRunning']);
+    const isSearching = !!localData.isRunning;
+
+    // 1. Fetch remote keywords & compare with local storage
     const kwRes = await fetch(GITHUB_KEYWORDS_URL, { cache: 'no-cache' });
     if (kwRes.ok) {
       const remoteKeywords = await kwRes.json();
       if (remoteKeywords && typeof remoteKeywords === 'object') {
-        await chrome.storage.local.set({ defaultKeywords: remoteKeywords });
-        updated = true;
+        const localKwStr = JSON.stringify(localData.defaultKeywords || {});
+        const remoteKwStr = JSON.stringify(remoteKeywords);
+        if (localKwStr !== remoteKwStr) {
+          await chrome.storage.local.set({ defaultKeywords: remoteKeywords });
+          hasNewUpdate = true;
+          console.log('[MSR Pro] Remote keywords updated!');
+        }
       }
     }
 
-    // 2. Fetch remote manifest version
+    // 2. Fetch remote manifest version and compare with CURRENT_VERSION
     const manifestRes = await fetch(GITHUB_MANIFEST_URL, { cache: 'no-cache' });
     if (manifestRes.ok) {
       const remoteManifest = await manifestRes.json();
       const remoteVer = remoteManifest.version || CURRENT_VERSION;
       if (isNewerVersion(CURRENT_VERSION, remoteVer)) {
-        updated = true;
+        hasNewUpdate = true;
+        newVersionFound = remoteVer;
+        console.log(`[MSR Pro] Newer version v${remoteVer} found on GitHub!`);
       }
     }
 
-    // 3. Request native Chrome/Edge extension update check if applicable
+    // 3. Request native Chrome/Edge extension update check if store installed
     if (chrome.runtime.requestUpdateCheck) {
       chrome.runtime.requestUpdateCheck((status) => {
-        console.log('[MSR Pro] Native update status:', status);
+        console.log('[MSR Pro] Native store update status:', status);
       });
     }
 
-    // 4. Save update timestamp
+    // 4. Save check timestamp
     await chrome.storage.local.set({
       lastAutoUpdate: new Date().toLocaleString(),
       appVersion: CURRENT_VERSION
     });
 
-    // 5. Trigger auto-reload after a brief delay so response finishes
-    setTimeout(() => {
-      console.log('[MSR Pro] Reloading extension now!');
-      chrome.runtime.reload();
-    }, 600);
+    // 5. Reload ONLY if there is an actual new update AND search is NOT running (or forceReload requested by user)
+    if ((hasNewUpdate || forceReload) && !isSearching) {
+      console.log('[MSR Pro] Valid update detected. Reloading extension in 600ms...');
+      setTimeout(() => {
+        chrome.runtime.reload();
+      }, 600);
+    } else if (hasNewUpdate && isSearching) {
+      console.log('[MSR Pro] New update available, but search is running. Postponing reload until search completes.');
+    }
 
-    return { success: true, updated: updated };
+    return { success: true, updated: hasNewUpdate, newVersion: newVersionFound };
 
   } catch (err) {
-    console.error('[MSR Pro] Auto update failed:', err);
-    setTimeout(() => {
-      chrome.runtime.reload();
-    }, 600);
+    console.error('[MSR Pro] Auto-update check error:', err.message);
     return { success: false, error: err.message };
   }
 }
