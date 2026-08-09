@@ -78,6 +78,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   }
 
   await setupAutoUpdateAlarm();
+  await initScheduleAlarmFromStorage();
 });
 
 chrome.runtime.onStartup.addListener(async () => {
@@ -92,9 +93,21 @@ chrome.runtime.onStartup.addListener(async () => {
   }
 
   await setupAutoUpdateAlarm();
+  await initScheduleAlarmFromStorage();
   performAutoUpdateAndReload().catch(() => {});
   await checkAndRunOnStartup();
 });
+
+function getTodayDateString() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+async function initScheduleAlarmFromStorage() {
+  const data = await chrome.storage.local.get(['enableSchedule', 'scheduledTime']);
+  if (data.enableSchedule && data.scheduledTime) {
+    await setupScheduleAlarm(true, data.scheduledTime);
+  }
+}
 
 async function setupAutoUpdateAlarm() {
   await chrome.alarms.clear(ALARM_AUTO_UPDATE);
@@ -113,7 +126,7 @@ async function checkAndRunOnStartup() {
     return;
   }
 
-  const todayStr = new Date().toLocaleDateString();
+  const todayStr = getTodayDateString();
   const dDone = (data.lastRunDate === todayStr) ? (data.desktopCompletedToday || 0) : 0;
   const dTarget = data.desktopTarget || 30;
 
@@ -312,7 +325,7 @@ async function startAutomation(mode = 'desktop') {
   console.log(`[MSR Pro] Starting automation mode: ${mode}`);
   const st = await getState();
 
-  const todayStr = new Date().toLocaleDateString();
+  const todayStr = getTodayDateString();
   const data = await chrome.storage.local.get(['lastRunDate', 'desktopCompletedToday']);
 
   let completedToday = 0;
@@ -353,6 +366,16 @@ async function executeNextSearch(st) {
     return;
   }
 
+  // Close previous search tab to prevent tab accumulation
+  if (st.activeTabId) {
+    const data = await chrome.storage.local.get(['autoCloseTab']);
+    if (data.autoCloseTab !== false) {
+      try {
+        await chrome.tabs.remove(st.activeTabId);
+      } catch (err) {}
+    }
+  }
+
   const query = await generateNextQuery();
   const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}&FORM=QBLH`;
 
@@ -367,7 +390,7 @@ async function executeNextSearch(st) {
   }
 
   const nextCount = st.currentCount + 1;
-  const todayStr = new Date().toLocaleDateString();
+  const todayStr = getTodayDateString();
 
   await chrome.storage.local.set({
     desktopCompletedToday: nextCount,
