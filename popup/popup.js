@@ -49,7 +49,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  btnStart.addEventListener('click', () => triggerStart());
+  const btnStartMobile = document.getElementById('btnStartMobile');
+  if (btnStartMobile) {
+    btnStartMobile.addEventListener('click', () => triggerStart('mobile'));
+  }
+
+  btnStart.addEventListener('click', () => triggerStart('desktop'));
   btnStop.addEventListener('click', triggerStop);
   if (btnCheckUpdate) {
     btnCheckUpdate.addEventListener('click', autoUpdateAndReload);
@@ -64,8 +69,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateUI();
   setInterval(updateUI, 2000);
 
-  function triggerStart() {
-    safeSendMessage({ action: 'start', mode: 'desktop' }, () => {
+  function triggerStart(mode = 'desktop') {
+    safeSendMessage({ action: 'start', mode: mode }, () => {
       updateUI();
     });
   }
@@ -78,24 +83,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function autoUpdateAndReload() {
     const data = await chrome.storage.local.get(['appLanguage']);
-    const lang = data.appLanguage || 'en';
-    const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
-
-    showToast(dict.toast_checking_update);
+    const dict = getDict(data.appLanguage || 'en');
+    showToast(dict.toast_checking_update || 'Checking for updates...');
 
     safeSendMessage({ action: 'autoUpdateAndReload' }, (res) => {
-      showToast(dict.toast_up_to_date);
+      if (res && res.updated) {
+        showToast(dict.toast_update_success || 'Updated & Reloaded!');
+      } else {
+        showToast(dict.toast_already_latest || 'Already on latest version!');
+      }
     });
   }
 
   async function updateUI() {
     const data = await chrome.storage.local.get([
-      'appLanguage', 'isRunning', 'currentCount', 'targetCount',
-      'desktopCompletedToday', 'desktopTarget', 'logs'
+      'isRunning', 'currentCount', 'targetCount', 'currentMode',
+      'desktopCompletedToday', 'mobileCompletedToday', 'desktopTarget', 'mobileTarget',
+      'logs', 'appLanguage', 'maxPointsCap'
     ]);
 
     const lang = data.appLanguage || 'en';
-    const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+    const dict = getDict(lang);
 
     popupLangSelect.value = lang;
 
@@ -109,13 +117,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update Status Pill & Controls
     if (isRunning) {
       statusPill.className = 'status-pill running';
-      statusText.textContent = dict.status_running;
+      statusText.textContent = (data.currentMode === 'mobile') ? '📱 Mobile Search (EXP)...' : dict.status_running;
       btnStart.classList.add('hidden');
+      if (btnStartMobile) btnStartMobile.classList.add('hidden');
       btnStop.classList.remove('hidden');
     } else {
       statusPill.className = 'status-pill idle';
       statusText.textContent = dict.status_ready;
       btnStart.classList.remove('hidden');
+      if (btnStartMobile) btnStartMobile.classList.remove('hidden');
       btnStop.classList.add('hidden');
     }
 

@@ -308,40 +308,105 @@ async function generateNextQuery() {
 // SEARCH QUEUE CONTROLLER
 // ─────────────────────────────────────────────────────────────
 
+const MOBILE_USER_AGENT = 'Mozilla/5.0 (Linux; Android 14; Pixel 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36 EdgA/124.0.0.0';
+const DYNAMIC_RULE_ID_MOBILE = 1001;
+
+async function enableMobileUserAgentSpoofing() {
+  if (!chrome.declarativeNetRequest) return;
+  try {
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: [DYNAMIC_RULE_ID_MOBILE],
+      addRules: [
+        {
+          id: DYNAMIC_RULE_ID_MOBILE,
+          priority: 1,
+          action: {
+            type: 'modifyHeaders',
+            requestHeaders: [
+              {
+                header: 'User-Agent',
+                operation: 'set',
+                value: MOBILE_USER_AGENT
+              },
+              {
+                header: 'Sec-CH-UA-Mobile',
+                operation: 'set',
+                value: '?1'
+              },
+              {
+                header: 'Sec-CH-UA-Platform',
+                operation: 'set',
+                value: '"Android"'
+              }
+            ]
+          },
+          condition: {
+            urlFilter: '||bing.com',
+            resourceTypes: ['main_frame', 'sub_frame', 'xmlhttprequest']
+          }
+        }
+      ]
+    });
+    console.log('[MSR Pro Experimental] Mobile User-Agent spoofing enabled via declarativeNetRequest!');
+  } catch (err) {
+    console.error('[MSR Pro Experimental] Error enabling Mobile User-Agent:', err);
+  }
+}
+
+async function disableMobileUserAgentSpoofing() {
+  if (!chrome.declarativeNetRequest) return;
+  try {
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: [DYNAMIC_RULE_ID_MOBILE]
+    });
+    console.log('[MSR Pro Experimental] Mobile User-Agent spoofing disabled.');
+  } catch (err) {
+    console.error('[MSR Pro Experimental] Error disabling Mobile User-Agent:', err);
+  }
+}
+
 async function startAutomation(mode = 'desktop') {
   console.log(`[MSR Pro] Starting automation mode: ${mode}`);
-  const st = await getState();
+  
+  if (mode === 'mobile') {
+    await enableMobileUserAgentSpoofing();
+  } else {
+    await disableMobileUserAgentSpoofing();
+  }
 
+  const st = await getState();
   const todayStr = new Date().toLocaleDateString();
-  const data = await chrome.storage.local.get(['lastRunDate', 'desktopCompletedToday']);
+  const data = await chrome.storage.local.get(['lastRunDate', 'desktopCompletedToday', 'mobileCompletedToday', 'mobileTarget']);
 
   let completedToday = 0;
   if (data.lastRunDate === todayStr) {
-    completedToday = data.desktopCompletedToday || 0;
+    completedToday = (mode === 'mobile') ? (data.mobileCompletedToday || 0) : (data.desktopCompletedToday || 0);
   } else {
     await chrome.storage.local.set({
       lastRunDate: todayStr,
-      desktopCompletedToday: 0
+      desktopCompletedToday: 0,
+      mobileCompletedToday: 0
     });
   }
 
-  const targetQuota = st.desktopTarget || 30;
+  const targetQuota = (mode === 'mobile') ? (data.mobileTarget || 20) : (st.desktopTarget || 30);
 
   if (completedToday >= targetQuota) {
-    console.log('[MSR Pro] Target quota already reached today!');
+    console.log('[MSR Pro] Target quota already reached today for mode:', mode);
     await sendDailyCompletionNotification();
     await saveState({ isRunning: false });
+    await disableMobileUserAgentSpoofing();
     return;
   }
 
   await saveState({
     isRunning: true,
-    mode: 'desktop',
+    mode: mode,
     currentCount: completedToday,
     targetCount: targetQuota
   });
 
-  await executeNextSearch({ ...st, isRunning: true, currentCount: completedToday, targetCount: targetQuota });
+  await executeNextSearch({ ...st, mode: mode, isRunning: true, currentCount: completedToday, targetCount: targetQuota });
 }
 
 async function executeNextSearch(st) {
@@ -369,13 +434,20 @@ async function executeNextSearch(st) {
   const nextCount = st.currentCount + 1;
   const todayStr = new Date().toLocaleDateString();
 
-  await chrome.storage.local.set({
-    desktopCompletedToday: nextCount,
-    lastRunDate: todayStr
-  });
+  if (st.mode === 'mobile') {
+    await chrome.storage.local.set({
+      mobileCompletedToday: nextCount,
+      lastRunDate: todayStr
+    });
+  } else {
+    await chrome.storage.local.set({
+      desktopCompletedToday: nextCount,
+      lastRunDate: todayStr
+    });
+  }
 
   await saveState({ currentCount: nextCount });
-  await addLogEntry('desktop', query);
+  await addLogEntry(st.mode || 'desktop', query);
 
   const delaySec = Math.floor(Math.random() * (st.maxDelay - st.minDelay + 1)) + st.minDelay;
   console.log(`[MSR Pro] Waiting ${delaySec}s before next search...`);
@@ -398,6 +470,7 @@ async function addLogEntry(mode, query) {
 
 async function stopAutomation(completed = false) {
   await chrome.alarms.clear(ALARM_NEXT_SEARCH);
+  await disableMobileUserAgentSpoofing();
   const st = await getState();
 
   if (st.activeTabId) {
@@ -442,7 +515,7 @@ async function sendDailyCompletionNotification() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'start') {
-    startAutomation('desktop');
+    startAutomation(request.mode || 'desktop');
     sendResponse({ status: 'started' });
     return false;
 
