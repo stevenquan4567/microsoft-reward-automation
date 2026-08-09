@@ -1,4 +1,4 @@
-# ⚡ Microsoft Reward Automation (`v2.1.0`)
+# ⚡ Microsoft Reward Automation (`v2.2.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
 [🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md) | [🇮🇹 Italiano](README_IT.md) | [🇧🇷 Português](README_PT.md) | [🇷🇺 Русский](README_RU.md) | [🇮🇳 हिंदी](README_HI.md)
@@ -7,7 +7,7 @@
 
 > Bing Desktop खोज पर Microsoft Rewards स्वचालन के लिए स्मार्ट ब्राउज़र एक्सटेंशन। इसमें एंटी-बॉट मानव व्यवहार सिमुलेशन, अनूठे कीवर्ड की प्रक्रियात्मक उत्पत्ति, MV3 बैकग्राउंड दैनिक शेड्यूलिंग और ऑटो-अपडेट की सुविधा है।
 
-[![Version](https://img.shields.io/badge/Version-v2.1.0-blue?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/Version-v2.2.0-blue?style=for-the-badge)](#)
 [![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)](#)
 [![Ko-fi](https://img.shields.io/badge/Donate-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/stevenquan45)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#)

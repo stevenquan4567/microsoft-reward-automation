@@ -204,8 +204,8 @@ async function generateNextQuery() {
     history = history.slice(-1000);
   }
 
-  // 30% chance custom keywords
-  if (customList.length > 0 && Math.random() < 0.3) {
+  // 25% chance custom keywords if user provided any
+  if (customList.length > 0 && Math.random() < 0.25) {
     const unusedCustom = customList.filter(k => !history.includes(k));
     if (unusedCustom.length > 0) {
       const selected = unusedCustom[Math.floor(Math.random() * unusedCustom.length)];
@@ -215,32 +215,79 @@ async function generateNextQuery() {
     }
   }
 
-  // 70% chance procedural generator
   const bank = await loadQuotesBank();
   const defaultKw = await loadDefaultKeywords();
 
-  for (let attempt = 0; attempt < 10; attempt++) {
+  function pickRandom(arr) {
+    if (!arr || arr.length === 0) return '';
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  for (let attempt = 0; attempt < 15; attempt++) {
     let candidate = '';
     const roll = Math.random();
 
-    if (roll < 0.45) {
-      const template = bank.templates[Math.floor(Math.random() * bank.templates.length)];
-      candidate = template.replace(/\{(\w+)\}/g, (_, key) => {
-        const list = bank[key] || [];
-        return list.length > 0 ? list[Math.floor(Math.random() * list.length)] : key;
-      });
-    } else if (roll < 0.8) {
+    if (roll < 0.25) {
+      // 1. Tech & Software Engineering (25%)
+      const techList = bank.tech_and_programming || [];
+      const item = pickRandom(techList) || 'software engineering';
+      const tmpl = pickRandom([
+        "how to learn {item} efficiently in 2026",
+        "best practices for {item} development",
+        "step by step tutorial for {item}",
+        "difference between {item} and modern alternatives",
+        "top open source projects built with {item}",
+        "architecture and performance of {item}",
+        "beginner friendly guide to {item}"
+      ]);
+      candidate = tmpl.replace('{item}', item);
+
+    } else if (roll < 0.50) {
+      // 2. Science, Cosmos & Nature (25%)
+      if (Math.random() < 0.4) {
+        const natureItem = pickRandom(bank.nature_and_wildlife || []) || 'deep sea ecosystems';
+        candidate = `fascinating facts and habitat of ${natureItem}`;
+      } else {
+        const scienceItem = pickRandom(bank.science_and_cosmos || []) || 'quantum mechanics';
+        const tmpl = pickRandom([
+          "latest scientific discoveries in {item}",
+          "fundamental principles of {item} explained simply",
+          "how {item} changed our understanding of science",
+          "real world applications of {item} technology"
+        ]);
+        candidate = tmpl.replace('{item}', scienceItem);
+      }
+
+    } else if (roll < 0.75) {
+      // 3. History, Geography & Cuisine (25%)
+      const sub = Math.random();
+      if (sub < 0.4) {
+        const item = pickRandom(bank.history_and_civilizations || []) || 'Ancient Egypt';
+        candidate = `historical timeline and key events of ${item}`;
+      } else if (sub < 0.7) {
+        const item = pickRandom(bank.geography_and_cities || []) || 'Kyoto Japan';
+        candidate = `top travel attractions and hidden gems in ${item}`;
+      } else {
+        const item = pickRandom(bank.cuisine_and_cooking || []) || 'Italian pasta making';
+        candidate = `authentic step by step guide to master ${item}`;
+      }
+
+    } else if (roll < 0.90) {
+      // 4. Default Multi-Category Keywords (15%)
       const categories = Object.keys(defaultKw);
       if (categories.length > 0) {
-        const catName = categories[Math.floor(Math.random() * categories.length)];
+        const catName = pickRandom(categories);
         const kwArray = defaultKw[catName];
         if (Array.isArray(kwArray) && kwArray.length > 0) {
-          candidate = kwArray[Math.floor(Math.random() * kwArray.length)];
+          candidate = pickRandom(kwArray);
         }
       }
+
     } else {
-      const snippet = bank.snippets[Math.floor(Math.random() * bank.snippets.length)];
-      candidate = `what is the meaning of quote "${snippet}"`;
+      // 5. Philosophy & Literature Insights (10%)
+      const author = pickRandom(bank.authors_and_thinkers || []) || 'Marcus Aurelius';
+      const topic = pickRandom(bank.topics_and_concepts || []) || 'wisdom and knowledge';
+      candidate = `life lessons and thoughts by ${author} on ${topic}`;
     }
 
     if (candidate && !history.includes(candidate)) {
@@ -250,7 +297,7 @@ async function generateNextQuery() {
     }
   }
 
-  const fallback = `latest science news ${Date.now().toString().slice(-4)}`;
+  const fallback = `latest technology news ${Date.now().toString().slice(-4)}`;
   history.push(fallback);
   await chrome.storage.local.set({ usedQueriesHistory: history });
   return fallback;
@@ -435,7 +482,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // TRUE AUTO UPDATE & RELOAD ENGINE
 // ─────────────────────────────────────────────────────────────
 
-const CURRENT_VERSION = '2.1.0';
+const CURRENT_VERSION = '2.2.0';
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
 const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 

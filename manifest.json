@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Microsoft Reward Automation",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Tự động cày điểm Microsoft Rewards thông minh với tìm kiếm Bing Desktop, né bot, tùy chỉnh từ khóa và lên lịch ngầm.",
   "permissions": [
     "storage",
