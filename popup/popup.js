@@ -127,13 +127,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     const offset = CIRCUMFERENCE - (percent / 100) * CIRCUMFERENCE;
     progressCircle.style.strokeDashoffset = offset;
 
-    // Update Stats & Estimated Points (+3 pts per desktop search)
+    // Update Stats & Estimated Points (+3 pts per desktop search, capped at maxPointsCap)
     const deskDone = data.desktopCompletedToday || 0;
     const deskGoal = data.desktopTarget || 30;
-    const estPoints = deskDone * 3;
+    const maxCap = data.maxPointsCap || 90;
+
+    const rawPoints = deskDone * 3;
+    const estPoints = Math.min(maxCap, rawPoints);
+    const isMaxReached = rawPoints >= maxCap;
 
     desktopStats.textContent = `${deskDone}/${deskGoal}`;
-    pointsEarned.textContent = `+${estPoints} ${dict.points_unit}`;
+
+    const maxBadge = dict.points_max_badge || 'MAX';
+    if (isMaxReached) {
+      pointsEarned.textContent = `+${estPoints} ${dict.points_unit} (${maxBadge})`;
+      pointsEarned.style.color = '#38ef7d';
+    } else {
+      pointsEarned.textContent = `+${estPoints} / ${maxCap} ${dict.points_unit}`;
+      pointsEarned.style.color = '#f8fafc';
+    }
 
     // Update Ticker
     const logs = data.logs || [];

@@ -1,4 +1,4 @@
-# ⚡ Microsoft Reward Automation (`v2.2.0`)
+# ⚡ Microsoft Reward Automation (`v2.2.1`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
 [🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md) | [🇮🇹 Italiano](README_IT.md) | [🇧🇷 Português](README_PT.md) | [🇷🇺 Русский](README_RU.md) | [🇮🇳 हिंदी](README_HI.md)
@@ -7,7 +7,7 @@
 
 > Extension de navigateur intelligente pour l'automatisation de Microsoft Rewards sur Bing Desktop. Simulation de comportement humain anti-bot, génération procédurale de mots-clés uniques et planification quotidienne en arrière-plan avec MV3.
 
-![Version](https://img.shields.io/badge/Version-v2.2.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v2.2.1-blue?style=for-the-badge)
 ![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 

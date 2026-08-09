@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     appLanguageSelect.value = currentLang;
     applyI18n(currentLang);
 
-    if (data.desktopTarget !== undefined) desktopTarget.value = data.desktopTarget;
+    const maxPointsCap = document.getElementById('maxPointsCap');
+    if (data.maxPointsCap !== undefined) maxPointsCap.value = data.maxPointsCap;
     if (data.minDelay !== undefined) minDelay.value = data.minDelay;
     if (data.maxDelay !== undefined) maxDelay.value = data.maxDelay;
 
@@ -85,14 +86,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function saveGeneralSettings() {
-    const lang = appLanguageSelect.value || 'en';
-    const dTarget = Math.max(1, parseInt(desktopTarget.value) || 30);
-    const minD = Math.max(1, parseInt(minDelay.value) || 3);
-    const maxD = Math.max(minD, parseInt(maxDelay.value) || 6);
+    const maxPointsCap = document.getElementById('maxPointsCap');
+    const mCap = Math.max(10, parseInt(maxPointsCap.value) || 90);
 
     await chrome.storage.local.set({
       appLanguage: lang,
       desktopTarget: dTarget,
+      maxPointsCap: mCap,
       minDelay: minD,
       maxDelay: maxD,
       runOnStartup: runOnStartup.checked,

@@ -7,7 +7,7 @@
 const I18N = {
   en: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Advanced Settings",
     dashboard_subtitle: "Dashboard & Settings",
 
@@ -41,6 +41,10 @@ const I18N = {
     target_card_title: "🖥️ Desktop Search Target",
     target_label: "Daily Desktop search quota:",
     target_help: "Default: 30 searches (~90 Rewards points)",
+    max_cap_card_title: "🎁 Max Daily Points Cap",
+    max_cap_label: "Daily Desktop Points Cap:",
+    max_cap_help: "Points display will never exceed this cap even if extra searches are run.",
+    points_max_badge: "MAX",
     
     delay_card_title: "⏳ Delay Interval (Seconds)",
     min_delay_label: "Min Delay:",
@@ -84,7 +88,7 @@ const I18N = {
     toast_keywords_saved: "📚 Saved custom keywords!",
     toast_keywords_cleared: "🗑️ Cleared custom keywords list.",
     toast_checking_update: "🚀 Syncing updates & reloading extension...",
-    toast_up_to_date: "✨ Extension updated & reloaded! (v2.2.0)",
+    toast_up_to_date: "✨ Extension updated & reloaded! (v2.2.1)",
     toast_update_available: "🎉 Extension updated & reloaded!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Completed all Bing Desktop searches for today!"
@@ -92,7 +96,7 @@ const I18N = {
 
   vi: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Cài đặt nâng cao",
     dashboard_subtitle: "Dashboard & Cài đặt",
 
@@ -126,6 +130,10 @@ const I18N = {
     target_card_title: "🖥️ Target Tìm Kiếm Desktop",
     target_label: "Số lượt tìm kiếm Desktop hàng ngày:",
     target_help: "Mặc định: 30 lượt (~90 điểm Rewards)",
+    max_cap_card_title: "🎁 Hạn Mức Điểm Tối Đa (Max Points Cap)",
+    max_cap_label: "Hạn mức điểm Desktop tối đa mỗi ngày:",
+    max_cap_help: "Điểm số hiển thị sẽ không vượt quá giới hạn này dù bạn tăng số lượt tìm kiếm phòng trừ.",
+    points_max_badge: "TỐI ĐA",
     
     delay_card_title: "⏳ Khoảng Thời Gian Delay (Giây)",
     min_delay_label: "Tối thiểu (Min Delay):",
@@ -169,7 +177,7 @@ const I18N = {
     toast_keywords_saved: "📚 Đã lưu từ khóa tùy chỉnh!",
     toast_keywords_cleared: "🗑️ Đã xóa bộ từ khóa tùy chỉnh.",
     toast_checking_update: "🚀 Đang đồng bộ dữ liệu từ GitHub & tự động reload...",
-    toast_up_to_date: "✨ Đã cập nhật & tự động reload thành công! (v2.2.0)",
+    toast_up_to_date: "✨ Đã cập nhật & tự động reload thành công! (v2.2.1)",
     toast_update_available: "🎉 Đã tự động cập nhật & reload!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!"
@@ -177,7 +185,7 @@ const I18N = {
 
   zh: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 桌面版",
+    app_badge: "v2.2.1 桌面版",
     settings_tooltip: "高级设置",
     dashboard_subtitle: "控制台与设置",
 
@@ -211,6 +219,10 @@ const I18N = {
     target_card_title: "🖥️ 桌面搜索目标",
     target_label: "每日桌面搜索目标次数:",
     target_help: "默认：30 次（约 90 Rewards 积分）",
+    max_cap_card_title: "🎁 每日积分上限",
+    max_cap_label: "每日桌面搜索积分上限:",
+    max_cap_help: "即使增加搜索次数，积分显示也不会超过此上限。",
+    points_max_badge: "已达上限",
     
     delay_card_title: "⏳ 延迟间隔时间（秒）",
     min_delay_label: "最小延迟:",
@@ -254,7 +266,7 @@ const I18N = {
     toast_keywords_saved: "📚 自定义关键词保存成功！",
     toast_keywords_cleared: "🗑️ 已清空自定义关键词列表。",
     toast_checking_update: "🚀 正在同步 GitHub 更新并重载扩展...",
-    toast_up_to_date: "✨ 已成功更新并重载扩展！(v2.2.0)",
+    toast_up_to_date: "✨ 已成功更新并重载扩展！(v2.2.1)",
     toast_update_available: "🎉 扩展已成功自动更新并重载！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 今日所有 Bing 桌面搜索任务已完成！"
@@ -262,7 +274,7 @@ const I18N = {
 
   ko: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 데스크톱",
+    app_badge: "v2.2.1 데스크톱",
     settings_tooltip: "고급 설정",
     dashboard_subtitle: "대시보드 및 설정",
 
@@ -296,6 +308,10 @@ const I18N = {
     target_card_title: "🖥️ 데스크톱 검색 목표",
     target_label: "일일 데스크톱 검색 목표 횟수:",
     target_help: "기본값: 30회 (~90 리워드 포인트)",
+    max_cap_card_title: "🎁 일일 최대 포인트 제한",
+    max_cap_label: "일일 데스크톱 포인트 제한:",
+    max_cap_help: "검색 횟수를 늘리더라도 표시되는 포인트는 이 제한을 초과하지 않습니다.",
+    points_max_badge: "최대",
     
     delay_card_title: "⏳ 지연 시간 간격 (초)",
     min_delay_label: "최소 지연:",
@@ -339,7 +355,7 @@ const I18N = {
     toast_keywords_saved: "📚 맞춤 키워드가 저장되었습니다!",
     toast_keywords_cleared: "🗑️ 맞춤 키워드 목록이 삭제되었습니다.",
     toast_checking_update: "🚀 GitHub 동기화 및 자동 새로고침 중...",
-    toast_up_to_date: "✨ 성공적으로 업데이트 및 새로고침되었습니다! (v2.2.0)",
+    toast_up_to_date: "✨ 성공적으로 업데이트 및 새로고침되었습니다! (v2.2.1)",
     toast_update_available: "🎉 확장 프로그램이 자동 업데이트 및 새로고침되었습니다!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 오늘 예정된 모든 Bing 데스크톱 검색을 완료했습니다!"
@@ -347,7 +363,7 @@ const I18N = {
 
   ja: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 デスクトップ",
+    app_badge: "v2.2.1 デスクトップ",
     settings_tooltip: "詳細設定",
     dashboard_subtitle: "ダッシュボード & 設定",
 
@@ -381,6 +397,10 @@ const I18N = {
     target_card_title: "🖥️ デスクトップ検索目標",
     target_label: "毎日のデスクトップ検索目標回数:",
     target_help: "デフォルト: 30 回（約 90 リワードポイント）",
+    max_cap_card_title: "🎁 一日の最大ポイント上限",
+    max_cap_label: "毎日のデスクトップポイント上限:",
+    max_cap_help: "検索回数を増やしても、表示ポイントはこの上限を超えません。",
+    points_max_badge: "上限到達",
     
     delay_card_title: "⏳ 遅延間隔（秒）",
     min_delay_label: "最小遅延:",
@@ -424,7 +444,7 @@ const I18N = {
     toast_keywords_saved: "📚 カスタムキーワードを保存しました！",
     toast_keywords_cleared: "🗑️ カスタムキーワードをクリアしました。",
     toast_checking_update: "🚀 GitHubデータの同期および自動リロード中...",
-    toast_up_to_date: "✨ 更新と再読み込みが完了しました！(v2.2.0)",
+    toast_up_to_date: "✨ 更新と再読み込みが完了しました！(v2.2.1)",
     toast_update_available: "🎉 拡張機能の自動更新と再読み込みが完了しました！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 本日のすべてのBingデスクトップ検索が完了しました！"
@@ -432,7 +452,7 @@ const I18N = {
 
   es: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Escritorio",
+    app_badge: "v2.2.1 Escritorio",
     settings_tooltip: "Configuración Avanzada",
     dashboard_subtitle: "Panel y Configuración",
 
@@ -466,6 +486,10 @@ const I18N = {
     target_card_title: "🖥️ Objetivo de Búsqueda Escritorio",
     target_label: "Cuota diaria de búsqueda en escritorio:",
     target_help: "Predeterminado: 30 búsquedas (~90 puntos Rewards)",
+    max_cap_card_title: "🎁 Límite Máximo de Puntos Diarios",
+    max_cap_label: "Límite diario de puntos en escritorio:",
+    max_cap_help: "El contador de puntos no superará este límite aunque se realicen búsquedas extra.",
+    points_max_badge: "MÁX",
     
     delay_card_title: "⏳ Intervalo de Retraso (Segundos)",
     min_delay_label: "Retraso Mínimo:",
@@ -509,7 +533,7 @@ const I18N = {
     toast_keywords_saved: "📚 ¡Palabras clave personalizadas guardadas!",
     toast_keywords_cleared: "🗑️ Lista de palabras clave limpiada.",
     toast_checking_update: "🚀 Sincronizando datos de GitHub y recargando extensión...",
-    toast_up_to_date: "✨ ¡Extensión actualizada y recargada con éxito! (v2.2.0)",
+    toast_up_to_date: "✨ ¡Extensión actualizada y recargada con éxito! (v2.2.1)",
     toast_update_available: "🎉 ¡Extensión actualizada y recargada automáticamente!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 ¡Todas las búsquedas diarias de Bing Desktop completadas!"
@@ -517,7 +541,7 @@ const I18N = {
 
   fr: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Bureau",
+    app_badge: "v2.2.1 Bureau",
     settings_tooltip: "Paramètres Avancés",
     dashboard_subtitle: "Tableau de Bord & Paramètres",
 
@@ -551,6 +575,10 @@ const I18N = {
     target_card_title: "🖥️ Objectif de Recherche Bureau",
     target_label: "Quota quotidien de recherche bureau :",
     target_help: "Par défaut : 30 recherches (~90 points Rewards)",
+    max_cap_card_title: "🎁 Plafond Quotidien de Points",
+    max_cap_label: "Plafond quotidien de points bureau :",
+    max_cap_help: "L'affichage des points ne dépassera jamais ce plafond, même en cas de recherches supplémentaires.",
+    points_max_badge: "MAX",
     
     delay_card_title: "⏳ Intervalle de Délai (Secondes)",
     min_delay_label: "Délai Min :",
@@ -594,7 +622,7 @@ const I18N = {
     toast_keywords_saved: "📚 Mots-clés personnalisés enregistrés !",
     toast_keywords_cleared: "🗑️ Liste de mots-clés effacée.",
     toast_checking_update: "🚀 Synchronisation GitHub et rechargement de l'extension...",
-    toast_up_to_date: "✨ Extension mise à jour et rechargée ! (v2.2.0)",
+    toast_up_to_date: "✨ Extension mise à jour et rechargée ! (v2.2.1)",
     toast_update_available: "🎉 Extension mise à jour et rechargée avec succès !",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Toutes les recherches Bing Desktop du jour sont terminées !"
@@ -602,7 +630,7 @@ const I18N = {
 
   de: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Erweiterte Einstellungen",
     dashboard_subtitle: "Dashboard & Einstellungen",
 
@@ -636,6 +664,10 @@ const I18N = {
     target_card_title: "🖥️ Desktop-Suchziel",
     target_label: "Tägliches Desktop-Suchkontingent:",
     target_help: "Standard: 30 Suchen (~90 Rewards-Punkte)",
+    max_cap_card_title: "🎁 Tägliches Punkte-Limit",
+    max_cap_label: "Tägliches Desktop-Punkte-Limit:",
+    max_cap_help: "Die Anzeige der Punkte überschreitet dieses Limit selbst bei zusätzlichen Suchen nicht.",
+    points_max_badge: "MAX",
     
     delay_card_title: "⏳ Verzögerungsintervall (Sekunden)",
     min_delay_label: "Min. Verzögerung:",
@@ -679,7 +711,7 @@ const I18N = {
     toast_keywords_saved: "📚 Schlüsselwörter gespeichert!",
     toast_keywords_cleared: "🗑️ Schlüsselwörter-Liste gelöscht.",
     toast_checking_update: "🚀 Synchronisiere GitHub-Daten und lade Erweiterung neu...",
-    toast_up_to_date: "✨ Erweiterung aktualisiert und neu geladen! (v2.2.0)",
+    toast_up_to_date: "✨ Erweiterung aktualisiert und neu geladen! (v2.2.1)",
     toast_update_available: "🎉 Erweiterung automatisch aktualisiert und neu geladen!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Alle täglichen Bing Desktop-Suchen wurden abgeschlossen!"
@@ -687,7 +719,7 @@ const I18N = {
 
   it: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Impostazioni Avanzate",
     dashboard_subtitle: "Dashboard & Impostazioni",
 
@@ -721,6 +753,10 @@ const I18N = {
     target_card_title: "🖥️ Obiettivo Ricerca Desktop",
     target_label: "Quota giornaliera ricerche desktop:",
     target_help: "Predefinito: 30 ricerche (~90 punti Rewards)",
+    max_cap_card_title: "🎁 Limite Massimo Punti Giornalieri",
+    max_cap_label: "Limite giornaliero punti desktop:",
+    max_cap_help: "Il contatore dei punti non supererà questo limite anche se si eseguono ricerche extra.",
+    points_max_badge: "MAX",
     
     delay_card_title: "⏳ Intervallo di Ritardo (Secondi)",
     min_delay_label: "Ritardo Min:",
@@ -764,7 +800,7 @@ const I18N = {
     toast_keywords_saved: "📚 Parole chiave personalizzate salvate!",
     toast_keywords_cleared: "🗑️ Elenco parole chiave cancellato.",
     toast_checking_update: "🚀 Sincronizzazione dei dati GitHub e ricaricamento dell'estensione...",
-    toast_up_to_date: "✨ Estensione aggiornata e ricaricata! (v2.2.0)",
+    toast_up_to_date: "✨ Estensione aggiornata e ricaricata! (v2.2.1)",
     toast_update_available: "🎉 Estensione aggiornata e ricaricata automaticamente!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Tutte le ricerche Bing Desktop del giorno sono state completate!"
@@ -772,7 +808,7 @@ const I18N = {
 
   pt: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Configurações Avançadas",
     dashboard_subtitle: "Painel & Configurações",
 
@@ -806,6 +842,10 @@ const I18N = {
     target_card_title: "🖥️ Meta de Pesquisa Desktop",
     target_label: "Cota diária de pesquisa desktop:",
     target_help: "Padrão: 30 pesquisas (~90 pontos Rewards)",
+    max_cap_card_title: "🎁 Limite Máximo de Pontos Diários",
+    max_cap_label: "Limite diário de pontos desktop:",
+    max_cap_help: "A exibição de pontos nunca excederá esse limite, mesmo se forem feitas pesquisas extras.",
+    points_max_badge: "MÁX",
     
     delay_card_title: "⏳ Intervalo de Atraso (Segundos)",
     min_delay_label: "Atraso Mín:",
@@ -849,7 +889,7 @@ const I18N = {
     toast_keywords_saved: "📚 Palavras-chave salvas!",
     toast_keywords_cleared: "🗑️ Lista de palavras-chave limpa.",
     toast_checking_update: "🚀 Sincronizando dados do GitHub e recarregando extensão...",
-    toast_up_to_date: "✨ Extensão atualizada e recarregada! (v2.2.0)",
+    toast_up_to_date: "✨ Extensão atualizada e recarregada! (v2.2.1)",
     toast_update_available: "🎉 Extensão atualizada e recarregada com sucesso!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Todas as pesquisas diárias do Bing Desktop foram concluídas!"
@@ -857,7 +897,7 @@ const I18N = {
 
   ru: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "Расширенные настройки",
     dashboard_subtitle: "Панель и настройки",
 
@@ -891,6 +931,10 @@ const I18N = {
     target_card_title: "🖥️ Цель поиска на ПК",
     target_label: "Дневная норма поисков на ПК:",
     target_help: "По умолчанию: 30 поисков (~90 баллов Rewards)",
+    max_cap_card_title: "🎁 Максимальный дневной лимит баллов",
+    max_cap_label: "Дневной лимит баллов на ПК:",
+    max_cap_help: "Отображаемые баллы не превысят этот лимит даже при дополнительных поисках.",
+    points_max_badge: "МАКС",
     
     delay_card_title: "⏳ Интервал задержки (в секундах)",
     min_delay_label: "Мин. задержка:",
@@ -934,7 +978,7 @@ const I18N = {
     toast_keywords_saved: "📚 Ключевые слова сохранены!",
     toast_keywords_cleared: "🗑️ Список ключевых слов очищен.",
     toast_checking_update: "🚀 Синхронизация с GitHub и перезагрузка расширения...",
-    toast_up_to_date: "✨ Расширение обновлено и перезагружено! (v2.2.0)",
+    toast_up_to_date: "✨ Расширение обновлено и перезагружено! (v2.2.1)",
     toast_update_available: "🎉 Расширение автоматически обновлено и перезагружено!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Все дневные поиски Bing на ПК выполнены!"
@@ -942,7 +986,7 @@ const I18N = {
 
   hi: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.0 Desktop",
+    app_badge: "v2.2.1 Desktop",
     settings_tooltip: "उन्नत सेटिंग्स",
     dashboard_subtitle: "डैशबोर्ड और सेटिंग्स",
 
@@ -976,6 +1020,10 @@ const I18N = {
     target_card_title: "🖥️ डेस्कटॉप खोज लक्ष्य",
     target_label: "दैनिक डेस्कटॉप खोज कोटा:",
     target_help: "डिफ़ॉल्ट: 30 खोजें (~90 रिवॉर्ड अंक)",
+    max_cap_card_title: "🎁 अधिकतम दैनिक अंक सीमा",
+    max_cap_label: "दैनिक डेस्कटॉप अंक सीमा:",
+    max_cap_help: "अतिरिक्त खोजें करने पर भी प्रदर्शित अंक इस सीमा से अधिक नहीं होंगे।",
+    points_max_badge: "अधिकतम",
     
     delay_card_title: "⏳ विलंब अंतराल (सेकंड)",
     min_delay_label: "न्यूनतम विलंब:",
@@ -1019,7 +1067,7 @@ const I18N = {
     toast_keywords_saved: "📚 कस्टम कीवर्ड सहेजे गए!",
     toast_keywords_cleared: "🗑️ कस्टम कीवर्ड सूची साफ़ की गई।",
     toast_checking_update: "🚀 GitHub से डेटा सिंक और एक्सटेंशन रीलोड हो रहा है...",
-    toast_up_to_date: "✨ सफलतापूर्वक अपडेट और रीलोड किया गया! (v2.2.0)",
+    toast_up_to_date: "✨ सफलतापूर्वक अपडेट और रीलोड किया गया! (v2.2.1)",
     toast_update_available: "🎉 स्वचालित रूप से अपडेट और रीलोड हो गया!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 आज की सभी Bing डेस्कटॉप खोजें पूरी हो गईं!"

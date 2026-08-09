@@ -11,6 +11,23 @@
 
   console.log('[MSR Pro Humanizer] Active on Bing Search page.');
 
+  // Live Bing Rewards points scraper
+  setTimeout(() => {
+    try {
+      const el = document.querySelector('#id_rc, #b_id_rc, .id_rc, #id_rh, a[href*="rewards.bing.com"]');
+      if (el && el.innerText) {
+        const txt = el.innerText.replace(/,/g, '').trim();
+        const m = txt.match(/\d+/);
+        if (m) {
+          const livePts = parseInt(m[0], 10);
+          if (!isNaN(livePts) && livePts > 0) {
+            chrome.storage.local.set({ liveRewardsPoints: livePts });
+          }
+        }
+      }
+    } catch (e) {}
+  }, 1200);
+
   // Read humanizer & execution state from storage
   chrome.storage.local.get(['enableHumanizer', 'isRunning'], (res) => {
     if (!res.isRunning) return;

@@ -52,6 +52,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   const defaults = {
     appLanguage: 'en',
     desktopTarget: 30,
+    maxPointsCap: 90,
     minDelay: 3,
     maxDelay: 6,
     autoCloseTab: true,
@@ -482,7 +483,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // TRUE AUTO UPDATE & RELOAD ENGINE
 // ─────────────────────────────────────────────────────────────
 
-const CURRENT_VERSION = '2.2.0';
+const CURRENT_VERSION = '2.2.1';
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
 const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 
