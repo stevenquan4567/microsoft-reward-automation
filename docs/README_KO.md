@@ -1,4 +1,4 @@
-# ⚡ Microsoft Reward Automation (`v2.2.1`)
+# ⚡ Microsoft Reward Automation (`v2.3.0`)
 
 🌐 **Languages / 语言 / 언어 / 言語 / Idiomas**:  
 [🇻🇳 Tiếng Việt](../README.md) | [🇬🇧 English](README_EN.md) | [🇨🇳 简体中文](README_ZH.md) | [🇰🇷 한국어](README_KO.md) | [🇯🇵 日本語](README_JA.md) | [🇪🇸 Español](README_ES.md) | [🇫🇷 Français](README_FR.md) | [🇩🇪 Deutsch](README_DE.md) | [🇮🇹 Italiano](README_IT.md) | [🇧🇷 Português](README_PT.md) | [🇷🇺 Русский](README_RU.md) | [🇮🇳 हिंदी](README_HI.md)
@@ -7,7 +7,7 @@
 
 > Bing Desktop 검색을 위한 스마트 Microsoft Rewards 자동화 브라우저 확장 프로그램. 봇 탐지 방지 인간 행동 시뮬레이션, 절차적 고유 키워드 생성 및 MV3 백그라운드 일일 스케줄링 지원.
 
-![Version](https://img.shields.io/badge/Version-v2.2.1-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v2.3.0-blue?style=for-the-badge)
 ![Manifest](https://img.shields.io/badge/Manifest-V3-00F2FE?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 

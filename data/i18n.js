@@ -7,13 +7,14 @@
 const I18N = {
   en: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Advanced Settings",
     dashboard_subtitle: "Dashboard & Settings",
 
     status_label: "Status",
     status_ready: "Ready",
     status_running: "Auto Searching...",
+    status_offline_paused: "📶 Waiting for Internet...",
     status_completed: "Completed Today!",
 
     desktop_searches_today: "Desktop Searches Today",
@@ -88,7 +89,7 @@ const I18N = {
     toast_keywords_saved: "📚 Saved custom keywords!",
     toast_keywords_cleared: "🗑️ Cleared custom keywords list.",
     toast_checking_update: "🚀 Syncing updates & reloading extension...",
-    toast_up_to_date: "✨ Extension updated & reloaded! (v2.2.1)",
+    toast_up_to_date: "✨ Extension updated & reloaded! (v2.3.0)",
     toast_update_available: "🎉 Extension updated & reloaded!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Completed all Bing Desktop searches for today!"
@@ -96,13 +97,14 @@ const I18N = {
 
   vi: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Cài đặt nâng cao",
     dashboard_subtitle: "Dashboard & Cài đặt",
 
     status_label: "Trạng thái",
     status_ready: "Sẵn sàng",
     status_running: "Đang tự động tìm kiếm...",
+    status_offline_paused: "📶 Đang chờ kết nối Mạng...",
     status_completed: "Đã hoàn thành hôm nay!",
 
     desktop_searches_today: "Desktop Tìm Kiếm Hôm Nay",
@@ -177,7 +179,7 @@ const I18N = {
     toast_keywords_saved: "📚 Đã lưu từ khóa tùy chỉnh!",
     toast_keywords_cleared: "🗑️ Đã xóa bộ từ khóa tùy chỉnh.",
     toast_checking_update: "🚀 Đang đồng bộ dữ liệu từ GitHub & tự động reload...",
-    toast_up_to_date: "✨ Đã cập nhật & tự động reload thành công! (v2.2.1)",
+    toast_up_to_date: "✨ Đã cập nhật & tự động reload thành công! (v2.3.0)",
     toast_update_available: "🎉 Đã tự động cập nhật & reload!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Đã hoàn thành toàn bộ lượt tìm kiếm Bing Desktop hôm nay!"
@@ -185,13 +187,14 @@ const I18N = {
 
   zh: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 桌面版",
+    app_badge: "v2.3.0 桌面版",
     settings_tooltip: "高级设置",
     dashboard_subtitle: "控制台与设置",
 
     status_label: "当前状态",
     status_ready: "就绪",
     status_running: "正在自动搜索...",
+    status_offline_paused: "📶 等待网络连接...",
     status_completed: "今日搜索已完成！",
 
     desktop_searches_today: "今日桌面搜索次数",
@@ -266,7 +269,7 @@ const I18N = {
     toast_keywords_saved: "📚 自定义关键词保存成功！",
     toast_keywords_cleared: "🗑️ 已清空自定义关键词列表。",
     toast_checking_update: "🚀 正在同步 GitHub 更新并重载扩展...",
-    toast_up_to_date: "✨ 已成功更新并重载扩展！(v2.2.1)",
+    toast_up_to_date: "✨ 已成功更新并重载扩展！(v2.3.0)",
     toast_update_available: "🎉 扩展已成功自动更新并重载！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 今日所有 Bing 桌面搜索任务已完成！"
@@ -274,13 +277,14 @@ const I18N = {
 
   ko: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 데스크톱",
+    app_badge: "v2.3.0 데스크톱",
     settings_tooltip: "고급 설정",
     dashboard_subtitle: "대시보드 및 설정",
 
     status_label: "상태",
     status_ready: "준비됨",
     status_running: "자동 검색 중...",
+    status_offline_paused: "📶 인터넷 연결 대기 중...",
     status_completed: "오늘 검색 완료!",
 
     desktop_searches_today: "오늘 데스크톱 검색 횟수",
@@ -355,7 +359,7 @@ const I18N = {
     toast_keywords_saved: "📚 맞춤 키워드가 저장되었습니다!",
     toast_keywords_cleared: "🗑️ 맞춤 키워드 목록이 삭제되었습니다.",
     toast_checking_update: "🚀 GitHub 동기화 및 자동 새로고침 중...",
-    toast_up_to_date: "✨ 성공적으로 업데이트 및 새로고침되었습니다! (v2.2.1)",
+    toast_up_to_date: "✨ 성공적으로 업데이트 및 새로고침되었습니다! (v2.3.0)",
     toast_update_available: "🎉 확장 프로그램이 자동 업데이트 및 새로고침되었습니다!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 오늘 예정된 모든 Bing 데스크톱 검색을 완료했습니다!"
@@ -363,13 +367,14 @@ const I18N = {
 
   ja: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 デスクトップ",
+    app_badge: "v2.3.0 デスクトップ",
     settings_tooltip: "詳細設定",
     dashboard_subtitle: "ダッシュボード & 設定",
 
     status_label: "ステータス",
     status_ready: "準備完了",
     status_running: "自動検索中...",
+    status_offline_paused: "📶 ネット接続待機中...",
     status_completed: "本日の検索が完了しました！",
 
     desktop_searches_today: "本日のデスクトップ検索回数",
@@ -444,7 +449,7 @@ const I18N = {
     toast_keywords_saved: "📚 カスタムキーワードを保存しました！",
     toast_keywords_cleared: "🗑️ カスタムキーワードをクリアしました。",
     toast_checking_update: "🚀 GitHubデータの同期および自動リロード中...",
-    toast_up_to_date: "✨ 更新と再読み込みが完了しました！(v2.2.1)",
+    toast_up_to_date: "✨ 更新と再読み込みが完了しました！(v2.3.0)",
     toast_update_available: "🎉 拡張機能の自動更新と再読み込みが完了しました！",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 本日のすべてのBingデスクトップ検索が完了しました！"
@@ -452,13 +457,14 @@ const I18N = {
 
   es: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Escritorio",
+    app_badge: "v2.3.0 Escritorio",
     settings_tooltip: "Configuración Avanzada",
     dashboard_subtitle: "Panel y Configuración",
 
     status_label: "Estado",
     status_ready: "Listo",
     status_running: "Buscando automáticamente...",
+    status_offline_paused: "📶 Esperando conexión a Internet...",
     status_completed: "¡Completado Hoy!",
 
     desktop_searches_today: "Búsquedas de Escritorio Hoy",
@@ -533,7 +539,7 @@ const I18N = {
     toast_keywords_saved: "📚 ¡Palabras clave personalizadas guardadas!",
     toast_keywords_cleared: "🗑️ Lista de palabras clave limpiada.",
     toast_checking_update: "🚀 Sincronizando datos de GitHub y recargando extensión...",
-    toast_up_to_date: "✨ ¡Extensión actualizada y recargada con éxito! (v2.2.1)",
+    toast_up_to_date: "✨ ¡Extensión actualizada y recargada con éxito! (v2.3.0)",
     toast_update_available: "🎉 ¡Extensión actualizada y recargada automáticamente!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 ¡Todas las búsquedas diarias de Bing Desktop completadas!"
@@ -541,13 +547,14 @@ const I18N = {
 
   fr: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Bureau",
+    app_badge: "v2.3.0 Bureau",
     settings_tooltip: "Paramètres Avancés",
     dashboard_subtitle: "Tableau de Bord & Paramètres",
 
     status_label: "Statut",
     status_ready: "Prêt",
     status_running: "Recherche automatique...",
+    status_offline_paused: "📶 En attente de connexion Internet...",
     status_completed: "Terminé Aujourd'hui !",
 
     desktop_searches_today: "Recherches Bureau Aujourd'hui",
@@ -622,7 +629,7 @@ const I18N = {
     toast_keywords_saved: "📚 Mots-clés personnalisés enregistrés !",
     toast_keywords_cleared: "🗑️ Liste de mots-clés effacée.",
     toast_checking_update: "🚀 Synchronisation GitHub et rechargement de l'extension...",
-    toast_up_to_date: "✨ Extension mise à jour et rechargée ! (v2.2.1)",
+    toast_up_to_date: "✨ Extension mise à jour et rechargée ! (v2.3.0)",
     toast_update_available: "🎉 Extension mise à jour et rechargée avec succès !",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Toutes les recherches Bing Desktop du jour sont terminées !"
@@ -630,13 +637,14 @@ const I18N = {
 
   de: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Erweiterte Einstellungen",
     dashboard_subtitle: "Dashboard & Einstellungen",
 
     status_label: "Status",
     status_ready: "Bereit",
     status_running: "Automatische Suche läuft...",
+    status_offline_paused: "📶 Warten auf Internetverbindung...",
     status_completed: "Heute abgeschlossen!",
 
     desktop_searches_today: "Desktop-Suchen Heute",
@@ -711,7 +719,7 @@ const I18N = {
     toast_keywords_saved: "📚 Schlüsselwörter gespeichert!",
     toast_keywords_cleared: "🗑️ Schlüsselwörter-Liste gelöscht.",
     toast_checking_update: "🚀 Synchronisiere GitHub-Daten und lade Erweiterung neu...",
-    toast_up_to_date: "✨ Erweiterung aktualisiert und neu geladen! (v2.2.1)",
+    toast_up_to_date: "✨ Erweiterung aktualisiert und neu geladen! (v2.3.0)",
     toast_update_available: "🎉 Erweiterung automatisch aktualisiert und neu geladen!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Alle täglichen Bing Desktop-Suchen wurden abgeschlossen!"
@@ -719,13 +727,14 @@ const I18N = {
 
   it: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Impostazioni Avanzate",
     dashboard_subtitle: "Dashboard & Impostazioni",
 
     status_label: "Stato",
     status_ready: "Pronto",
     status_running: "Ricerca automatica in corso...",
+    status_offline_paused: "📶 In attesa di connessione Internet...",
     status_completed: "Completato Oggi!",
 
     desktop_searches_today: "Ricerche Desktop Oggi",
@@ -800,7 +809,7 @@ const I18N = {
     toast_keywords_saved: "📚 Parole chiave personalizzate salvate!",
     toast_keywords_cleared: "🗑️ Elenco parole chiave cancellato.",
     toast_checking_update: "🚀 Sincronizzazione dei dati GitHub e ricaricamento dell'estensione...",
-    toast_up_to_date: "✨ Estensione aggiornata e ricaricata! (v2.2.1)",
+    toast_up_to_date: "✨ Estensione aggiornata e ricaricata! (v2.3.0)",
     toast_update_available: "🎉 Estensione aggiornata e ricaricata automaticamente!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Tutte le ricerche Bing Desktop del giorno sono state completate!"
@@ -808,13 +817,14 @@ const I18N = {
 
   pt: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Configurações Avançadas",
     dashboard_subtitle: "Painel & Configurações",
 
     status_label: "Status",
     status_ready: "Pronto",
     status_running: "Pesquisando automaticamente...",
+    status_offline_paused: "📶 Aguardando conexão com a Internet...",
     status_completed: "Concluído Hoje!",
 
     desktop_searches_today: "Pesquisas Desktop Hoje",
@@ -889,7 +899,7 @@ const I18N = {
     toast_keywords_saved: "📚 Palavras-chave salvas!",
     toast_keywords_cleared: "🗑️ Lista de palavras-chave limpa.",
     toast_checking_update: "🚀 Sincronizando dados do GitHub e recarregando extensão...",
-    toast_up_to_date: "✨ Extensão atualizada e recarregada! (v2.2.1)",
+    toast_up_to_date: "✨ Extensão atualizada e recarregada! (v2.3.0)",
     toast_update_available: "🎉 Extensão atualizada e recarregada com sucesso!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Todas as pesquisas diárias do Bing Desktop foram concluídas!"
@@ -897,13 +907,14 @@ const I18N = {
 
   ru: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "Расширенные настройки",
     dashboard_subtitle: "Панель и настройки",
 
     status_label: "Статус",
     status_ready: "Готов",
     status_running: "Автопоиск выполняется...",
+    status_offline_paused: "📶 Ожидание подключения к Интернету...",
     status_completed: "Выполнено сегодня!",
 
     desktop_searches_today: "Поисков на ПК сегодня",
@@ -978,7 +989,7 @@ const I18N = {
     toast_keywords_saved: "📚 Ключевые слова сохранены!",
     toast_keywords_cleared: "🗑️ Список ключевых слов очищен.",
     toast_checking_update: "🚀 Синхронизация с GitHub и перезагрузка расширения...",
-    toast_up_to_date: "✨ Расширение обновлено и перезагружено! (v2.2.1)",
+    toast_up_to_date: "✨ Расширение обновлено и перезагружено! (v2.3.0)",
     toast_update_available: "🎉 Расширение автоматически обновлено и перезагружено!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 Все дневные поиски Bing на ПК выполнены!"
@@ -986,13 +997,14 @@ const I18N = {
 
   hi: {
     app_title: "Microsoft Reward Automation",
-    app_badge: "v2.2.1 Desktop",
+    app_badge: "v2.3.0 Desktop",
     settings_tooltip: "उन्नत सेटिंग्स",
     dashboard_subtitle: "डैशबोर्ड और सेटिंग्स",
 
     status_label: "स्थिति",
     status_ready: "तैयार",
     status_running: "ऑटो खोज जारी है...",
+    status_offline_paused: "📶 इंटरनेट कनेक्शन की प्रतीक्षा में...",
     status_completed: "आज पूरा हो गया!",
 
     desktop_searches_today: "आज की डेस्कटॉप खोजें",
@@ -1067,7 +1079,7 @@ const I18N = {
     toast_keywords_saved: "📚 कस्टम कीवर्ड सहेजे गए!",
     toast_keywords_cleared: "🗑️ कस्टम कीवर्ड सूची साफ़ की गई।",
     toast_checking_update: "🚀 GitHub से डेटा सिंक और एक्सटेंशन रीलोड हो रहा है...",
-    toast_up_to_date: "✨ सफलतापूर्वक अपडेट और रीलोड किया गया! (v2.2.1)",
+    toast_up_to_date: "✨ सफलतापूर्वक अपडेट और रीलोड किया गया! (v2.3.0)",
     toast_update_available: "🎉 स्वचालित रूप से अपडेट और रीलोड हो गया!",
     notif_completed_title: "Microsoft Reward Automation",
     notif_completed_msg: "🎉 आज की सभी Bing डेस्कटॉप खोजें पूरी हो गईं!"

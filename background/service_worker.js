@@ -9,6 +9,7 @@
 const ALARM_NEXT_SEARCH = 'next_search';
 const ALARM_DAILY_SCHEDULE = 'daily_msr_schedule';
 const ALARM_AUTO_UPDATE = 'auto_update_check';
+const ALARM_OFFLINE_RETRY = 'offline_retry';
 
 // ─────────────────────────────────────────────────────────────
 // STATE HELPERS
@@ -17,10 +18,11 @@ const ALARM_AUTO_UPDATE = 'auto_update_check';
 async function getState() {
   const s = await chrome.storage.local.get([
     'isRunning', 'currentMode', 'currentCount', 'targetCount', 'activeTabId',
-    'minDelay', 'maxDelay', 'desktopTarget'
+    'minDelay', 'maxDelay', 'desktopTarget', 'isOfflinePaused'
   ]);
   return {
     isRunning: !!s.isRunning,
+    isOfflinePaused: !!s.isOfflinePaused,
     mode: s.currentMode || 'desktop',
     currentCount: s.currentCount || 0,
     targetCount: s.targetCount || s.desktopTarget || 30,
@@ -34,6 +36,7 @@ async function getState() {
 async function saveState(patch) {
   const mapped = {};
   if (patch.isRunning !== undefined) mapped.isRunning = patch.isRunning;
+  if (patch.isOfflinePaused !== undefined) mapped.isOfflinePaused = patch.isOfflinePaused;
   if (patch.mode !== undefined) mapped.currentMode = patch.mode;
   if (patch.currentCount !== undefined) mapped.currentCount = patch.currentCount;
   if (patch.targetCount !== undefined) mapped.targetCount = patch.targetCount;
@@ -168,6 +171,21 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     const settings = await chrome.storage.local.get(['enableAutoUpdate']);
     if (settings.enableAutoUpdate !== false) {
       await performAutoUpdateAndReload();
+    }
+  } else if (alarm.name === ALARM_OFFLINE_RETRY) {
+    console.log('[MSR Pro Network Protection] Checking if internet connection is restored...');
+    const st = await getState();
+    if (!st.isRunning) return;
+
+    const online = await isNetworkOnline();
+    if (online) {
+      console.log('[MSR Pro Network Protection] Internet connection restored! Resuming search...');
+      await saveState({ isOfflinePaused: false });
+      await sendOnlineNotification();
+      await executeNextSearch(st);
+    } else {
+      console.log('[MSR Pro Network Protection] Still offline. Retrying in 20s...');
+      chrome.alarms.create(ALARM_OFFLINE_RETRY, { delayInMinutes: 20 / 60 });
     }
   }
 });
@@ -357,8 +375,80 @@ async function startAutomation(mode = 'desktop') {
   await executeNextSearch({ ...st, isRunning: true, currentCount: completedToday, targetCount: targetQuota });
 }
 
+async function isNetworkOnline() {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    return false;
+  }
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    await fetch('https://www.bing.com/favicon.ico', {
+      method: 'HEAD',
+      mode: 'no-cors',
+      cache: 'no-cache',
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function sendOfflineNotification() {
+  const data = await chrome.storage.local.get(['enableNotifications', 'appLanguage', 'hasNotifiedOffline']);
+  if (data.enableNotifications === false || data.hasNotifiedOffline) return;
+
+  const lang = data.appLanguage || 'en';
+  const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+
+  try {
+    chrome.notifications.create('offline_notif', {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('assets/icon128.png'),
+      title: '📶 ' + (dict.status_offline_paused || 'Waiting for Internet...'),
+      message: 'MSR Pro paused search temporarily. Will resume automatically when internet returns.',
+      priority: 2
+    });
+    await chrome.storage.local.set({ hasNotifiedOffline: true });
+  } catch (e) {}
+}
+
+async function sendOnlineNotification() {
+  const data = await chrome.storage.local.get(['enableNotifications', 'appLanguage']);
+  if (data.enableNotifications === false) return;
+
+  try {
+    chrome.notifications.create('online_notif', {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('assets/icon128.png'),
+      title: '🌐 Internet Restored!',
+      message: 'MSR Pro has automatically resumed your daily search queue.',
+      priority: 2
+    });
+    await chrome.storage.local.set({ hasNotifiedOffline: false });
+  } catch (e) {}
+}
+
 async function executeNextSearch(st) {
   if (!st.isRunning) return;
+
+  // Check network connectivity first before attempting search
+  const isOnline = await isNetworkOnline();
+  if (!isOnline) {
+    console.log('[MSR Pro Network Protection] Internet connection unreachable. Temporarily pausing search...');
+    await saveState({ isOfflinePaused: true });
+    await sendOfflineNotification();
+
+    // Schedule retry alarm to check internet connection every 20 seconds
+    await chrome.alarms.clear(ALARM_OFFLINE_RETRY);
+    chrome.alarms.create(ALARM_OFFLINE_RETRY, { delayInMinutes: 20 / 60 });
+    return;
+  }
+
+  // Internet is online: clear offline paused status
+  await saveState({ isOfflinePaused: false });
+  await chrome.alarms.clear(ALARM_OFFLINE_RETRY);
 
   if (st.currentCount >= st.targetCount) {
     console.log('[MSR Pro] Search target reached! Stopping.');
@@ -421,6 +511,7 @@ async function addLogEntry(mode, query) {
 
 async function stopAutomation(completed = false) {
   await chrome.alarms.clear(ALARM_NEXT_SEARCH);
+  await chrome.alarms.clear(ALARM_OFFLINE_RETRY);
   const st = await getState();
 
   if (st.activeTabId) {
@@ -432,7 +523,8 @@ async function stopAutomation(completed = false) {
     }
   }
 
-  await saveState({ isRunning: false, activeTabId: null });
+  await saveState({ isRunning: false, isOfflinePaused: false, activeTabId: null });
+  await chrome.storage.local.set({ hasNotifiedOffline: false });
 
   if (completed) {
     await sendDailyCompletionNotification();
@@ -506,7 +598,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 // TRUE AUTO UPDATE & RELOAD ENGINE
 // ─────────────────────────────────────────────────────────────
 
-const CURRENT_VERSION = '2.2.1';
+const CURRENT_VERSION = '2.3.0';
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
 const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 

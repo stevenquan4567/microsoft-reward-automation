@@ -90,12 +90,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function updateUI() {
     const data = await chrome.storage.local.get([
-      'appLanguage', 'isRunning', 'currentCount', 'targetCount',
-      'desktopCompletedToday', 'desktopTarget', 'logs'
+      'isRunning', 'isOfflinePaused', 'currentCount', 'targetCount',
+      'desktopCompletedToday', 'desktopTarget', 'logs', 'appLanguage', 'maxPointsCap'
     ]);
 
     const lang = data.appLanguage || 'en';
-    const dict = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : I18N['en'];
+    const dict = getDict(lang);
 
     popupLangSelect.value = lang;
 
@@ -103,11 +103,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyTranslationDict(dict);
 
     const isRunning = !!data.isRunning;
+    const isOfflinePaused = !!data.isOfflinePaused;
     const currentCount = data.currentCount || 0;
     const targetCount = data.targetCount || data.desktopTarget || 30;
 
     // Update Status Pill & Controls
-    if (isRunning) {
+    if (isOfflinePaused) {
+      statusPill.className = 'status-pill offline';
+      statusText.textContent = dict.status_offline_paused || '📶 Waiting for Internet...';
+      btnStart.classList.add('hidden');
+      btnStop.classList.remove('hidden');
+    } else if (isRunning) {
       statusPill.className = 'status-pill running';
       statusText.textContent = dict.status_running;
       btnStart.classList.add('hidden');
