@@ -1,7 +1,7 @@
 const GITHUB_MANIFEST_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/manifest.json';
 const GITHUB_KEYWORDS_URL = 'https://raw.githubusercontent.com/stevenquan4567/microsoft-reward-automation/main/data/default_keywords.json';
 
-const CURRENT_VERSION = '2.2.1';
+const CURRENT_VERSION = '2.3.0';
 
 function isNewerVersion(current, remote) {
   const cParts = current.split('.').map(Number);

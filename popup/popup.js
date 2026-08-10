@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function updateUI() {
     const data = await chrome.storage.local.get([
-      'isRunning', 'currentCount', 'targetCount', 'currentMode',
+      'isRunning', 'isOfflinePaused', 'currentCount', 'targetCount', 'currentMode',
       'desktopCompletedToday', 'mobileCompletedToday', 'desktopTarget', 'mobileTarget',
       'logs', 'appLanguage', 'maxPointsCap'
     ]);
@@ -111,11 +111,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     applyTranslationDict(dict);
 
     const isRunning = !!data.isRunning;
+    const isOfflinePaused = !!data.isOfflinePaused;
     const currentCount = data.currentCount || 0;
     const targetCount = data.targetCount || data.desktopTarget || 30;
 
     // Update Status Pill & Controls
-    if (isRunning) {
+    if (isOfflinePaused) {
+      statusPill.className = 'status-pill offline';
+      statusText.textContent = dict.status_offline_paused || '📶 Waiting for Internet...';
+      btnStart.classList.add('hidden');
+      btnStop.classList.remove('hidden');
+    } else if (isRunning) {
       statusPill.className = 'status-pill running';
       statusText.textContent = (data.currentMode === 'mobile') ? '📱 Mobile Search (EXP)...' : dict.status_running;
       btnStart.classList.add('hidden');
